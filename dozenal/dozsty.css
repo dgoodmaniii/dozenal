@@ -1,0 +1,43 @@
+/*
+ * +AMDG  This document was begun on E June 11EE, the feast
+ * of St. Barnabas, A, and it is humbly dedicated to him and
+ * to the Immaculate Heart of Mary for their prayers and to
+ * the Sacred Heart of Jesus for His mercy.
+ */
+
+body {
+	margin:					0pt;
+	border:					0pt;
+	padding:					0pt;
+}
+h1 {
+	margin:					0pt;
+	border:					0pt;
+	padding:					0pt;
+}
+#titlebar {
+	background-color:  	blue;
+	height:					120px;
+	width:					100%;
+	horizontal-align:		left;
+	margin:					0pt;
+	border:					0pt;
+	padding:					0pt;
+	padding-top:			40px;
+}
+#title {
+	width:					100%;
+	color:					yellow;
+	font-size:				300%;
+	font-weight:			bold;
+}
+#tagline {
+	color: 					black;
+	width:					100%;
+	font-style:				italic;
+	font-size:				100%;
+}
+#tagline:before {
+	content:					"";
+	display:					block;
+}
