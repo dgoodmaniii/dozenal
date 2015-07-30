@@ -1,0 +1,491 @@
+." +AMDG
+." Process with:
+." groff -man -Tascii dozdate.1
+.TH dozdate 1 "October 2011" Linux "User Manuals"
+.SH NAME
+dozdate \- produce the dozenal date and time
+.SH SYNOPSIS
+.B dozdate [OPTION] [FORMAT]
+.SH DESCRIPTION
+.B dozdate
+Display the current date and time in dozenal format, time
+available in either standard sexagesimal time or TGM format;
+or optionally a (more or less) arbitrary other date.
+.SH OPTIONS
+.IP -d date_string
+Rather than displaying current date and time, display the
+date and time specified in the required argument.  This
+string is quite flexibly formatted, and is described in more
+detail later in this manual.
+.IP -f filename
+Like -d once for each line of filename.
+.IP -R
+Display the date and time in RFC-2822 format.  E.g.:  "Mon, 07
+Aug 11E2 10:2X:48 -0600"
+.IP -c
+Display the date and time in RFC-3339 format.  E.g.:
+"111E2-08-07 10:2X:48-0600"
+.IP -u
+Display the date and time in UTC/GMT (Coordinated Universal
+Time or Greenwich Mean Time); in other words, without time
+zone or daylight savings time concerns.
+.IP -S
+The date to be input will be in the Symmetry676 (in decimal,
+Symmetry010) calendar.
+.IP -s
+The date should be output in the Symmetry676 (in decimal,
+Symmetry010) calendar.
+.IP -Y
+Both the input date and output date should be Symmetry676;
+equivalent to "-sS" (or, of course, "-Ss").  
+.IP -v
+Print version and copyright information, then quit.
+.SH FORMAT
+.B FORMAT 
+controls the output; that is, inputting these sequences
+(probably should enclose them in double quotes, just to be
+sure) will produce the resulting figures.
+.B Percent format sequences 
+(beginning with a "%" and followed by a letter) produce
+normal date and time numbers; 
+.B at-sign format sequences
+(beginning with an "@" and followed by a letter) produce
+TGM-specific date and time numbers.  All numbers produced by
+dozdate are dozenal, and all numbers fed to it are assumed
+to be dozenal.
+
+Interpreted sequences are:
+.SH PERCENT SEQUENCES:
+.TP
+%%
+a literal %
+.TP
+%a
+locale's abbreviated weekday name (e.g., Sun)
+.TP
+%A
+locale's full weekday name (e.g., Sunday)
+.TP
+%b
+locale's abbreviated month name (e.g., Jan)
+.TP
+%B
+locale's full month name (e.g., January)
+.TP
+%c
+locale's date and time (e.g., Thu Mar  3 23:05:25 2005)
+.TP
+%C
+century; like %Y, except omit last two digits (e.g., 20)
+.TP
+%d
+day of month (e.g, 01)
+.TP
+%D
+date; same as %m/%d/%y
+.TP
+%e
+day of month, space padded; same as %_d
+.TP
+%F
+full date; same as %Y\-%m\-%d
+.TP
+%g
+last two digits of year of ISO week number (see %G)
+.TP
+%G
+year of ISO week number (see %V); normally useful only with %V
+.TP
+%h
+same as %b
+.TP
+%H
+hour (00..23)
+.TP
+%I
+hour (01..12)
+.TP
+%j
+day of year (001..366)
+.TP
+%k
+hour ( 0..23)
+.TP
+%l
+hour ( 1..12)
+.TP
+%m
+month (01..12)
+.TP
+%M
+minute (00..59)
+.TP
+%n
+a newline
+.TP
+%N
+nanoseconds (000000000..999999999)
+.TP
+%p
+locale's equivalent of either AM or PM; blank if not known
+.TP
+%P
+like %p, but lower case
+.TP
+%r
+locale's 12\-hour clock time (e.g., 11:11:04 PM)
+.TP
+%R
+24\-hour hour and minute; same as %H:%M
+.TP
+%s
+seconds since 1970\-01\-01 00:00:00 UTC
+.TP
+%S
+second (00..60)
+.TP
+%t
+a tab
+.TP
+%T
+time; same as %H:%M:%S
+.TP
+%u
+day of week (1..7); 1 is Monday
+.TP
+%U
+week number of year, with Sunday as first day of week (00..53)
+.TP
+%V
+ISO week number, with Monday as first day of week (01..53)
+.TP
+%w
+day of week (0..6); 0 is Sunday
+.TP
+%W
+week number of year, with Monday as first day of week (00..53)
+.TP
+%x
+locale's date representation (e.g., 12/31/99)
+.TP
+%X
+locale's time representation (e.g., 23:13:48)
+.TP
+%y
+last two digits of year (00..99)
+.TP
+%Y
+year
+.TP
+%z
++hhmm numeric timezone (e.g., \fB\-0400\fR)
+.TP
+%:z
++hh:mm numeric timezone (e.g., \fB\-04\fR:00)
+.TP
+%::z
++hh:mm:ss numeric time zone (e.g., \fB\-04\fR:00:00)
+.TP
+%:::z
+numeric time zone with : to necessary precision (e.g., \fB\-04\fR, +05:30)
+.TP
+%Z
+alphabetic time zone abbreviation (e.g., EDT)
+.SH DOZENAL SEQUENCES:
+.TP
+@c
+Produces a reasonably complete depiction of the date and
+time; that is, weekday day month year time.  E.g., "Thu 18
+Oct 11E7 0E;3300".
+.TP
+@C
+Produces the first two digits of the dozenal year without
+the last two; in other words, the zentury.  So, e.g., for
+this year (11E7/2011), it produces "11".  Similar to %c,
+except for the dozenal year.
+.TP
+@y
+Produces the last two digits of the dozenal year without the
+first two; so, for this year (11E7/2011), it produces "E7".
+.TP
+@t
+Produces the number of Tims since the last hour
+(0000-10000).  (Range is normally only through EEEE, but the
+extra is to allow for occasional leap seconds.)
+.TP
+@m
+Number of quaduaTims, to two places; essentially @t
+truncated to two digits.
+.TP
+@H
+Number of hours since midnight; 00-1E.
+.TP
+@k
+Same as @H, but without padding; 0-1E.
+.TP
+@T
+"Long time"; @H;@t.  Hours, semicolon, Tims to four digits.
+.TP
+@s
+"Short time"; @H;@m.  Hours, semicolon, Tims to two digits.
+.SH FORMAT SPECIFIERS
+Any of the "@" format specifiers may be further specified in
+terms of padding.  After the "%" or "@" but before the
+letter comes the optional field width; e.g., "@5H" will give
+the hour, in dozenal, in a field five characters wide, three
+zeroes and the hour.  Prior to the field width can come an
+optional character which will be used for padding instead of
+zeroes.  E.g., "@5^H" will pad the field with "^" rather
+than zeroes.
+.PP
+Note that this differs from GNU date, which uses "^" and "#"
+to specify change of case; dozdate instead interprets these
+as padding characters.
+.PP
+By default, dozdate pads with zeroes, but any non-letter and
+non-number character can be used.  In GNU date, an
+underscore ("_") pads with blanks, but dozdate doesn't do
+this in case the user actually wants to pad with
+underscores; instead, an open square bracket ("[") pads with
+blanks.  It seemed very unlikely that anyone would want to
+pad fields with this character.
+.PP
+Any number, no matter how absurd, can be used as a
+padding figure.  (Not quite true; it has to fit within a C
+"int" variable.)  These numbers are dozenal, of course.
+.PP
+The "@" format sequences are extremely flexible with their
+padding in this way; the "%" format sequences instead work
+precisely as they do in GNU date.  The only options are "-"
+(to suppress padding); "_" (to pad with blanks); "0" (to pad
+with zeroes); "^" (to use uppercase if possible); and "#"
+(to use the opposite case if possible).  This is for
+compatibility purposes; I'd like dozdate to be as near a
+drop-in replacement for GNU date as possible.  But that's no
+reason to handicap the dozdate extensions.
+.PP
+Examples:
+.RS
+"@5y" --- "000E7"
+.RE
+.RS
+"@[5y" --- "   E7"
+.RE
+.RS
+"@#5y" --- "###E7"
+.RE
+And so forth.
+
+.SH DATE STRINGS
+dozdate will accept some fairly flexible strings as dates to
+be formatted (fed to it by the -d option or as lines in a
+file).  Still, it's not a natural language interpreter, and
+it does only understand a limited number of formats.
+.PP
+RELATIVE DATES
+.PP
+Relatives dates specify the dates relative to the current
+one.  Currently, dozdate only accepts relative dates based
+on the weekday.  It accepts three such types of dates in any
+of four formats:
+
+.RS
+.I last 
+WEEKDAY (e.g., "last Friday")
+.RE
+.RS
+WEEKDAY (e.g., "Friday")
+.RE
+.RS
+.I this 
+WEEKDAY (e.g., "this Friday")
+.RE
+.RS
+.I next 
+WEEKDAY (e.g., "next Friday")
+.RE
+
+Using the keyword "this" plus the weekday is equivalent to
+using the weekday by itself.  The keyword "last" yields the
+given weekday immediately prior to the current date; "this"
+or no keyword yields the weekday immediately after the
+current date; "next" yields the weekday immediately after
+the current date 
+.I "plus seven,"
+accordingly to colloquial usage.  Note that this differs
+from the behavior of GNU date, which considers "this" and
+"next" synonymous.
+
+Weekdays can be entered in their full form, or in an
+abbreviated form; any abbreviation that includes the first
+three letters of the weekday name will be understood.  (That
+is, "Thursday" "Thursda", "Thursd", "Thurs", "Thur", and
+"Thu" are all synonymous.)  They do, however, need to begin
+with a capital letter and be followed by lowercase letters.
+
+.PP
+ABSOLUTE DATES
+.PP
+dozdate will also accept a variety of formats for absolute
+dates, more or less as those accepted by GNU date.  However,
+unlike GNU date, dozdate insists that years be given in four
+digits, and it also accepts dozenal numbers rather than
+decimal ones, for obvious reasons.
+.PP
+Any of the following formats for inputting dates will be
+accepted and correctly understood by dozdate:
+.PP
+.RS
+11X8-2-25
+.RE
+.RS
+25 February 11X8
+.RE
+.RS
+25February11X8
+.RE
+.RS
+25 Feb 11X8
+.RE
+.RS
+25Feb11X8
+.RE
+.RS
+February 25, 11X8
+.RE
+.RS
+Feb 25, 11X8
+.RE
+.RS
+2/25/11X8
+.RE
+.PP
+Leading zeroes in these numbers are ignored; indeed, leading 
+.I anything
+in these numbers are ignored.  If you input "225 Feb 11X8",
+dozdate will simply devour what it can and ignore the rest,
+assuming that you meant "25 Feb 11X8."  Note that this
+behavior can be unpredictable; if you use the common
+American "slash format," "2/225/11X8", dozdate parses the
+numbers from the other direction, so you'll get 22 Feb 11X8
+instead.  Due to this unpredictability, it's not really safe
+to rely on this behavior except for leading zeroes up to the
+normal number of digits (e.g., "02/02/11X8").
+.PP
+Months may be abbreviated as desired, provided that the
+abbreviations contain at least the first three letters of
+the month.  This allows dozdate to accept non-standard
+abbreviations like "Sept" for "September".  They do,
+however, need to begin with a capital letter and be followed
+by lowercase letters.
+.PP
+Incomplete dates can be accepted, as well.  If the year is
+omitted, dozdate will assume the current year.  If the date
+is omitted but the month is given, dozdate will assume the
+first day of the month.  If the month and date is omitted
+but the year is given, dozdate will assume the first day of
+January.
+.PP
+This reasonably graceful system breaks down on the
+characteristically American "slash format."  E.g., entering
+"2/11X8" will cause dozdate to interpret the "11" as the
+date, and it will emit "11 Feb 11X8", probably not what was
+intended.  This is because the American style of date
+formatting really doesn't make sense; it's neither
+little-endian nor big-endian, going neither from smallest
+unit to largest nor vice-versa.  However, the other numeric
+formats do the right thing here; "11X8-2" will correctly be
+interpreted as "1 Feb 11X8".
+.PP
+If you ask dozdate for a particular date, but give it the
+wrong weekday, dozdate will silently correct this and output
+the correct weekday.
+.PP
+TIMES
+.PP
+dozdate understands times in either our accustomed mongrel
+decimal/dozenal/sexagesimal system (that is, hours, minutes,
+and seconds) or in the coherent and rationally dozenal TGM
+format (hours and Tims).
+.PP
+TGM times are formatted as HH;TTTT.  There are, of course,
+10000 Tims in an hour, so this format makes sense.  dozdate
+also understands a "short time," similar to our common
+practice of reading the time in hours and minutes while
+omitting seconds, involving only the first two digits of the
+number of Tims:  HH;TT.  A semicolon must be used, or
+dozdate will think the user intends sexagesimal time and
+interpret it accordingly.  Giving a number of Tims greater
+than EEEE will cause dozdate to simply truncate the trailing
+digits and use the result figure.
+.PP
+Omitting the number of Tims (e.g., "2;") will cause dozdate
+to assume a number of Tims the first digit of which is
+idential to the hour.  So the above example will yield
+"2;1EEE" (or "2;2000", depending on how your machine rounds
+it).
+.PP
+Sexagesimal times are formatted as usual:  HH:MM:SS.
+Seconds can be omitted without consequence; dozdate will
+simply assume "00".  Minutes can be omitted, but dozdate
+will assume the current number of minutes.  If minutes are
+going to be omitted, one must still use the colon; e.g.,
+"3:".  Otherwise, dozdate won't know what the number is
+doing and will simply ignore it.
+.PP
+If the time is omitted entirely, dozdate will assume
+midnight ("00;0000", or "00:00:00").
+
+.SH ERRORS AND RETURN CODES
+.IP 0
+Successful return, no errors detected.
+.IP 1
+The date string requires there to be more dates in the month
+than there really are.  E.g., it requires there to be a
+March 32.
+.IP 2
+Requested 29 February, or a date in Irvember if using the
+Symm676 calendar, but this isn't a leap year.
+.IP 3
+Bad month; the month you've requested doesn't exist.  E.g.,
+"15".
+.IP 4
+Bad conversion code, either "%" or "@"; dozdate doesn't
+recognize what you're asking it to do.
+.IP 5
+Insufficient memory to process the format string you've
+requested.  It's exceedingly unlikely that you'll ever run
+into this.
+.IP 6
+Bad file; dozdate can't open the file that you've asked it
+to process.
+.IP 7
+Bad hour; the hour you've asked for isn't a sensible value.
+E.g., it's not 00-1E (in decimal, 00-23).
+.IP 8
+Bad minute; the minute you've asked for isn't a sensible
+value.  E.g., it's not 00-4E (in decimal, 00-59).
+.IP 9
+Bad second; the second you've asked for isn't a sensible
+value.  E.g., it's not 00-50 (in decimal, 00-60).  Note that
+this allows for an extra second to permit leap seconds to be
+handled properly, but it does not checking as to whether a
+leap second actually fell during that hour.
+.IP 10
+Bad year; the year you've requested is either too large or
+too small.  Note the dozdate works with the Gregorian
+calendar, and its tables only go back to 0E98 (decimal
+1700) and forward to 168E (decimal 2699).  So anything
+outside of that range will error because dozdate can't
+figure out the day of the week with its current tables.
+.SH BUGS
+None known at this time.
+.SH AUTHOR
+Donald P. Goodman III <dgoodmaniii at gmail dot com>
+.SH "SEE ALSO"
+.BR dec (1),
+.BR doz (1),
+.BR dozdc (1),
+.BR tgmconv (1),
+.BR dozpret (1),
+.BR dozword (1)

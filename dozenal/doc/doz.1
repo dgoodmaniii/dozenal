@@ -1,0 +1,50 @@
+." +AMDG
+." Process with:
+." groff -man -Tascii doz.1
+.TH doz 1 "January 2010" Linux "User Manuals"
+.SH NAME
+doz \- convert decimal numbers to dozenal
+.SH SYNOPSIS
+.B doz [-e] [-k 
+.I precision
+.B ] [
+.I decimal number
+.B ]
+.SH DESCRIPTION
+.B doz
+converts an arbitrary decimal number, integral or
+fractional, into dozenal.  Accepts numbers in either
+standard or exponential notation.  Optionally takes its
+input as the final argument on the command line, or can take
+its input from standard input.
+.SH OPTIONS
+.IP -e
+Write the output in exponential notation.
+.IP "-k precision"
+Print the resulting output with 
+.I precision
+digits of precision.  By default, the output is printed with
+four digits after the zenimal point.  If there is no
+fractional part, no zenimal point or fractional digits will
+be printed, even if this option is specified.  If the
+precision is too high, a message will be printed noting
+this, and the precision will be reduced to the system's
+maximum.
+.IP "dozenal number"
+If present, must be the final argument at the command line.
+Converts the given number into decimal.
+.SH BUGS
+With very large numbers, fractional parts will get
+truncated.  This is because the computer is only capable of
+representing numbers up to a given number of significant
+digits.  This isn't a bug, per se, but the program issues no
+warning for it, which probably is.
+.SH AUTHOR
+Donald P. Goodman III <dgoodmaniii at gmail dot com>
+.SH "SEE ALSO"
+.BR dec (1),
+.BR dozdc (1),
+.BR tgmconv (1),
+.BR dozdate (1),
+.BR dozword (1),
+.BR dozpret (1)

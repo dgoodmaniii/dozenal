@@ -1,0 +1,103 @@
+." +AMDG
+." Process with:
+." groff -man -Tascii dozstring.1
+.TH dozstring 1 "January 2013" Linux "User Manuals"
+.SH NAME
+dozstring \- conversion of string-embedded decimals to dozenals
+.SH SYNOPSIS
+.B dozstring [-nxep] 
+.SH DESCRIPTION
+.B dozstring
+Inhales a string (which is considered any series of bytes
+from start until EOF, including tabs and newlines) from
+standard input, devours any decimal numbers it finds, and
+emits the same string with the same length with the decimal
+numbers converted to dozenal (base twelve), truncated or
+padded as necessary.
+
+This ensures that all strings will be printed the same
+length as they came in.  Originally, this was devised to
+convert index lines in the mutt mail client to be printed in
+dozenal; preserving length was very important for this use
+case.
+
+Take note that this method will not do what you want in
+certain cases.  For example, some "numbers" are really
+labels, such as highway numbers; this program will convert
+them all despite this fact.  Only use this program on
+strings that you're sure only contain numbers that you
+actually want converted.
+
+If you really want to use this program on a string with
+numbers that you don't want converted, you'll need to modify
+your string.  Numbers that should *not* be converted should
+be suffixed with a star ('*').  dozstring will
+.I not
+remove this star character, unless it is asked to remove it
+with the '-s' option.
+.SH OPTIONS
+.IP -x
+Indicates the character the user would like to use for digit
+ten.  Defaults to 'X'.  Multicharacter string arguments will
+be silently truncated.
+.IP -e
+Indicates the character the user would like to use for digit
+eleven.  Defaults to 'E'.  Multicharacter string arguments
+will be silently truncated.
+.IP -p
+Indicates the character the user would like to use to pad
+numbers if necessary; e.g., if the decimal number is "11",
+indicates the character to put to the left of "E" in the
+converted result.  Defaults to '0'; so decimal "11" converts
+to "0E".  Multicharacter string arguments will be silently
+truncated.
+.IP -n
+Add a newline to the output.  Note that if standard input
+ends in a newline, standard output will end with one
+already.  However, if there is no newline in the standard
+input, this option will add one to the output, as the last
+byte.
+.IP -s
+Remove the star character from unconverted numbers.
+dozstring allows users to suffix numbers which should
+.I not
+be converted into dozenal (e.g., highway numbers, badge
+numbers, and the like) with '*'.  There can be no spaces
+between the number and the '*'.  Normally, the star is left
+in the output to retain the same width of the text.  If this
+option is specified, however, dozstring will remove the
+star.  This means that the output text will not be the same
+width as the input; however, it also means that text can be
+converted en masse without the risk of converting what
+shouldn't be, and without having extraneous characters in
+the output.
+.IP -c
+Convert the string which is given as an argument here,
+rather than taking the string from standard input.  This is
+length-limited; the length is probably plenty long enough,
+but if you give dozstring too long a string, it will
+obediently complain and die.  If you really must do the
+string all at once, try giving it to dozstring on standard
+input, which is 
+.I not
+length-limited.  E.g.:  "echo $string | dozstring".
+.SH ERROR CODES
+.IP 1
+Indicates that an option was given which dozstring doesn't
+recognize.
+.IP 2
+Indicates that dozstring was given an explicit string to
+convert with the "-c" option, but that this string was too
+long.  If the string is instead given as standard input,
+dozstring can handle it.
+.SH BUGS
+None known at this time.
+.SH AUTHOR
+Donald P. Goodman III <dgoodmaniii at gmail dot com>
+.SH "SEE ALSO"
+.BR dec (1),
+.BR dozdc (1),
+.BR tgmconv (1),
+.BR dozdate (1),
+.BR dozword (1),
+.BR dozpret (1)

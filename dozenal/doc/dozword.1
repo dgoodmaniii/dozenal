@@ -1,0 +1,32 @@
+." +AMDG
+." Process with:
+." groff -man -Tascii dozword.1
+.TH dozword 1 "January 2010" Linux "User Manuals"
+.SH NAME
+dozword \- convert dozenal integers into words
+.SH SYNOPSIS
+.B dozword [
+.I decimal number
+.B ]
+.SH DESCRIPTION
+.B dozword
+converts a dozenal integer, such as "X44", into words, such
+as "Tenduna fourzen four", according to the Pendlebury
+system.  Fractional parts are ignored, because they are
+totally uninteresting (they can be pronounced simply, for
+example, "dit four seven nine elv").  Very, very large
+integers won't crash the program, but the answer will not be
+correct.  The program is thus not robust; however, the
+answers will be obviously wrong, so this circumstance is
+easy to spot.
+.SH BUGS
+None known at this time.
+.SH AUTHOR
+Donald P. Goodman III <dgoodmaniii at gmail dot com>
+.SH "SEE ALSO"
+.BR dec (1),
+.BR dozdc (1),
+.BR tgmconv (1),
+.BR dozdate (1),
+.BR dozword (1),
+.BR dozpret (1)

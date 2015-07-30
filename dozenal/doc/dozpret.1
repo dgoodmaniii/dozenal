@@ -1,0 +1,102 @@
+." +AMDG
+." Process with:
+." groff -man -Tascii dozpret.1
+.TH dozpret 1 "October 2011" Linux "User Manuals"
+.SH NAME
+dozpret \- pretty-printing dozenal numbers
+.SH SYNOPSIS
+.B dozpret [-lh] [-n
+.I number of digits between spaces
+.B ] [-s
+.I spacing character(s)
+.B ] [-p
+.I radix point character(s)
+] [
+.I number
+]
+.SH DESCRIPTION
+.B dozpret
+A dozenal number pretty-printer with sensible, reasonably
+international defaults, allowing customization including
+number of units, characters used to spaced between units,
+and characters used for the radix point ("." in decimal), as
+well as options for new transdecimal digits.  It also
+provides some quick options for some common applications;
+e.g., formatting numbers for use in LaTeX documents.
+Assumes 'X' and 'E' as transdecimal digits and a Humphrey
+point (';') for a radix point in its input.
+.SH OPTIONS
+.IP -s
+Indicates the character(s) used to space between units.  In
+common American usage, this is the comma (","), like so:
+186,700.  Takes the character(s) desired as an argument,
+with or without a space; if multiple characters, put them in
+double quotation marks.  Defaults to a space.
+.IP -n
+Indicates the number of digits per spacing unit.  Takes the
+integer desired as an argument, with or without a space.  Any
+integer will do; negative integers will throw an error.
+Arbitrary size.  Defaults to 4.
+.IP -p
+Indicates the character(s) desired as a radix point.  In
+decimal, this is usually the period ("."), such that it's
+usually called the "decimal point".  Dozenalists most
+commonly use the "Humphrey point," the semicolon (";"), and
+this is the default.  Hammond points ("'") are also common.
+Takes the character(s) desired as an argument, with or
+without a space; if multiple charcters, put them in double
+quotation marks.  Defaults to a Humphrey point (";").
+.IP -t
+Indicates the character(s) desired to represent digit-ten;
+assumes 'X' as the input.  Takes as an argument the
+character(s) desired; if multiple characters, put them in
+double quotation marks.  (As always, this is not strictly
+necessary for most characters in most shells; but it does
+avoid some annoying errors when one of the characters is
+something like ';' or '\\'.)  Defaults to 'X'.
+.IP -e
+Indicates the character(s) desired to represent
+digit-eleven; assumes 'E' as the input.  Takes as an
+argument the character(s) desired; if multiple characters,
+put them in double quotation marks.  Defaults to 'E'.
+.IP -l
+Format the number for LaTeX, or the way that I personally
+like my numbers formatted for LaTeX.  This translates to a
+Humphrey point and a small space between units of four;
+equivalent to "-s "\\," -t"\\x" -e"\\e"".
+.IP -a
+Format the number according to normal American (decimal)
+conventions.  This translates to a Humphrey point, with
+units of three digits separated by commas.  Translates to
+"-n3 -s,".
+.IP -b
+Format the number according to standard British dozenal
+practice (insofar as there is such a standard).  This
+translates to a Hammond point and a 'T' for digit-ten; it is
+equivalent to "-p"'" -tT".
+.IP -h
+Format according to the Hammond standard; this is simply the
+use of a single quotation mark for the radix point, and
+translates to "-p"'"".
+.IP -x
+Cancels the spacing entirely, but still does substitution
+for the transdecimal digits.  This allows it to use the
+output of programs like dozdate in its input without
+screwing up their formatting.
+.IP -v
+Print version and copyright information, then quit.
+.SH ERRORS
+.IP 1
+If the program returns "1", this means that there's
+insufficient memory to process the string it's been given.
+.SH BUGS
+None known at this time.
+.SH AUTHOR
+Donald P. Goodman III <dgoodmaniii at gmail dot com>
+.SH "SEE ALSO"
+.BR dec (1),
+.BR doz (1),
+.BR dozdc (1),
+.BR tgmconv (1),
+.BR dozdate (1),
+.BR dozword (1)

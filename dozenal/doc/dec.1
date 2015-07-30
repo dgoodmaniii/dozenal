@@ -1,0 +1,69 @@
+." +AMDG
+." Process with:
+." groff -man -Tascii dec.1
+.TH dec 1 "January 2010" Linux "User Manuals"
+.SH NAME
+dec \- convert dozenal numbers to decimal
+.SH SYNOPSIS
+.B dec [-e] [-k 
+.I precision
+.B ] [
+.I "dozenal number"
+.B ]
+.SH DESCRIPTION
+.B dec
+converts an arbitrary dozenal number, integral or
+fractional, into decimal.  Accepts numbers in either
+standard or exponential notation.
+
+If exponential notation is used in the input, it should
+consist of the mantissa, a lowercase 'e', and the exponent.
+A '-' sign for negative signs is, of course, necessary; 
+no '+' sign for positive exponents should be input.
+
+Use a ';' for the zenimal point (that is, the point
+separating the integral from the fractional part).  Note
+that most shells will interpret this as ending the command;
+consequently, if the number to be converted is input at the
+command line, one must put the number in quotation marks:
+"4;5".
+
+Optionally takes its input as the final argument on the
+command line, or can take its input from standard input.
+.SH OPTIONS
+.IP -e
+Write the output in exponential notation.
+.IP "-k precision"
+Print the resulting output with 
+.I precision
+digits of precision.  By default, the output is printed with
+four digits after the zenimal point.  If there is no
+fractional part, no zenimal point or fractional digits will
+be printed, even if this option is specified.  If the
+precision is too high, a message will be printed noting
+this, and the precision will be reduced to the system's
+maximum.
+.IP "dozenal number"
+If present, must be the final argument at the command line.
+Converts the given number into decimal.  As noted above, if
+this contains a zenimal point (';'), the whole number must
+be in quotation marks:  "4;5", not simply 4;5.  Otherwise
+the shell will probably interpret the semicolon as the end
+of the command; in the example above, this will mean that
+"4" will be converted, and the shell will then complain that
+"5" is not a valid command.
+.SH BUGS
+With very large numbers, fractional parts will get
+truncated.  This is because the computer is only capable of
+representing numbers up to a given number of significant
+digits.  This isn't a bug, per se, but the program issues no
+warning for it, which probably is.
+.SH AUTHOR
+Donald P. Goodman III <dgoodmaniii at gmail dot com>
+.SH "SEE ALSO"
+.BR doz (1),
+.BR dozdc (1),
+.BR tgmconv (1),
+.BR dozdate (1),
+.BR dozword (1),
+.BR dozpret (1)

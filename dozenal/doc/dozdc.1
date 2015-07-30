@@ -1,0 +1,319 @@
+." +AMDG
+." Process with:
+." groff -man -Tascii dozdc.1
+.TH dozdc 1 "July 2015" Linux "User Manuals"
+.SH NAME
+dozdc \- arbitrary precision dozenal calculator
+.SH SYNOPSIS
+.B dozdc [-ezdr] [-k 
+.I precision
+.B ] [
+.I equation
+.B ]
+.SH DESCRIPTION
+.B dozdc
+An arbitrary-precision Reverse Polish Notation (RPN, postfix
+notation) calculator which works in dozenal (base-12).  All
+normal arithmetic functions, plus trigonometry, some basic
+constants (pi, euler, phi), logarithms, and other functions.
+Supports variables of arbitrary user-defined names.
+
+There is also a graphical version, gdozdc, written in
+Perl/Tk.  Obviously, this requires a working version of Perl
+and the Tk libraries.  gdozdc is pretty self-explanatory;
+its differences are described below.
+.SH OPTIONS
+.IP -z
+Indicates that those functions which take angles as
+arguments (trigonometric functions in particular) will take
+them in zeniPis, the TGM unit.  This is the default.
+.IP -r
+Indicates that those functions which take angles as
+arguments (trigonometric functions in particular) will take
+them in radians.
+.IP -d
+Indicates that those functions which take angles as
+arguments (trigonometric functions in particular) will take
+them in degrees.
+.IP -e
+Write the output in exponential notation.
+.IP "-k precision"
+Print the resulting output with 
+.I precision
+digits of precision.  By default, the output is printed with
+four digits after the zenimal point.  If there is no
+fractional part, no zenimal point or fractional digits will
+be printed, even if this option is specified.  If the
+precision is too high, a message will be printed noting
+this, and the precision will be reduced to the system's
+maximum.
+.IP "equation"
+If present, must be the final argument at the command line.
+Processes the equation, prints the answer, and exits.  Must
+be entered within quotation marks so that it's considered a
+single argument by the program.
+.SH EQUATION SYNTAX
+The syntax of an equation is fairly standard Reverse Polish
+Notation (also called postfix notation or simply RPN).
+Each operator has either two arguments (these are called
+"binary" operators) or one (these are called "unary"
+operators).  Operators (like "+" or "cos") come 
+.I after
+their arguments (that is, the numbers or variables they work
+on).  So, for example, rather than writing "1 + 1", one
+writes "1 1 +"; rather than writing cos(30), one writes "30
+cos".  This has the benefit of being unambiguous (no
+parentheses are necessary).
+.SH OPERATORS
+.IP =
+Pops and prints the top of the stack; in other words, gives
+you your answer.  The operations you request will be done
+after hitting "enter"; however, no answer will be printed
+unless you put in an "=" and hit that.  This allows long
+calculations to be split between lines without having
+intermediate results, which may not be interesting, printed
+unless you want them to be.
+.IP "+, -, *, /"
+The basic arithmetic operators; they are all binary.  They
+work precisely as one would expect them to.  "-" and "/"
+must have their arguments in the right order; however, this
+is the same as the order one would expect.  "x - y" is "x y
+-"; "x / y" is "x y /".  So this shouldn't trip anyone up.
+Of course, one cannot divide by zero; trying will emit an
+error message, and the numbers will be pushed back onto the
+stack, as they were before the attempt.
+.IP %
+The modulus operator, or "mod".  Internally this is fmod();
+as such, it works on floating-point numbers as well as
+integers.  Like "/", one cannot divide by zero; trying will
+emit an error message, and the numbers will be pushed back
+onto the stack, as they were before the attempt.
+.IP k
+Precision; this is a unary operator.  As such, its argument
+comes prior to it.  It pops the last number and makes that
+value the new precision.  Obviously, fractional precisions
+are meaningless, and will be truncated to a whole number.
+Enter like so:  "8 k" will ask that answers be printed to
+eight zenimal places.  If the value is too large, then, as
+with the command-line option, it will simply be reduced to
+the largest possible on your machine.
+.IP "sin, cos, tan"
+Trigonometric functions that we're all familiar with.  These
+are unary operators, so they take the number entered
+immediately before them as their argument.  By default, they
+operate on zeniPis; this can be changed.  See the command
+"rad" and the command-line option "r", as well as "d" and
+the command-line option "d".
+.IP "asin, acos, atan"
+Inverse trigonometric functions.  Unary; used like the
+normal trigonometric functions.  Naturally, these must be in
+the range of -1 to 1 (except for atan, which can take any
+real number); if they are fed a different value, they
+politely cough it back onto the stack and let the user know.
+They emit values in radians or degrees, depending on the
+current angle setting.
+.IP "sinh, cosh, tanh"
+Hyperbolic trigonometric functions.  Unary; used like the
+normal and inverse ones.
+.IP z
+Makes those functions which work on angles use zeniPis
+rather than degrees or radians.  This is the default.  See
+the command-line option "z".
+.IP d
+Makes those functions which work on angles use degrees
+rather than zeniPis or radians.  See the command-line option
+"d".
+.IP rad
+Makes those functions which work on angles use radians
+rather than zeniPis or degrees.  See the command-line option
+"r".
+.IP ^
+A binary operator; it raises its first argument to the power
+of its second argument.  So "2 3 ^" has a result of 8; it
+means "2 raised to the power of 3".  This can also be used
+to fake roots greater than two; "8 1 3 / ^" raises 8 to the
+power of 1/3, which gives the cube root of 8.
+.IP v
+A unary operator; it takes the square root of its single
+argument.  So "41 v" will yield 7.  Of course, one cannot
+take the square root of a negative number; trying will emit
+an error message, and the attempted argument will be pushed
+back onto the stack unchanged.
+.IP log
+A unary operator; gives the dozenal logarithm of its single
+argument.
+.IP logx
+A unary operator; gives the base-ten logarithm of its single
+argument.  It's worth noting that this computes the base-ten
+logarithm of a
+.I dozenal
+number and emits it as a 
+.I dozenal
+result.  This fact has tripped up the author of the program
+a few times when it didn't match up to a base-ten logarithm
+from another calculator.  Trust the result; make sure you're
+entering the same number and converting the result to
+decimal.  It's correct.
+.IP ln
+A unary operator; gives the natural logarithm (the base is
+the euler number) of its single argument.
+.IP dlg
+Pendlebury's dublogs; these are logarithms with a base of
+two.  dozdc can handle only 
+.I straight
+dublogs, not the 
+.I mixed
+dublogs, which are useful for some applications but much
+harder to handle automatically.
+.IP logb
+A binary operator; permits computation of logs in an
+arbitrary base.  Its first argument is the number the log of
+which is sought; its second is the base of that log.  So,
+for example, "45 log" is equivalent to "45 10 logb"; "45
+logx" is equivalent to "45 X logb"; and "45 ln" is
+equivalent to "45 eul logb".
+.IP !
+A unary operator; takes the factorial of its single
+argument.  "5 !" yield "X0".  If a non-integer is given, it
+will simply truncate thre fractional part and calculate the
+factorial of the integer value.
+.IP exp
+A unary operator; gives the euler number raised to the power
+of its single argument.  So "2 exp" is equivalent to "eul 2
+^".
+.IP ldexp
+A binary operator; it raises 2 to the power of its second
+argument, then multiplies it by its first.  So, for example,
+"10 2 ldexp" will result in 40; 2^2 is 4, 10 * 4 is 40.
+.IP abs
+A unary operator; gives the absolute value of its single
+argument.  (That is, it's positive, it leaves it as is; if
+it's negative, it makes it positive.)
+.IP recip
+A unary operator; gives the reciprocal of its single
+argument (that is, one divided by that argument).
+.IP gcf
+A binary operator; gives the "greatest common factor" of its
+two arguments.
+.IP lcm
+A binary operator; gives the "least common multiple" of its
+two arguments.
+.SH CONSTANTS
+dozdc provides a number of constants.  These are the classic
+"transcendental" numbers, or at least a few of them.  Of
+course, they are emitted in dozenal.  The "=" syntax is
+helpful here; to learn the dozenal value of pi, for example,
+one need simply tell dozdc "pi =", and pi, the value at the
+top of the stack, will be printed.
+.IP pi
+Takes no arguments; simply contains the value of pi.
+.IP eul
+Takes no arguments; simply contains the value of the euler
+constant.
+.IP phi
+Takes no arguments; simply contains the value of phi, the
+"Golden Ratio."
+.SH VARIABLES
+dozdc has basic variable handling; it is basic, but it's
+powerful enough for many uses.  The program allows for up to
+fifty separate variables, each of which can be arbitrarily
+named.  These names can be up to thirty characters long;
+longer and they will be silently truncated by the program.
+The names must begin with a dollar sign ('$'), after the
+manner of Perl or bash.
+
+The first time a variable name appears, the last value on
+the stack is popped off the stack and assigned to it; ever
+after, when the variable name appears it pushes that value
+back onto the stack.  The variable cannot be assigned a new
+value.
+
+So, for example, a typical usage scenario might be such:
+
+.B "1 3 / $result ($result == 1/3, or 0;4)"
+
+.B "8 $result ^ = (prints 8 ^ 0;4, the cube root of 8,
+which is 2)"
+
+They really are that simple.
+.SH COMMENTS
+Comments are available, and are useful in particularly long
+or complex files that will be handed to dozdc for
+computation.  Because dozdc works by words, not be lines,
+comments are word-based.  Fortunately, the words can be as
+long as one wants.  It's important, however, to make sure
+that the comments contain no spaces, tabs, or newlines, or
+dozdc will misinterpret the text after the first one such as
+a command or number it needs to deal with.
+
+Comments are all proceeded with the '#' character, and
+include all characters following it in the same word.  So,
+in our above variable example, we might do the following:
+
+.B "1 3 / $result
+
+.B #_gives_us_exponent_for_cube_roots
+
+.B "8 $result ^ = 
+
+This will accomplish the same thing, but make it clear what
+"$result" is doing explicitly.  (Of course, one could just
+name the variable "$cuberoot" or something similar, but
+we're doing examples here.)
+
+One should be aware that blank lines in the input files will
+mess up the results, because of the way dozdc deals with
+words.  However, inserting a comment (a line consisting
+solely of '#') rather than a blank line will preserve a
+correct result while still allowing the helpful whitespace.
+.SH OTHER COMMANDS
+.IP quit
+Quits the program.  'Nuff said.
+.SH GRAPHICAL VERSION, gdozdc
+gdozdc is the graphical version of dozdc, and it differs in
+some significant points.  Specifically, it's 
+.I infix,
+not postfix; that means that you enter your equations in
+the same way you learned to write them down in school, with
+your binary operators (the ones that take two arguments,
+like the basic arithmetic functions) in between their two
+arguments.  E.g., you write "4 + 5", rather than dozdc's "4
+5 +".
+
+This system is not particularly extensible; that is, it only
+works with binary operators, and it's inherently ambiguous.
+gdozdc therefore offers the usual infix disambiguation
+operators, parentheses, which can be used to group
+operations however might be necessary.  This applies to
+*all* binary operators, even ones where this behavior might
+be surprising; e.g., for arbitrary base logarithms, one
+inputs the base, "logb", then the number; so for the
+logarithm of three to base two, one writes "2 logb 3".
+
+Non-binary operations work as they do in dozdc; that is,
+they are postfix.  This is typical even for modern infix
+calculators.  For example, one writes "5 !" for factorial
+five, and "0;6 sin" for the sine of 0;6.
+
+gdozdc also implements some memory functions.  "CM" means to
+clear memory; "M" means to save the current field to memory
+(this is the whole field, not the result of the operations
+contained in it); "M+" means to replace the current field
+with the contents of the memory; and "M++" means to append
+the contents of the memory to the current field.
+
+Hovering over a button will give the keyboard shortcut in a
+small popup balloon, as well as list it and a brief
+explanation in the lower bar.
+.SH BUGS
+None known at this time.
+.SH AUTHOR
+Donald P. Goodman III <dgoodmaniii at gmail dot com>
+.SH "SEE ALSO"
+.BR dec (1),
+.BR dozdc (1),
+.BR tgmconv (1),
+.BR dozdate (1),
+.BR dozword (1),
+.BR dozpret (1)
+.BR dozstring (1)
