@@ -1,75 +1,113 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- +AMDG -->
+
 <head>
-<title>dozenal Suite</title>
-<link rel="stylesheet" type="text/css" href="dozsty.css"></link>
+<title>dozenal | A Complete Suite of Programs for the Dozenal Base</title>
+<meta charset="UTF-8" />
+<meta name="description" content="dozenal, a complete suite
+of dozenal programs, including number converts, an RPN
+calculator, a graphical calculator, a metric system
+converter, a pretty printer, a date and time program, and a
+calendar program." />
+<link rel="stylesheet" type="text/css" href="dozsty.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="alternate" type="application/rss+xml"
+	title="dozenal RSS feed" href="dozfeed.rss" />
+<link rel="license" 
+	href="https://creativecommons.org/licenses/by-sa/2.0/" />
 </head>
 <body>
-<div id="titlebar">
-	<img class="midimg" src="dozclock.png" />
-	<div id="title">
-		dozenal Program Suite
-	</div>
-	<div id="tagline">
-		A complete suite of programs for the dozenal base
-	</div>
+
+<div class="dedic">
+<a href="amdg.html">+<br />
+AMDG</a><br />
 </div>
 
-<p>The dozenal suite is a set of programs designed to assist
-with working in the dozenal (also called duodecimal or
-base twelve) system.  It includes number converters, an RPN
-calculator, a graphical calculator, a metric system
-converter, a pretty-printer, and a date-and-time
-program.</p>
+<header class="topbar">
+<h1><a class="imglink" href="index.html"><img src="dozclock_white.png" alt="dozenal Logo" /></a>dozenal</h1>
 
-<p>You can get dozenal from this website; or, alternatively,
-you can clone the repository from github.</p>
-
-<blockquote>
-<a href="https://github.com/dgoodmaniii/dozenal">dozenal
-github repository</a>
-</blockquote>
-
-<blockquote>
-<a href="dozenal_v11EE0726_src.tar.gz">Download a source
-tarball</a> (compiles with the usual "make && make install"
-incantations)
-</blockquote>
-
-<blockquote>
-<a href="dozenal_v11E90919_win_bin_x86.zip">Download Windows
-binaries</a> (precompiled for x86 Windows systems; binaries
-only; currently somewhat out of date)
-</blockquote>
-
-<p>The programs included are:
+<nav class="toolbar">
 <ul>
-<li><strong>doz</strong>:  converts decimal numbers into
-dozenal.  Works for integers, floating point, and
-exponential ("scientific") notation.<a
-href="doz_man.html">manual</a></li>
-<li><strong>dec</strong>:  converts dozenal numbers into
-decimal.  Works for integers, floating point, and
-exponential ("scientific") notation.<a
-href="dec_man.html">manual</a></li>
-<li><strong>dozdc</strong>:  a Reverse Polish Notation
-(RPN)) calculator.  Works entirely in dozenal.  Understands a
-large variety of arithmetical, trigonometric, and other
-functions.<a href="dozdc_man.html">manual</a></li>
-<li><strong>tgmconv</strong>:  a metric system converter;
-converts units from TGM, SI metric, customary, and imperial
-measures.<a href="tgmconv_man.html">manual</a></li>
-<li><strong>dozdate</strong>:  a more or less drop-in
-replacement for GNU date; gives dates and times in
-dozenal.<a href="dozdate_man.html">manual</a></li>
-<li><strong>dozpret</strong>:  a pretty-printer for dozenal
-numbers.  Includes many options for radix points,
-separators, digit groupings, and transdecimal digits.  Also
-includes preset options for LaTeX output.<a
-href="dozpret_man.html">manual</a></li>
-<li><strong>dozstring</strong>:  a simple byte converter;
-accepts a string of characters, and converts any numbers
-into dozenal.<a href="dozstring_man.html">manual</a></li>
+<li><a title="dozenal:  Download and Install" href="download.html">Download</a>&nbsp;|</li>
+<li><a title="dozenal:  Documentation" href="ml_docs.html">Documentation</a>&nbsp;|</li>
+<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a>&nbsp;|</li>
+<li><a title="dozenal:  Change Log" href="changes.html">Change Log</a></li>
 </ul>
-</p>
+</nav>
+</header>
+
+<div class="mainpart">
+
+<p><span class="fl">T</span>he dozenal suite is a set of
+programs designed to assist with working in the dozenal
+(also called "duodecimal" or "base twelve") system.  It
+includes number converters (dozenal-to-decimal and
+decimal-to-dozenal), an RPN calculator, a graphical
+calculator, a metric system converter (works with imperial,
+U.S. customary, SI metric, and the dozenal TGM), a
+pretty-printer for dozenal numbers, a date-and-time program,
+and a dozenal calendar programs, complete with events and
+to-dos.</p>
+
+<p>On a more technical level, dozenal is written in
+POSIX-compliant C.  The calendar program uses <a
+href="http://libhdate.sourceforge.net">libhdate</a> to
+determine the dates of certain Jewish holidays, if they are
+requested by the user.  That's all; no other external
+libraries are required.</p>
+
+<p>The programs included are:</p>
+
+<ul class="artlist">
+<li><span class="artlink">doz</span>  Converts decimal
+numbers into dozenal.  Works for integers, floating point,
+and exponential ("scientific") notation.  <a
+href="doz_man.html">manual</a></li>
+<li><span class="artlink">dec</span>  Converts dozenal
+numbers into decimal.  Works for integers, floating point,
+and exponential ("scientific") notation.  <a
+href="dec_man.html">manual</a></li>
+<li><span class="artlink">dozdc</span>  A Reverse Polish
+Notation (RPN) calculator.  Works entirely in dozenal.
+Understands a large variety of arithmetical, trigonometric,
+and other functions.  <a
+href="dozdc_man.html">manual</a></li>
+<li><span class="artlink">tgmconv</span>  A metric system
+converter.  Can convert to and from Imperial, U.S.
+customary, SI metric, and the dozenal TGM system.  <a
+href="tgmconv_man.html">manual</a></li>
+<li><span class="artlink">dozdate</span>  A more or less
+drop-in replacement for GNU date; gives dates and times in
+dozenal in a basically unlimited number of formats.  <a
+href="dozdate_man.html">manual</a></li>
+<li><span class="artlink">dozcal</span>  A dozenal calendar
+program.  Keeps and prints events and todos in arbitrary
+user-selected formats.  Text-based, but otherwise a great
+replacement for calendar managers like iCal and the like.
+<a href="dozcal_man.html">manual</a></li>
+<li><span class="artlink">dozpret</span>  A pretty-printer
+for dozenal numbers.  Includes options for specifying
+transdecimal digits, radix points, digit separators, and
+digit groupings.  Also includes a preset option for LaTeX
+output.  <a href="dozpret_man.html">manual</a></li>
+<li><span class="artlink">dozstring</span>  A simple byte
+filter which inhales a string of characters and outputs that
+same string, with all numbers converted into dozenal.  Takes
+pains to ensure that the resulting string is the same length
+as the input string.  <a
+href="dozstring_man.html">dozstring</a></li>
+</ul>
+
+
+<hr />
+<footer class="bottomstuff">
+<div class="homelink"><a href="index.html">Home</a></div>
+<a href="dozfeed.rss">RSS Newsfeed</a><br />
+<a href="webmas.html">E-Mail the Webmaster</a> | <a href="changes.html">Change Log</a><br />
+</footer>
+</div>
 </body>
 </html>

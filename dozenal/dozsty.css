@@ -1,51 +1,446 @@
-/*
- * +AMDG  This document was begun on E June 11EE, the feast
- * of St. Barnabas, A, and it is humbly dedicated to him and
- * to the Immaculate Heart of Mary for their prayers and to
- * the Sacred Heart of Jesus for His mercy.
- */
+/* +AMDG */
+
+/******************************************/
+/* Format the background of the page      */
+/******************************************/
 
 body {
-	margin:					0pt;
-	border:					0pt;
-	padding:					0pt;
+	background-color: gray;
+	text-align: center;
 }
-h1 {
-	margin:					0pt;
-	border:					0pt;
-	padding:					0pt;
+
+/******************************************/
+/* Format all the commands for the topbar */
+/******************************************/
+
+.topbar {
+	color: #ffd700;
+	background: blue;
+	margin-top: auto;
+	font-family: serif;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 1px;
+	padding-left: 12pt;
+	padding-right: 12pt;
+	padding-bottom: 9pt;
+	vertical-align: middle;
+	border-bottom:  0px;
+	border-right-style: outset;
+	border-right-width: 3px;
+	border-left-style: outset;
+	border-left-width: 3px;
+	border-color: gray;
+	text-align: left;
+	margin-bottom: 0pt;
 }
-#titlebar {
-	background-color:  	blue;
-	width:					100%;
-	margin:					0pt;
-	border:					0pt;
-	padding:					0pt;
+.topbar h1 {
+	color: #ffd700;
+	font-size: 2.5em;
+	vertical-align: middle;
+	margin-top: auto;
+	margin-bottom: auto;
 }
-#titlebar:after {
-	content:					"";
-	display:					block;
-	clear:					both;
+.topbar img {
+	vertical-align: middle;
+	border: none;
+	padding: 1%;
 }
-#title {
-	color:					yellow;
-	font-size:				200%;
-	font-weight:			bold;
-	padding-top:			40px;
+.topbar a {
+	text-decoration: none;
+	color: blue;
 }
-#tagline {
-	color: 					white;
-	font-style:				italic;
-	font-weight:			bold;
-	font-size:				80%;
+.topbar a:hover {
+	text-decoration: none;
+	border:  0pt;
+	color: blue;
 }
-.midimg {
-	text-align:				center;
-	vertical-align:		middle;
-	height:					120px;
-	padding-left:			1%;
-	padding-right:			1%;
-	padding-top:			1%;
-	padding-bottom:		1%;
-	float:					left;
+
+/******************************************/
+/* Format the demonstrative images        */
+/******************************************/
+
+.demonstimg {
+	float:  left;
+}
+
+/******************************************/
+/* Format the Main text                   */
+/******************************************/
+
+.mainpart {
+	color: black;
+	background-color: #fafafa;
+	font-family: serif;
+	text-align: justify;
+	hyphens: auto;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 12pt;
+	padding-right: 12pt;
+	padding-top: 0.5em;
+	padding-bottom: 3pt;
+	margin-bottom: auto;
+	border-bottom-style: outset;
+	border-bottom-width: 3px;
+	border-right-style: outset;
+	border-right-width: 3px;
+	border-left-style: outset;
+	border-left-width: 3px;
+	border-color: gray;
+	-moz-border-radius-bottomleft:  20px;
+	-moz-border-radius-bottomright:  20px;
+	-webkit-border-bottom-left-radius:  20px;
+	-webkit-border-bottom-right-radius:  20px;
+	-khtml-border-bottom-left-radius:  20px;
+	-khtml-border-bottom-right-radius:  20px;
+	border-bottom-left-radius:  20px;
+	border-bottom-right-radius:  20px;
+}
+a {
+	color: blue;
+	text-decoration: underline;
+}
+a:hover {
+	color: #ffd700;
+	border-bottom: solid;
+	border-top: solid;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	background-color: blue;
+	border-color: black;
+	text-decoration: none;
+}
+.mainpart a:active {
+	color: blue;
+	background-color: #ffd700;
+	border-bottom: solid;
+	border-top: solid;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	border-color: black;
+	text-decoration: none;
+}
+.exampimg {
+	width:  100%;
+	text-align:  center;
+}
+.exampimg img {
+	text-align:  center;
+	margin:  auto;
+	padding: 6pt;
+}
+.mainpart h1 {
+	font-size:  200%;
+	font-weight:  bold;
+	font-variant:  small-caps;
+	color:  blue;
+}
+.mainpart h2 {
+	font-size:  150%;
+	font-weight:  bold;
+	font-style:  italic;
+	font-variant:  small-caps;
+	color:  blue;
+}
+.mainpart h3 {
+	font-size:  125%;
+	color:  blue;
+	font-variant:  small-caps;
+	font-weight:  bold;
+}
+
+/******************************************/
+/* Format the AMDG div                    */
+/******************************************/
+
+.dedic {
+	text-align: center;
+	background-color: blue;
+	color: #ffd700;
+	font-size: 0.7em;
+	border-top-width: 3px;
+	border-top-style: outset;
+	border-left-width: 3px;
+	border-left-style: outset;
+	border-right-width: 3px;
+	border-right-style: outset;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 12pt;
+	padding-right: 12pt;
+	border-color: gray;
+	-moz-border-radius-topleft:  20px;
+	-moz-border-radius-topright:  20px;
+	-webkit-border-top-left-radius:  20px;
+	-webkit-border-top-right-radius:  20px;
+	-khtml-border-top-left-radius:  20px;
+	-khtml-border-top-right-radius:  20px;
+	border-top-left-radius:  20px;
+	border-top-right-radius:  20px;
+}
+.dedic a {
+	background-color: blue;
+	color: #ffd700;
+	text-decoration: none;
+}
+.dedic a:hover {
+	background-color: blue;
+	color: #ffd700;
+	text-decoration: none;
+	border-style:  none;
+}
+
+/******************************************/
+/* Format the toolbar                     */
+/******************************************/
+
+.toolbar {
+	color: black;
+	display:  block;
+	width:  100%;
+	font-family: serif;
+	text-align: center;
+	font-size: 0.8em;
+	margin-right: 0pt;
+	padding-right: 0pt;
+	margin-left: 0pt;
+	padding-left: 12pt;
+	padding-right: 12pt;
+	padding-top: 1pt;
+	padding-bottom: 1pt;
+	margin-top: 0pt;
+}
+.toolbar a {
+	color: blue;
+	background-color: #ffd700;
+	text-decoration: none;
+	white-space: nowrap;
+	padding-top:  1px;
+	padding-bottom:  1px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.toolbar a:hover {
+	color: #ffd700;
+	border-bottom: solid;
+	border-top: solid;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	background-color: blue;
+	border-color: #ffd700;
+	padding-top:  2px;
+	padding-bottom:  2px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.toolbar ul {
+	padding-left:  2%;
+	padding-right:  0pt;
+	margin-right:  0pt;
+	margin-top: auto;
+	margin-bottom: auto;
+	text-align: center;
+	background-color:  #ffd700;
+	float:  right;
+	font-style:  italic;
+	-moz-border-radius-topleft:  20px;
+	-moz-border-radius-bottomright:  20px;
+	-webkit-border-top-left-radius:  20px;
+	-webkit-border-bottom-left-radius:  20px;
+	-khtml-border-top-left-radius:  20px;
+	-khtml-border-bottom-left-radius:  20px;
+	border-top-left-radius:  20px;
+	border-bottom-left-radius:  20px;
+	border-color:  #879637;
+	border-style: outset;
+	border-width:  2px;
+	border-right-width:  0pt;
+}
+.toolbar li {
+	display: inline;
+	list-style-type: none; 
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	line-height: 1.7em;
+}
+
+/******************************************/
+/* Formatting for the changes page        */
+/******************************************/
+
+.changes h3 {
+	color: blue;
+	font-size: 2em;
+	font-weight: bold;
+	font-style: italic;
+}
+.changes a {
+	color: blue;
+	text-decoration: underline;
+	font-style: italic;
+	font-weight: normal;
+}
+.changes a:hover {
+	color: #ffd700;
+	border-bottom: solid;
+	border-top: solid;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	background-color: blue;
+	border-color: black;
+}
+.changes a:active {
+	color: blue;
+	background-color: #ffd700;
+	border-bottom: solid;
+	border-top: solid;
+	border-bottom-width: 1px;
+	border-top-width: 1px;
+	border-color: black;
+}
+
+/******************************************/
+/* Format the first lines                 */
+/******************************************/
+
+.fl {
+	color: blue;
+	font-size: 3em;
+	line-height: 0.7em;
+}
+.sc {
+	color: black;
+	font-size: 0.75em;
+}
+
+/******************************************/
+/* The links at the bottom                */
+/******************************************/
+
+.bottomstuff {
+	color: black;
+	font-family: serif;
+	text-align: left;
+	font-size: 7pt;
+	-moz-border-radius-bottomleft:  20px;
+	-moz-border-radius-bottomright:  20px;
+	-webkit-border-bottom-left-radius:  20px;
+	-webkit-border-bottom-right-radius:  20px;
+	-khtml-border-bottom-left-radius:  20px;
+	-khtml-border-bottom-right-radius:  20px;
+	border-bottom-left-radius:  20px;
+	border-bottom-right-radius:  20px;
+}
+
+/******************************************/
+/* Home Link                              */
+/******************************************/
+
+.homelink {
+	float:  left;
+	font-size:  200%;
+	padding-right:  1%;
+}
+
+/******************************************/
+/* Format the tables                      */
+/******************************************/
+
+.realtable {
+	padding: 5px 5px 5px 5px;
+	border-top: solid;
+	border-bottom: solid;
+	border-bottom-width: 2px;
+	border-top-width: 2px;
+	border-left: solid;
+	border-right: solid;
+	border-left-width: 1px;
+	border-right-width: 1px;
+	margin-left: 10px;
+	border-bottom-color: black;
+	border-top-color: black;
+	border-right-color: black;
+	border-left-color: black;
+	border-bottom-color: black;
+	background-color: #e3e3e3
+}
+th {
+	padding: 2pt;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	text-align: center;
+	font-variant:  small-caps;
+	border-color: black;
+}
+tr {
+	border-top: solid;
+	padding: 0;
+	border-top-width: 1.3px;
+	border-bottom: solid;
+	border-bottom-width: 1px;
+	border-color: black;
+}
+td {
+	padding-left: 7px;
+	padding-right: 7px;
+	vertical-align:  top;
+}
+
+/******************************************/
+/* List heading formatting                */
+/******************************************/
+
+.artlist li {
+	margin-top:  6px;
+}
+.artlink {
+	font-weight:  bold;
+	border: 1px;
+	border-style:  solid;
+	text-decoration:  none;
+}
+.artlink a {
+	font-weight:  bold;
+	color:  black;
+	border: 1px;
+	text-decoration:  none;
+}
+.artlink a:hover {
+	font-weight:  bold;
+	color:  black;
+	border: 1px;
+	text-decoration:  none;
+	background-color: #fafafa;
+}
+
+/******************************************/
+/* The command line examples              */
+/******************************************/
+
+.demo {
+	color:  green;
+	background-color:  black;
+	padding:  6px;
+}
+
+.sdemo {
+	color:  green;
+	background-color:  black;
+	padding:  0pt;
+	padding-left:  2px;
+	padding-right:  2px;
+}
+
+.sshot {
+	margin-left:  auto;
+	margin-right:  auto;
+	display:  block;
 }
