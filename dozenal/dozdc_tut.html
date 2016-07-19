@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- +AMDG -->
+
+<head>
+<title>dozenal | dozdc Tutorial</title>
+<meta charset="UTF-8" />
+<meta name="description" content="dozenal, a complete suite
+of dozenal programs, including number converts, an RPN
+calculator, a graphical calculator, a metric system
+converter, a pretty printer, a date and time program, and a
+calendar program." />
+<link rel="stylesheet" type="text/css" href="dozsty.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="alternate" type="application/rss+xml"
+	title="dozenal RSS feed" href="dozfeed.rss" />
+<link rel="license" 
+	href="https://creativecommons.org/licenses/by-sa/2.0/" />
+</head>
+<body>
+
+<div class="dedic">
+<a href="amdg.html">+<br />
+AMDG</a><br />
+</div>
+
+<header class="topbar">
+<h1><a class="imglink" href="index.html"><img src="dozclock.png" alt="dozenal Logo" /></a>dozenal</h1>
+
+<nav class="toolbar">
+<ul>
+<li><a title="dozenal:  Download and Install" href="download.html">Download</a>&nbsp;|</li>
+<li><a title="dozenal:  Documentation" href="doz_docs.html">Documentation</a>&nbsp;|</li>
+<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a>&nbsp;|</li>
+<li><a title="dozenal:  Change Log" href="changes.html">Change Log</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="mainpart">
+
+<h1>dozdc:  A Tutorial</h1>
+
+<p><span class="fl">D</span>ozdc is a powerful calculator
+program, but it does take a bit of getting used to.  This
+tutorial will review postfix notation ("Reverse Polish
+notation," or RPN), which is used by <span
+class="prog">dozdc</span>, then examine <span
+class="prog">dozdc</span>'s particular facilities.</p>
+
+<h2>Postfix Notation</h2>
+
+<p>Postfix notation is actually, in some ways,
+<em>better</em> than the way we're accustomed to writing our
+math (which is called "infix notation").  Most especially,
+it is <em>unambiguous</em>; there is no need for parentheses
+for grouping, because it's always perfectly clear what is to
+be done when.</p>
+
+<p>Postfix notation utilizes a <em>stack</em>, to which and
+from which numbers are <em>pushed</em> and <em>popped</em>.
+Anytime a number is encountered, it is <em>pushed</em> onto
+the stack.  When an operator is encountered, some of those
+numbers are <em>popped</em> off the stack, the operation is
+performed, and then the result is pushed back onto the
+stack.  Eventually, all operations are completed, and the
+stack is empty.</p>
+
+<p>Let's look at a contrived example to see how this
+works:</p>
+
+<pre class="demo">
+4 5 9 2 + * + 3 - =
+</pre>
+
+<p>We see first four numbers, and every time we encounter a
+number, we <em>push</em> them onto the stack.  So our stack
+now looks like this:</p>
+
+<table class="stackdem">
+<tr><td>2</td></tr>
+<tr><td>9</td></tr>
+<tr><td>5</td></tr>
+<tr><td>4</td></tr>
+</table>
+
+<p>And the rest of our equation looks like this:</p>
+
+<pre class="demo">
++ * + 3 - =
+</pre>
+
+<p>(That is, that's the part of our equation that hasn't yet
+been pushed onto the stack.)</p>
+
+<p>But now we hit an <em>operator</em>, <span
+class="sdemo">+</span>.  An operator is never pushed or
+popped; rather, it pops certain things, does something to
+them, then pushes the result back onto the stack.  An
+operator may be <em>unary</em>, meaning that it pops one
+number off the stack; <em>binary</em>, meaning that it pops
+two; or even <em>ternary</em>, meaning that it pops
+three.</p>
+
+<p>We're all familiar with <span class="sdemo">+</span>;
+it's a binary operator which produces the sum of its two
+arguments.  So we <em>pop</em> two arguments from the stack,
+add them together, then <em>push</em> the result back onto
+the stack.  So we pop 2 and 9; we add them, to get E; and
+then we push E back onto the stack:</p>
+
+<table class="stackdem">
+<tr><td>E</td></tr>
+<tr><td>5</td></tr>
+<tr><td>4</td></tr>
+</table>
+
+<p>So our equation now looks like this:</p>
+
+<pre class="demo">
+* + 3 - =
+</pre>
+
+<p>Next is another operator, this time <span
+class="sdemo">*</span>.  Remember the operators never get
+pushed to the stack; they pop things, do something with
+them, and then push the result.  <span
+class="sdemo">*</span> is the multiplication operator; it
+pops two items from the stack, multiplies them, then pushes
+the result.  The top two items in our stack are E and 5; so,
+in accordance with <span class="sdemo">*</span>, we pop the
+two of them, multiply them to get the result of 47; then we
+push that value back onto the stack.  Our stack then looks
+like this:</p>
+
+<table class="stackdem">
+<tr><td>47</td></tr>
+<tr><td>4</td></tr>
+</table>
+
+<p>And our equation is:</p>
+
+<pre class="demo">
++ 3 - =
+</pre>
+
+<p>And we see another operator, <span
+class="sdemo">+</span>; by now we know what to do with it.
+Pop the last two values, add them, then push the result.  So
+we pop 47 and 4, add then to get 4E, and then push that
+result back onto the stack.  Our stack is now:</p>
+
+<table class="stackdem">
+<tr><td>4E</td></tr>
+</table>
+
+<p>And our equation:</p>
+
+<pre class="demo">
+3 - =
+</pre>
+
+
+<p>If we get another binary or a ternary operator, we'll be
+in trouble, as there are not enough numbers in the stack to
+do what those operators want.  (We'd need at least two; but
+we've only got one.)  Fortunately, the next item in our
+equation is a number, not an operator; so we just push that
+onto the stack:</p>
+
+<table class="stackdem">
+<tr><td>3</td></tr>
+<tr><td>4E</td></tr>
+</table>
+
+<p>And our equation:</p>
+
+<pre class="demo">
+- =
+</pre>
+
+<p>And no we <em>do</em> meet another operator:
+subtraction, the <span class="sdemo">-</span>.  This is
+another binary operator, that pops two numbers, then
+subtracts them, then pushes the result onto the stack.
+Subtraction and division, however, are a bit different:
+they pop the top two items on the stack, but they
+<em>reverse</em> them before operating on them.  This is due
+to the well-known principle that subtraction and division
+are not <em>commutative</em>; if we don't put them in the
+right order, we won't get the right answer.</p>
+
+<p>So we pop 3 and 4E; we switch them around (giving us 4E
+and 3); we subtract them; (4E - 3 = 48); and then we push
+that value back onto the stack:</p>
+
+<table class="stackdem">
+<tr><td>48</td></tr>
+</table>
+
+<p>And our equation now only has word left:  <span
+class="sdemo">=</span>.  This is the equals sign; for <span
+class="prog">dozdc</span>, it means "pop a value of the
+stack and print it."  There's only one number left on our
+stack, 48; so <span class="sdemo">=</span> will pop that and
+print it to your screen.  And now our stack and our equation
+are both empty.</p>
+
+<p>This all seems rather complicated; but here's what your
+session in <span class="prog">dozdc</span> will actually
+look like:</p>
+
+<pre class="demo">
+$&gt; dozdc "4 5 9 2 + * + 3 - ="
+48
+</pre>
+
+<p>It takes a little time to get used to thinking in postfix
+notation; but once you have, it becomes just as intuitive to
+you as the way you wrote problems in elementary school.</p>
+
+<p>Now that we've got some familiarity with postfix notation
+in general, let's see what <span class="prog">dozdc</span>
+specifically has to offer.</p>
+
+<h2>Command-Line Options</h2>
+
+<h2>Programming</h2>
+
+<hr />
+<footer class="bottomstuff">
+<div class="homelink"><a href="index.html">Home</a></div>
+<a href="dozfeed.rss">RSS Newsfeed</a><br />
+<a href="webmas.html">E-Mail the Webmaster</a> | <a href="changes.html">Change Log</a><br />
+</footer>
+</div>
+</body>
+</html>

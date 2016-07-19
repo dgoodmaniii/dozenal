@@ -407,6 +407,8 @@ td {
 	border: 1px;
 	border-style:  solid;
 	text-decoration:  none;
+	padding-left:  1px;
+	padding-right:  1px;
 }
 .artlink a {
 	font-weight:  bold;
@@ -448,4 +450,32 @@ td {
 
 .prog {
 	font-family:  monospace;
+	font-size:  115%;
+}
+
+/**************************************
+* the stack demonstrations
+**************************************/
+
+.stackdem {
+	text-align:  center;
+	border:  2pt;
+	border-style:  solid;
+	border-color:  black;
+	margin-left:  auto;
+	margin-right:  auto;
+}
+
+.stackdem td {
+	border:  2pt;
+	border-style:  solid;
+	border-color:  black;
+}
+
+.stackeq {
+	color:  green;
+	background-color:  black;
+	padding:  6px;
+	margin-left:  auto;
+	margin-right:  auto;
 }
