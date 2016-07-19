@@ -14,8 +14,6 @@ calendar program." />
 <link rel="stylesheet" type="text/css" href="dozsty.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" type="image/png" href="favicon.png" />
-<link rel="alternate" type="application/rss+xml"
-	title="dozenal RSS feed" href="dozfeed.rss" />
 <link rel="license" 
 	href="https://creativecommons.org/licenses/by-sa/2.0/" />
 </head>
@@ -33,8 +31,7 @@ AMDG</a><br />
 <ul>
 <li><a title="dozenal:  Download and Install" href="download.html">Download</a>&nbsp;|</li>
 <li><a title="dozenal:  Documentation" href="doz_docs.html">Documentation</a>&nbsp;|</li>
-<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a>&nbsp;|</li>
-<li><a title="dozenal:  Change Log" href="changes.html">Change Log</a></li>
+<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a></li>
 </ul>
 </nav>
 </header>
@@ -87,6 +84,11 @@ for most common applications it's very simple, and more
 complicated requirements can be addressed pretty quickly.
 Below we treat the syntax for each of the unit systems known
 by <span class="prog">tgmconv</span>, one at a time.</p>
+
+<p>As this is a tutorial, not a manual, I won't be including
+an exhaustive list of possible units and proper
+abbreviations here.  Users should see the <a
+href="tgmconv.html">manual</a> for that.</p>
 
 <h3>TGM Units</h3>
 
@@ -201,6 +203,74 @@ compound units.</p>
 
 <h3>Customary and Imperial Units</h3>
 
+<p>These work more or less the same as metric units, except
+that some common abbreviations for compound units will not
+work.  For example, "miles per hour" is commonly abbreviated
+"mph"; <span class="prog">tgmconv</span> will not understand
+this at all.  Rather, it must be given as <span
+class="sdemo">mi/hr</span>.  Similar, "psi" will not work
+for "pounds per square inch"; this unit must be entered as
+<span class="sdemo">lbf/in2</span>.</p>
+
+<h2>Using tgmconv</h2>
+
+<p>So putting it all together, we can use <span
+class="prog">tgmconv</span> pretty simply.  Let's say we
+want to convert seconds into Tims:</p>
+
+<pre class="demo">
+$&gt; tgmconv -i s -o Tm 1
+5;9153
+</pre>
+
+<p>Or perhaps we'd like years convert into quadquaTims:</p>
+
+<pre class="demo">
+$&gt; tgmconv -i yr -o 4^Tm 3
+13260
+</pre>
+
+<p>So three years is 13260 quadquaTim.  Or, perhaps we'd
+like to see kilometers in quadquaGrafut:</p>
+
+<pre class="demo">
+$&gt; tgmconv -i km -o4^Gf "2;6"
+0;4X87
+</pre>
+
+<p>So two and a half (2;6) kilometers is 0;4X87 of a
+quadquaGrafut.</p>
+
+<p>The input unit <em>can</em> be specified without the
+<span class="sdemo">-i</span> option, if you include it as
+part of the quantity to be converted.  You must then list
+your final argument as the number, followed by some
+non-dozenal character (that is, any character that could not
+be part of a dozenal number), followed by the unit in its
+usual abbreviation.  E.g., our last example could have been
+entered thus:</p>
+
+<pre class="demo">
+$&gt; tgmconv -o4^Gf "2;6:km"
+0;4X87
+</pre>
+
+<p>We have used a colon (<span class="sdemo">:</span>) for
+the non-dozenal character separating the number from the
+unit; however, any character could have been used as long as
+it could not be confused for a part of the number.</p>
+
+<p>Note that if you use both this method and the <span
+class="sdemo">-i</span> option, <span
+class="prog">tgmconv</span> will become very confused, and
+if it manages to give you an answer at all, it will probably
+be wrong.</p>
+
+<h2>Conclusion</h2>
+
+<p>And that is <span class="prog">tgmconv</span>, a powerful
+program for converting between metric systems in
+dozenal.</p>
 
 
 
