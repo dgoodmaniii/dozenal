@@ -50,6 +50,14 @@ notation," or RPN), which is used by <span
 class="prog">dozdc</span>, then examine <span
 class="prog">dozdc</span>'s particular facilities.</p>
 
+<center>
+<a href="#postfix">Postfix Notation</a> |
+	<a href="#operators">Options and Operators</a> |
+	<a href="#program">Programming</a>
+</center>
+
+
+<a name="postfix"></a>
 <h2>Postfix Notation</h2>
 
 <p>Postfix notation is actually, in some ways,
@@ -202,7 +210,7 @@ that value back onto the stack:</p>
 
 <p>And our equation now only has word left:  <span
 class="sdemo">=</span>.  This is the equals sign; for <span
-class="prog">dozdc</span>, it means "pop a value of the
+class="prog">dozdc</span>, it means "pop a value off the
 stack and print it."  There's only one number left on our
 stack, 48; so <span class="sdemo">=</span> will pop that and
 print it to your screen.  And now our stack and our equation
@@ -225,9 +233,170 @@ you as the way you wrote problems in elementary school.</p>
 in general, let's see what <span class="prog">dozdc</span>
 specifically has to offer.</p>
 
-<h2>Command-Line Options</h2>
+<center>
+<a href="#postfix">Postfix Notation</a> |
+	<a href="#operators">Options and Operators</a> |
+	<a href="#program">Programming</a>
+</center>
 
+<a name="operators"></a>
+<h2>Command-Line Options and Operators</h2>
+
+<p>The first and most important command-line option is the
+equation itself.  This is the last option given to the
+command line, and consists of the equation you want <span
+class="prog">dozdc</span> to calculate, surrounded by
+quotation marks:</p>
+
+<pre class="demo">
+$&gt; dozdc "0;2 sin 2 + ="
+2;6000
+</pre>
+
+<p>Of course, <span class="prog">dozdc</span>, like all the
+dozenal programs, is a well-behaved Unix program, so you can
+also enter it and use it interactively by typing the command
+without an argument:</p>
+
+<pre class="demo">
+$&gt; dozdc
+0;2 sin 2 + =
+2;6000
+3;6 2 * =
+7
+quit
+</pre>
+
+<p>You can also feed it equations from standard input:</p>
+
+<pre class="demo">
+$&gt; echo "0;2 sin 2 + =" | dozdc
+2;6000
+</pre>
+
+<p><span class="prog">dozdc</span> also has the <span
+class="sdemo">-k</span> and <span class="sdemo">-e</span>
+options, just as <span class="prog">dec</span> and <span
+class="prog">doz</span> have, the former for controlling
+precision of output and the latter for requesting output in
+exponential notation:</p>
+
+<pre class="demo">
+$&gt; dozdc -k 2 "0;2 sin 2 + ="
+2;60
+$&gt; dozdc -e -k 2 "0;2 sin 58 * ="
+2;9Ee1
+</pre>
+
+<p>As the second example above shows, <span
+class="sdemo">-e</span> and <span class="sdemo">-k</span>
+can be combined as one wishes.</p>
+
+<p>Many of <span class="prog">dozdc</span>'s operators
+assume that their arguments are <em>angles</em>, which
+leaves the issue of what units the angles are expressed in.
+<span class="prog">dozdc</span> assumes that all angles are
+measured in <em>unciaPi</em>, the angular unit of TGM (each
+unciaPi is one-twelfth (uncia) of a straight angle).
+However, command-line arguments can tell <span
+class="prog">dozdc</span> to read them as either degrees or
+radians.  <span class="sdemo">-r</span> signals radians,
+<span class="sdemo">-d</span> signals degrees:</p>
+
+<pre class="demo">
+$&gt; dozdc "0;2 sin ="
+0;5EEE
+$&gt; dozdc -d "26 sin ="
+0;5EEE
+$&gt; dozdc -r "1 sin ="
+0;X120
+</pre>
+
+<p><span class="prog">dozdc</span> also provides operators
+to perform these same functions within an equation; so if
+you are in an interactive session and suddenly realize that
+you need, say, radians rather than degrees, you can change
+your setting within the session:</p>
+
+<pre class="demo">
+$&gt; dozdc -d
+26 sin =
+0;5EEE
+rad
+26 sin =
+-0;EX33
+</pre>
+
+<p>The operators are <span class="sdemo">z</span>, to return to
+unciaPi; <span class="sdemo">d</span> to use degrees; and
+<span class="sdemo">rad</span> to use radians.</p>
+
+<p>The rest of <span class="prog">dozdc</span>'s operators
+are pretty self-explanatory; the manual is the best
+reference for them.</p>
+
+<center>
+<a href="#postfix">Postfix Notation</a> |
+	<a href="#operators">Options and Operators</a> |
+	<a href="#program">Programming</a>
+</center>
+
+<a name="program"></a>
 <h2>Programming</h2>
+
+<p>One can due some (very) rudimentary programming with
+<span class="prog">dozdc</span> alone (anything complex
+would require using <span class="prog">dozdc</span> in
+another programming language).  But for a few simple tasks,
+<span class="prog">dozdc</span> has capabilities which will
+suffice.</p>
+
+<p>Because it is a well-behaved Unix program, <span
+class="prog">dozdc</span> will take input from standard
+input, even if redirected from a file.  It also has the
+ability to assign values to named variables, so these
+variables are no longer variable once they've been assigned
+to.  So consider a file you've created to find the cube
+roots of a variety of different numbers.  In <span
+class="prog">dozdc</span>, roots are found by raising a base
+to a fractional power using the operator <span
+class="sdemo">^</span>.  E.g.:</p>
+
+<pre class="demo">
+$&gt; dozdc "8 1 3 / ^ ="
+2
+</pre>
+
+<p>Rather than calculate the exponent repeatedly (that is,
+doing <span class="sdemo">1 3 /</span> each time you want to
+take a cube root), you can assign that value to a
+variable.  Variables are any string of letters prefixed with
+a dollar sign; they simply pop the last value off the stack,
+and from then on that name is equivalent to that value in
+your session.  So write the following in a file and name it
+<span class="sdemo">dozdctest</span>:</p>
+
+<pre class="demo">
+1 3 / $cuberoot
+8 $cuberoot ^ =
+23 $cuberoot ^ =
+</pre>
+
+<p>Then you redirect this file to <span
+class="prog">dozdc</span> on standard input:</p>
+
+<pre class="demo">
+$&gt; dozdc &lt; dozdctest
+2
+3
+</pre>
+
+<p>This is an extremely contrived example, not least because
+the whole <span class="sdemo">$cuberoot</span> construction
+could easily be replaced by <span class="sdemo">0;4</span>.
+But it does give an idea of how to use <span
+class="prog">dozdc</span>'s capabilities, should you need
+them.</p>
 
 <hr />
 <footer class="bottomstuff">
