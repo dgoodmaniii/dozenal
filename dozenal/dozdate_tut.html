@@ -135,9 +135,11 @@ tutorial, we need to know only a few:</p>
 <table class="realtable">
 <tr><th>Seq.</th><th>Meaning</th><th>Example</th></tr>
 <tr><td>%a</td><td>Abbreviated weekday</td><td>Mon</td></tr>
-<tr><td>%b</td><td>Abbreviated month name</td><td>Mar</td></tr>
-<tr><td>%m</td><td>Month number, padding to two digits with
+<tr><td>%B</td><td>Full month name</td><td>March</td></tr>
+<tr><td>%m</td><td>Month number, padded to two digits with
 	zeroes</td><td>04</td></tr>
+<tr><td>%d</td><td>Day number of the month, padded to two digits with
+	zeroes</td><td>21</td></tr>
 <tr><td>%Y</td><td>Year</td><td>11EE</td></tr>
 <tr><td>%H</td><td>Hour, padded to two digits with
 	zeroes</td><td>04</td></tr>
@@ -154,6 +156,69 @@ rules:  these sequences will be changed into what they
 represent, while other characters will be passed on
 unchanged.</p>
 
+<h3>Examples</h3>
+
+<p>With <span class="prog">dozdate</span>, we can use these
+nine control sequences to produce a huge variety of
+different formats.  Say we're Americans who prefer the
+traditional American format:</p>
+
+<pre class="demo">
+$&gt; dozdate "%a, %B %d, %Y"
+Tue, July 17, 1200
+</pre>
+
+<p>But perhaps we don't really like this format, and we'd
+prefer the ISO standard:</p>
+
+<pre class="demo">
+$&gt; dozdate "%Y-%m-%d"
+1200-07-17
+</pre>
+
+<p>Notice that the commas and the hyphens remain unchanged;
+only the control sequences are replaced.</p>
+
+<p>Then we decide that we'd also like to see the time:</p>
+
+<pre class="demo">
+$&gt; dozdate "%Y-%m-%d  %H:%M"
+1200-07-17  12:39
+</pre>
+
+<p>But we're in dozenal!  Why not include the time in
+Tims?</p>
+
+<pre class="demo">
+$&gt; dozdate "%Y-%m-%d  %H;@t"
+1200-07-17  12;940E
+</pre>
+
+<p>But now you've changed your mind; you want to have the
+full month name, but you want to make sure that, when you
+have multiple months one after each other, all the parts of
+the date still line up properly.  So you specify how wide
+you want your month name to be; and knowing that the longest
+month name (at least in English) is "September", which has 9
+letters, you make sure all your month strings are at least
+that long:</p>
+
+<pre class="demo">
+&gt; dozdate "%d %9B %Y  %H;@t"
+17      July 1200  12:9943
+&gt; dozdate "%d %9B %Y  %H;@t" -d "14 September 1200"
+14 September 1200  00;0000
+</pre>
+
+<p>It's a bit hard to see, due to the command line in
+between, but notice that the two dates line up perfectly.
+We also see another feature of <span
+class="prog">dozdate</span>:  you can tell it what date
+you'd like to see, with the <span class="sdemo">-d</span>
+option.</p>
+
+<p>One place <span class="prog">dozdate</span> is often
+useful is 
 
 <hr />
 <footer class="bottomstuff">
