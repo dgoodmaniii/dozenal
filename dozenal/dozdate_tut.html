@@ -218,7 +218,67 @@ you'd like to see, with the <span class="sdemo">-d</span>
 option.</p>
 
 <p>One place <span class="prog">dozdate</span> is often
-useful is 
+useful is command prompts.  Take the common command shell
+<span class="prog">bash</span>, for example.  <span
+class="prog">bash</span> takes a lot of its operating
+parameters from a file called <span
+class="sdemo">.bashrc</span> in your root directory.  You
+can define your command prompt however you want, including
+with the results of other commands; so instead of a simple
+<span class="sdemo">$&gt;</span>, as we've been using so far
+in these tutorials, you could do something like this:</p>
+
+<pre class="demo">
+PS1="{ $(dozdate "%Y-%m-%d  %H:@t") } -&gt; "
+</pre>
+
+<p>Upon restarting your shell, you'll get a command prompt
+that looks like this:</p>
+
+<pre class="demo">
+{ 1200-07-17  13:2381 } -&gt; 
+</pre>
+
+<p>With, of course, the current date and time in the place
+of those here.  Of course, this can get <em>much</em> more
+involved, with much more useful command prompts; my own
+personal setup is currently thus:</p>
+
+<pre class="demo">
+# fancy prompts
+user_color() {
+	if [ "$UID" -eq "0" ]; then
+		echo 31
+	else
+		echo 34
+	fi
+}
+PS1="{ \[\033[1;\$(user_color)m\]\$(dozdate) -> \w\[\033[0m\] }\n-> "
+</pre>
+
+<p>This will give a user prompt that is colored blue when a
+normal user, red when the superuser, with the default output
+of <span clsas="prog">dozdate</span> followed by the current
+working directory; in other words, something like this:</p>
+
+<pre class="demo">
+{ <span style="color: blue">Tue 17 Jul 1200 13;21X0 EDT -&gt; ~</span> } dozdate
+Tue 17 Jul 1200 13;21X0
+{ <span style="color: blue">Tue 17 Jul 1200 13;21X0 EDT -&gt; ~</span> } 
+</pre>
+
+<p>It's hard, with a setup like this, to ever be at a loss
+for the date, time, or where you are in the filesystem.  But
+more importantly, this demonstrates one of <span
+class="prog">dozdate</span>'s many strengths:  it can be
+easily worked into other workflows.</p>
+
+<p>And now, with this tutorial and with the <a
+href="dozdate.html">manual</a>, you can use <span
+class="prog">dozdate</span> to its full potential.
+Enjoy!</p>
+
+
 
 <hr />
 <footer class="bottomstuff">
