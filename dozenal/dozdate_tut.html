@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- +AMDG -->
+
+<head>
+<title>dozenal | dozdate:  A Tutorial</title>
+<meta charset="UTF-8" />
+<meta name="description" content="dozenal, a complete suite
+of dozenal programs, including number converts, an RPN
+calculator, a graphical calculator, a metric system
+converter, a pretty printer, a date and time program, and a
+calendar program." />
+<link rel="stylesheet" type="text/css" href="dozsty.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="license" 
+	href="https://creativecommons.org/licenses/by-sa/2.0/" />
+</head>
+<body>
+
+<div class="dedic">
+<a href="amdg.html">+<br />
+AMDG</a><br />
+</div>
+
+<header class="topbar">
+<h1><a class="imglink" href="index.html"><img src="dozclock.png" alt="dozenal Logo" /></a>dozenal</h1>
+
+<nav class="toolbar">
+<ul>
+<li><a title="dozenal:  Download and Install" href="download.html">Download</a>&nbsp;|</li>
+<li><a title="dozenal:  Documentation" href="doz_docs.html">Documentation</a>&nbsp;|</li>
+<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="mainpart">
+
+<h1>dozdate:  A Tutorial</h1>
+
+<p><span class="fl">U</span>nix users will be familiar with
+the program <span class="prog">date</span>, which simply
+outputs the date.  It can be told to output the date or time
+in multiple formats, and takes care of a lot of the boring
+date-related stuff---like time zones and leap seconds and
+the like---for you.  For example:</p>
+
+<pre class="demo">
+$&gt; date
+Tue Jul 19 13:24:02 EDT 2016
+</pre>
+
+<p>The above was just run on my machine a moment ago.  Since
+I didn't give it a format, <span class="prog">date</span>
+output its information in a default format, but I could tell
+it to format its output in whatever way I desire.</p>
+
+<p><span class="prog">dozdate</span> is designed to give
+this same facilities to users of dozenal.  We'll examine a
+few basic concepts here, then the specifics of how to use
+<span class="prog">dozdate</span>, and finally an example or
+two of how <span class="prog">dozdate</span> can be
+integrated into your environment.</p>
+
+<h2>Formatting Strings</h2>
+
+<p>Central to the workings of <span
+class="prog">dozdate</span> is the concept  of
+<em>formatting strings</em>.  A formatting string is a way
+of telling the computer how you want certain data to look,
+without having to know what that data is in advance.  The
+computer will read the string and output most characters
+without change; when it encounters certain characters,
+however, it will replace those with another set of text.</p>
+
+<p>Consider the following string:</p>
+
+<pre class="demo">
+|-%d-|
+</pre>
+
+<p>Imagine that <span class="sdemo">%d</span> is a special
+sequence, and that the others are not.  Instead, <span
+class="sdemo">%d</span> represents the date; you don't know
+what the date is yet, but you know that that's where you'd
+like it to be printed.  So, assuming that the date is "14
+August 1200", when you run this string through your program,
+you'll get:</p>
+
+<pre class="demo">
+|-14 August 1200-|
+</pre>
+
+<p>The <span class="sdemo">%d</span> is gone, replaced with
+what it stood for; the rest of the string is unchanged.</p>
+
+<p>Oftentimes, you can also tell the computer how to display
+your replacement text.  For example, if you want it
+displayed to a certain number of characters, put that number
+between the <span class="sdemo">%</span> and the letter:</p>
+
+<pre class="demo">
+|-%20d%-|
+</pre>
+
+<p>Remembering that this is dozenal, and 20 means two dozen,
+you'll wind up with this:</p>
+
+<pre class="demo">
+|-          14 August 1200-|
+</pre>
+
+<p>Of course, <span class="sdemo">%d</span> for "date" is
+extremely broad; a real date program would offer you lots
+more options, so that you can print year, month, day,
+weekday, and so forth in whatever format you wish.  <span
+class="prog">dozdate</span> gives you this, along with a
+number of control sequences beginning with <span
+class="sdemo">@</span> (rather than <span
+class="sdemo">%</span> which are specific to dozenal (the
+others all output in dozenal, as well; but the at-sequences
+are specific to dozenal).</p>
+
+<h2>Control Sequences</h2>
+
+This %- and @-letters are called <em>control sequences</em>,
+and they are listed completely in <span
+class="prog">dozdate</span>'s <a
+href="dozdate.html">manual</a>.  For the purposes of this
+tutorial, we need to know only a few:</p>
+
+<center>
+<table class="realtable">
+<tr><th>Seq.</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>%a</td><td>Abbreviated weekday</td><td>Mon</td></tr>
+<tr><td>%b</td><td>Abbreviated month name</td><td>Mar</td></tr>
+<tr><td>%m</td><td>Month number, padding to two digits with
+	zeroes</td><td>04</td></tr>
+<tr><td>%Y</td><td>Year</td><td>11EE</td></tr>
+<tr><td>%H</td><td>Hour, padded to two digits with
+	zeroes</td><td>04</td></tr>
+<tr><td>%M</td><td>Minute, padded to two digits with
+	zeroes</td><td>46</td></tr>
+<tr><td>@m</td><td>Number of quadquaTims, to two places;
+	basically @t truncated to two places</td><td>E4</td></tr>
+<tr><td>@t</td><td>Tims</td><td>6X82</td></tr>
+</table>
+</center>
+
+<p>This will be enough to get us started.  Remember the
+rules:  these sequences will be changed into what they
+represent, while other characters will be passed on
+unchanged.</p>
+
+
+<hr />
+<footer class="bottomstuff">
+<div class="homelink"><a href="index.html">Home</a></div>
+<a href="webmas.html">E-Mail the Webmaster</a><br />
+<a href="changes.html">Change Log</a><br />
+</footer>
+</div>
+</body>
+</html>
