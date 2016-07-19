@@ -45,6 +45,7 @@ body {
 	vertical-align: middle;
 	border: none;
 	padding: 1%;
+	width:  15%;
 }
 .topbar a {
 	text-decoration: none;
@@ -443,4 +444,8 @@ td {
 	margin-left:  auto;
 	margin-right:  auto;
 	display:  block;
+}
+
+.prog {
+	font-family:  monospace;
 }

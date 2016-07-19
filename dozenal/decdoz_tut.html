@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- +AMDG -->
+
+<head>
+<title>dozenal | License</title>
+<meta charset="UTF-8" />
+<meta name="description" content="dozenal, a complete suite
+of dozenal programs, including number converts, an RPN
+calculator, a graphical calculator, a metric system
+converter, a pretty printer, a date and time program, and a
+calendar program." />
+<link rel="stylesheet" type="text/css" href="dozsty.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="alternate" type="application/rss+xml"
+	title="dozenal RSS feed" href="dozfeed.rss" />
+<link rel="license" 
+	href="https://creativecommons.org/licenses/by-sa/2.0/" />
+</head>
+<body>
+
+<div class="dedic">
+<a href="amdg.html">+<br />
+AMDG</a><br />
+</div>
+
+<header class="topbar">
+<h1><a class="imglink" href="index.html"><img src="dozclock.png" alt="dozenal Logo" /></a>dozenal</h1>
+
+<nav class="toolbar">
+<ul>
+<li><a title="dozenal:  Download and Install" href="download.html">Download</a>&nbsp;|</li>
+<li><a title="dozenal:  Documentation" href="doz_docs.html">Documentation</a>&nbsp;|</li>
+<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a>&nbsp;|</li>
+<li><a title="dozenal:  Change Log" href="changes.html">Change Log</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="mainpart">
+
+<h1>dec and doz:  A Tutorial</h1>
+
+<p><span class="fl">I</span>f you want to convert decimal to
+dozenal or vice versa, then <span class="prog">doz</span>
+and <span class="prog">dec</span> are your friends.  They
+can convert many numbers in many formats using a variety of
+transdecimal characters and can output to user-specified
+precision.</p>
+
+<h2>Limitations</h2>
+
+<p>As powerful as they are, however, <span
+class="prog">doz</span> and <span class="prog">dec</span> do
+have their limitations.  Most specifically, they are
+<em>not</em> "arbitrary precision," in that they are limited
+in the range of numbers they can accept.  Essentially, they
+work with the double-precision floating-point numbers
+offered by your machine.  This limitation is, however, very
+rarely a problem.  For example, on the low-powered machine
+I'm currently working on, the lowest available number is 
+2;9816e-210, and the highest is 4;X617e1E9.  It's hard to
+imagine a real-world situation, short of some mathematician
+experiments, where this will be particularly limiting.</p>
+
+<h2>Basic operation</h2>
+
+<p><span class="prog">dec</span> and <span
+class="prog">doz</span> are <em>command-line programs</em>,
+meaning that you operate with them by typing commands and
+getting responses.  For these examples, <span
+class="sdemo">$&gt;</span> will mean the <em>prompt</em>,
+where you type your commands; a line without a prompt are
+the responses you get.</p>
+
+<p>Most simply, you just type the command, then the number
+which you want converted:</p>
+
+<pre class="demo">
+$&gt; doz 1492
+X44
+$&gt; doz 1492.33333333333333333
+X44;4
+$&gt; dec X44
+1492
+$&gt; dec "X44;4"
+1492.3333
+</pre>
+
+<p>Notice that the last example has the number surrounded by
+quotation marks.   Most systems will interpret a semicolon
+as the end of statement, so you need to enclose numbers
+containing semicolons in quotations to prevent this.
+Otherwise, you'll likely get a funny error:</p>
+
+<pre class="demo">
+$&gt; dec X44;4
+0
+bash: 4: command not found
+</pre>
+
+<p>This, obviously, is not what you expect or want.</p>
+
+<p>You can enter your numbers in "scientific notation" (more
+properly called exponential notation), as well, in the
+normal computerized way:  end your mantissa with a lowercase
+"e", then put in the exponent:</p>
+
+<pre class="demo">
+$&gt; doz 1.492e3
+X44
+$&gt; dec "X;44e2"
+1492.0000
+</pre>
+
+<h2>Advanced operation</h2>
+
+<p>If you want your <em>result</em> to be in exponential
+notation, you need to add a <em>flag</em>.  Flags are
+special markers that are put in a command; for <span
+class="prog">dec</span> and <span class="prog">doz</span>,
+that means <em>before</em> the number that you want
+converted.</p>
+
+<p>So to get exponential notation in your output, use the
+<span class="sdemo">-e</span> flag:</p>
+
+<pre class="demo">
+$&gt; doz -e 1.492e3
+X;44e2
+$&gt; dec -e "X;44e2"
+1.4920e+03
+</pre>
+
+<p>You might find, eventually, that you don't get the
+results you're looking for, and exponential notation could
+be the answer:</p>
+
+<pre class="demo">
+$&gt; doz 4.539e-14
+0;0000
+$&gt; doz -e 4.539e-14
+4;X33Xe-11
+</pre>
+
+<p>You can also get variable amounts of precision, with
+"precision" defined as "number of digits after the radix
+point."  To do this, you use the flag <span
+class="sdemo">-k</span> ("k" for "krecision"! (actually,
+this is designed for compatibility with the well-known Unix
+program <span class="prog">dc</span>)), followed by the
+number of digits after the radix point that you want:</p>
+
+<pre class="demo">
+$&gt; doz 4.539e-14
+0;0000
+$&gt; doz -k14 4.539e-14
+0;0000000000004X33
+$&gt; doz -e 4.539e-14
+4;X33Xe-11
+</pre>
+
+<p>Keep in mind that the precision is <em>not</em>
+arbitrary; the exact number that you can actually expect to
+get accurately varies depending on your computer, but it's
+typically around 14 (a dozen four).</p>
+
+<h2>Transdecimal Digits</h2>
+
+<p><span class="prog">dec</span> always outputs using "X"
+for ten and "E" for eleven; if you don't like this, you can
+always filter your output through <span
+class="prog">dozpret</span> and use whatever transdecimals
+you want.</p>
+
+<p><span class="prog">doz</span> is more flexible.  It will
+accept "X", "x", "A", "a", "T", and "t" for ten, and it will
+accept "E", "B", and "b" for eleven.  Notice that "e" is
+<em>not</em> included, because it is used for exponential
+notation.</p>
+
+<p>You can mix these digits however you want:</p>
+
+<pre class="demo">
+$&gt; dec XxEtTaABb
+4693695407.0000
+</pre>
+
+<p>And that's more or less all there is to using <span
+class="prog">dec</span> and <span
+class="prog">doz</span>.</p>
+
+<hr />
+<footer class="bottomstuff">
+<div class="homelink"><a href="index.html">Home</a></div>
+<a href="dozfeed.rss">RSS Newsfeed</a><br />
+<a href="webmas.html">E-Mail the Webmaster</a> | <a href="changes.html">Change Log</a><br />
+</footer>
+</div>
+</body>
+</html>
