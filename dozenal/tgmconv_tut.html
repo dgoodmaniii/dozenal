@@ -57,7 +57,152 @@ options as <a href="decdoz_tut.html">dec and doz</a> and <a
 href="dozdc_tut.html">dozdc</a>; specifically, <span
 class="sdemo">-k</span> for precision and <span
 class="sdemo">-e</span> to get exponential notation in your
-output.
+output.  These work precisely as they do in those other
+programs, so there's no need to explain them further
+here.</p>
+
+<p>tgmconv does, however, have three additional command-line
+options:  <span class="sdemo">-i</span>, <span
+class="sdemo">-o</span>, and the final argument, which is
+the quantity to be converted.</p>
+
+<p>That final argument is simply a number, and doesn't
+require much explanation; if you want to convert five
+seconds into Tims, just use "5" as the final argument.  The
+other two take <em>units</em> as their arguments; <span
+class="sdemo">-i</span> takes the input unit, and <span
+class="sdemo">-o</span> takes the output unit.  <span
+class="prog">tgmconv</span> expects to see its units in a
+particular format.  I've endeavored to make this format as
+intuitive as possible; the user will have to judge whether
+I've succeeded.</p>
+
+<a name="unitsyn"></a>
+<h2>Unit Syntax</h2>
+
+<p>I've endeavored to make the unit syntax as simple and
+intuitive as possible; but to make the program generally
+applicable required a pretty complex system.  Fortunately,
+for most common applications it's very simple, and more
+complicated requirements can be addressed pretty quickly.
+Below we treat the syntax for each of the unit systems known
+by <span class="prog">tgmconv</span>, one at a time.</p>
+
+<h3>TGM Units</h3>
+
+<p>TGM units have a simple syntax; they are simply entered
+with their canonical TGM abbreviation, which is always a
+capital letter followed by one or more lowercase letters.
+So, for example, "Grafut" is abbreviated "Gf", and is
+entered as such:</p>
+
+<pre class="demo">
+-i Gf
+</pre>
+
+<p>TGM also offers an easy way to write when we're raising
+or lowering a unit by a given power of 10 (the base,
+twelve), similar to that offered by SI metric with its many
+prefixes (such as "milli" and "kilo"):  this consists of a
+number prefixed to the unit, superscripted if the power of
+10 is positive and subscripted if the power of 10 is
+negative.  This looks like the following normally:</p>
+
+<center>
+<sup>3</sup>Gf; <sub>6</sub>Gf
+</center>
+
+<p>Our formatting is more limited in plain text, though, so
+what we do instead is utilize the symbols <span
+class="sdemo">^</span> for superscripting and <span
+class="sdemo">_</span> for subscripting, placed between the
+digit and the unit, like so:</p>
+
+<pre class="demo">
+-i 3^Gf
+-o 6_Gf
+</pre>
+
+<p>The above indicates that the input unit is triquaGrafut
+(<sup>3</sup>Gf) and the output unit is hexciaGrafut
+(<sub>6</sub>Gf).</p>
+
+<p>TGM units can also be multiplied and divided in the same
+way as SI and customary-imperial units; but since the method
+is rarely necessary in TGM, with its very complete set of
+basic units, we'll save the discussion of that for then.</p>
+
+<h3>SI Metric Units</h3>
+
+<p>Like TGM, each unit in SI metric has a canonical
+abbreviation; e.g., "s" for seconds, "m" for meters, and
+"Ci" for curies.  However, SI frequently requires compound
+units, much more often than TGM (in which they are always
+available but usually optional), so there's a defined syntax
+for using such units.</p>
+
+<p>Compound units are built by <em>multiplying</em> and
+<em>dividing</em> simple ones; e.g., the unit of velocity is
+distance divided by time.  In TGM, one can list this as
+Gf/Tm (Grafut per Tim), but there is also a simple unit,
+Vlos (Vl).  In SI, there is no such simple unit, so the
+compound unit <em>must</em> be used.  So we express division
+of units with the forward-slash, <span
+class="sdemo">/</span>.  We express multiplication with the
+asterisk, <span class="sdemo">*</span>.  Finally, we also
+must exponentiate some units; acceleration, for example, is
+meters per second <em>squared</em>.  We do exponentiation
+simply by suffixing a digit to that unit; e.g., <span
+class="sdemo">m/s2</span> for meters per second squared, or
+meters per square second.</p>
+
+<p>Sometimes quite complex units must be used, combining all
+of these techniques; e.g., the unit of conductivity, in TGM
+simply the Eldu, must be expressed as siemen-meters per
+square meter, <span class="sdemo">S*m/m2</span>.</p>
+
+<p>Any SI unit can also have a prefix indicating the power
+of ten to which it is being raised or lowered; e.g., the
+kilometer is the meter raised to the power of 3, while the
+micrometer is the meter lowered to the power of 6.  SI does
+not, however, permit a simple numerical abbreviation, as TGM
+does; we must use these alphabetic prefixes.  <span
+class="prog">tgmconv</span> embodies these prefixes in the
+following forms:</p>
+
+<center>
+<table class="realtable">
+<tr><th>Prefix</th><th>Abbr.</th>
+	<th>Prefix</th><th>Abbr.</th></tr>
+<tr><td>yotta</td><td>Y</td><td>yocto</td><td>y</td></tr>
+<tr><td>zetta</td><td>Z</td><td>zepto</td><td>z</td></tr>
+<tr><td>exa</td><td>Ex</td><td>atto</td><td>a</td></tr>
+<tr><td>peta</td><td>Pe</td><td>femto</td><td>f</td></tr>
+<tr><td>tera</td><td>Te</td><td>pico</td><td>p</td></tr>
+<tr><td>giga</td><td>G</td><td>nano</td><td>n</td></tr>
+<tr><td>mega</td><td>Me</td><td>micro</td><td>u</td></tr>
+<tr><td>kilo</td><td>k</td><td>milli</td><td>m</td></tr>
+<tr><td>hecta</td><td>h</td><td>centi</td><td>c</td></tr>
+<tr><td>deka</td><td>da</td><td>deci</td><td>d</td></tr>
+</table>
+</center>
+
+<p>The user will note that these are all standard, except
+for exa, peta, tera, and mega.  These had to be different
+because, when combined with certain units, they conflicted
+with certain TGM units; for example, the megagram, by
+standard abbreviation "Mg", conflicts with the TGM Mag (Mg),
+the unit of force.  So these four must be abbreviated in the
+non-standard, but still intuitive, way shown above; all
+others can be used as-is.</p>
+
+<p>SI units modified by these prefixes can still be used in
+compound units.</p>
+
+<h3>Customary and Imperial Units</h3>
+
+
+
 
 
 <hr />
