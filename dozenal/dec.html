@@ -1,0 +1,156 @@
+<!-- Creator     : groff version 1.22.2 -->
+<!-- CreationDate: Tue Jul 19 10:20:15 2016 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>dec</title>
+
+</head>
+<body>
+
+<h1 align="center">dec</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">dec &minus;
+convert dozenal numbers to decimal</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dec [-e]
+[-k</b> <i>precision</i> <b>] [</b> <i>dozenal number</i>
+<b>]</b></p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dec</b>
+converts an arbitrary dozenal number, integral or
+fractional, into decimal. Accepts numbers in either standard
+or exponential notation.</p>
+
+<p style="margin-left:11%; margin-top: 1em">If exponential
+notation is used in the input, it should consist of the
+mantissa, a lowercase &rsquo;e&rsquo;, and the exponent. A
+&rsquo;-&rsquo; sign for negative signs is, of course,
+necessary; no &rsquo;+&rsquo; sign for positive exponents
+should be input.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Use a
+&rsquo;;&rsquo; for the zenimal point (that is, the point
+separating the integral from the fractional part). Note that
+most shells will interpret this as ending the command;
+consequently, if the number to be converted is input at the
+command line, one must put the number in quotation marks:
+&quot;4;5&quot;.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Optionally
+takes its input as the final argument on the command line,
+or can take its input from standard input.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">-e</p></td>
+<td width="8%"></td>
+<td width="63%">
+
+
+<p style="margin-top: 1em">Write the output in exponential
+notation.</p> </td>
+<td width="15%">
+</td></tr>
+</table>
+
+<p style="margin-left:11%;">-k precision</p>
+
+<p style="margin-left:22%;">Print the resulting output with
+<i>precision</i> digits of precision. By default, the output
+is printed with four digits after the zenimal point. If
+there is no fractional part, no zenimal point or fractional
+digits will be printed, even if this option is specified. If
+the precision is too high, a message will be printed noting
+this, and the precision will be reduced to the
+system&rsquo;s maximum.</p>
+
+<p style="margin-left:11%;">dozenal number</p>
+
+<p style="margin-left:22%;">If present, must be the final
+argument at the command line. Converts the given number into
+decimal. As noted above, if this contains a zenimal point
+(&rsquo;;&rsquo;), the whole number must be in quotation
+marks: &quot;4;5&quot;, not simply 4;5. Otherwise the shell
+will probably interpret the semicolon as the end of the
+command; in the example above, this will mean that
+&quot;4&quot; will be converted, and the shell will then
+complain that &quot;5&quot; is not a valid command.</p>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">With very large
+numbers, fractional parts will get truncated. This is
+because the computer is only capable of representing numbers
+up to a given number of significant digits. This isn&rsquo;t
+a bug, per se, but the program issues no warning for it,
+which probably is.</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Donald P.
+Goodman III &lt;dgoodmaniii at gmail dot com&gt;</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>doz</b>(1),
+<b>dozdc</b>(1), <b>tgmconv</b>(1), <b>dozdate</b>(1),
+<b>dozcal</b>(1), <b>dozword</b>(1), <b>dozpret</b>(1)</p>
+<hr>
+</body>
+</html>

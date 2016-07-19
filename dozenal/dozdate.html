@@ -1,0 +1,1234 @@
+<!-- Creator     : groff version 1.22.2 -->
+<!-- CreationDate: Tue Jul 19 10:20:16 2016 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>dozdate</title>
+
+</head>
+<body>
+
+<h1 align="center">dozdate</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#FORMAT">FORMAT</a><br>
+<a href="#PERCENT SEQUENCES:">PERCENT SEQUENCES:</a><br>
+<a href="#DOZENAL SEQUENCES:">DOZENAL SEQUENCES:</a><br>
+<a href="#FORMAT SPECIFIERS">FORMAT SPECIFIERS</a><br>
+<a href="#DATE STRINGS">DATE STRINGS</a><br>
+<a href="#ERRORS AND RETURN CODES">ERRORS AND RETURN CODES</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">dozdate &minus;
+produce the dozenal date and time</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozdate
+[OPTION] [FORMAT]</b></p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozdate</b>
+Display the current date and time in dozenal format, time
+available in either standard sexagesimal time or TGM format;
+or optionally a (more or less) arbitrary other date.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">-d</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Rather than displaying current
+date and time, display the date and time specified in the
+required argument. This string is quite flexibly formatted,
+and is described in more detail later in this manual.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-f</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Like -d once for each line of filename.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-R</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Display the date and time in RFC-2822 format. E.g.:
+&quot;Mon, 07 Aug 11E2 10:2X:48 -0600&quot;</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-c</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Display the date and time in RFC-3339 format. E.g.:
+&quot;111E2-08-07 10:2X:48-0600&quot;</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-u</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Display the date and time in UTC/GMT (Coordinated
+Universal Time or Greenwich Mean Time); in other words,
+without time zone or daylight savings time concerns.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-S</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The date to be input will be in the Symmetry676 (in
+decimal, Symmetry010) calendar.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-s</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The date should be output in the Symmetry676 (in
+decimal, Symmetry010) calendar.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-Y</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Both the input date and output date should be
+Symmetry676; equivalent to &quot;-sS&quot; (or, of course,
+&quot;-Ss&quot;).</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-v</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Print version and copyright information, then quit.</p></td></tr>
+</table>
+
+<h2>FORMAT
+<a name="FORMAT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>FORMAT</b>
+controls the output; that is, inputting these sequences
+(probably should enclose them in double quotes, just to be
+sure) will produce the resulting figures. <b>Percent format
+sequences</b> (beginning with a &quot;%&quot; and followed
+by a letter) produce normal date and time numbers;
+<b>at-sign format sequences</b> (beginning with an
+&quot;@&quot; and followed by a letter) produce TGM-specific
+date and time numbers. All numbers produced by dozdate are
+dozenal, and all numbers fed to it are assumed to be
+dozenal.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Interpreted
+sequences are:</p>
+
+<h2>PERCENT SEQUENCES:
+<a name="PERCENT SEQUENCES:"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p style="margin-top: 1em">%%</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">a literal %</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%a</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s abbreviated weekday name (e.g., Sun)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%A</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s full weekday name (e.g., Sunday)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%b</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s abbreviated month name (e.g., Jan)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%B</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s full month name (e.g., January)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%c</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s date and time (e.g., Thu Mar 3 23:05:25
+2005)</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%C</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>century; like %Y, except omit last two digits (e.g.,
+20)</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%d</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>day of month (e.g, 01)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%D</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>date; same as %m/%d/%y</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%e</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>day of month, space padded; same as %_d</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%F</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>full date; same as %Y&minus;%m&minus;%d</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%g</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>last two digits of year of ISO week number (see %G)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%G</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>year of ISO week number (see %V); normally useful only
+with %V</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%h</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>same as %b</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%H</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>hour (00..23)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%I</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>hour (01..12)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%j</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>day of year (001..366)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%k</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>hour ( 0..23)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%l</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>hour ( 1..12)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%m</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>month (01..12)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%M</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>minute (00..59)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%n</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>a newline</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%N</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>nanoseconds (000000000..999999999)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%p</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s equivalent of either AM or PM; blank if
+not known</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%P</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>like %p, but lower case</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%r</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s 12&minus;hour clock time (e.g., 11:11:04
+PM)</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%R</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>24&minus;hour hour and minute; same as %H:%M</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%s</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>seconds since 1970&minus;01&minus;01 00:00:00 UTC</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%S</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>second (00..60)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%t</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>a tab</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%T</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>time; same as %H:%M:%S</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%u</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>day of week (1..7); 1 is Monday</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%U</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>week number of year, with Sunday as first day of week
+(00..53)</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%V</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>ISO week number, with Monday as first day of week
+(01..53)</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%w</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>day of week (0..6); 0 is Sunday</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%W</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>week number of year, with Monday as first day of week
+(00..53)</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%x</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s date representation (e.g., 12/31/99)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%X</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>locale&rsquo;s time representation (e.g., 23:13:48)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%y</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>last two digits of year (00..99)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%Y</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>year</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%z</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>+hhmm numeric timezone (e.g., <b>&minus;0400</b>)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%:z</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>+hh:mm numeric timezone (e.g., <b>&minus;04</b>:00)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%::z</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>+hh:mm:ss numeric time zone (e.g.,
+<b>&minus;04</b>:00:00)</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%:::z</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>numeric time zone with : to necessary precision (e.g.,
+<b>&minus;04</b>, +05:30)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>%Z</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>alphabetic time zone abbreviation (e.g., EDT)</p></td></tr>
+</table>
+
+<h2>DOZENAL SEQUENCES:
+<a name="DOZENAL SEQUENCES:"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">@c</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Produces a reasonably complete
+depiction of the date and time; that is, weekday day month
+year time. E.g., &quot;Thu 18 Oct 11E7 0E;3300&quot;.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>@C</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Produces the first two digits of the dozenal year
+without the last two; in other words, the zentury. So, e.g.,
+for this year (11E7/2011), it produces &quot;11&quot;.
+Similar to %c, except for the dozenal year.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>@y</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Produces the last two digits of the dozenal year without
+the first two; so, for this year (11E7/2011), it produces
+&quot;E7&quot;.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>@t</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Produces the number of Tims since the last hour
+(0000-10000). (Range is normally only through EEEE, but the
+extra is to allow for occasional leap seconds.)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>@m</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Number of quaduaTims, to two places; essentially @t
+truncated to two digits.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>@H</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Number of hours since midnight; 00-1E.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>@k</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Same as @H, but without padding; 0-1E.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>@T</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>&quot;Long time&quot;; @H;@t. Hours, semicolon, Tims to
+four digits.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>@s</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>&quot;Short time&quot;; @H;@m. Hours, semicolon, Tims to
+two digits.</p></td></tr>
+</table>
+
+<h2>FORMAT SPECIFIERS
+<a name="FORMAT SPECIFIERS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Any of the
+&quot;@&quot; format specifiers may be further specified in
+terms of padding. After the &quot;%&quot; or &quot;@&quot;
+but before the letter comes the optional field width; e.g.,
+&quot;@5H&quot; will give the hour, in dozenal, in a field
+five characters wide, three zeroes and the hour. Prior to
+the field width can come an optional character which will be
+used for padding instead of zeroes. E.g., &quot;@5^H&quot;
+will pad the field with &quot;^&quot; rather than
+zeroes.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Note that this
+differs from GNU date, which uses &quot;^&quot; and
+&quot;#&quot; to specify change of case; dozdate instead
+interprets these as padding characters.</p>
+
+<p style="margin-left:11%; margin-top: 1em">By default,
+dozdate pads with zeroes, but any non-letter and non-number
+character can be used. In GNU date, an underscore
+(&quot;_&quot;) pads with blanks, but dozdate doesn&rsquo;t
+do this in case the user actually wants to pad with
+underscores; instead, an open square bracket (&quot;[&quot;)
+pads with blanks. It seemed very unlikely that anyone would
+want to pad fields with this character.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Any number, no
+matter how absurd, can be used as a padding figure. (Not
+quite true; it has to fit within a C &quot;int&quot;
+variable.) These numbers are dozenal, of course.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+&quot;@&quot; format sequences are extremely flexible with
+their padding in this way; the &quot;%&quot; format
+sequences instead work precisely as they do in GNU date. The
+only options are &quot;-&quot; (to suppress padding);
+&quot;_&quot; (to pad with blanks); &quot;0&quot; (to pad
+with zeroes); &quot;^&quot; (to use uppercase if possible);
+and &quot;#&quot; (to use the opposite case if possible).
+This is for compatibility purposes; I&rsquo;d like dozdate
+to be as near a drop-in replacement for GNU date as
+possible. But that&rsquo;s no reason to handicap the dozdate
+extensions.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Examples:</p>
+
+<p style="margin-left:22%;">&quot;@5y&quot; ---
+&quot;000E7&quot; <br>
+&quot;@[5y&quot; --- &quot; E7&quot; <br>
+&quot;@#5y&quot; --- &quot;###E7&quot;</p>
+
+<p style="margin-left:11%;">And so forth.</p>
+
+<h2>DATE STRINGS
+<a name="DATE STRINGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">dozdate will
+accept some fairly flexible strings as dates to be formatted
+(fed to it by the -d option or as lines in a file). Still,
+it&rsquo;s not a natural language interpreter, and it does
+only understand a limited number of formats.</p>
+
+<p style="margin-left:11%; margin-top: 1em">RELATIVE
+DATES</p>
+
+<p style="margin-left:11%; margin-top: 1em">Relatives dates
+specify the dates relative to the current one. Currently,
+dozdate only accepts relative dates based on the weekday. It
+accepts three such types of dates in any of four
+formats:</p>
+
+<p style="margin-left:22%; margin-top: 1em"><i>last</i>
+WEEKDAY (e.g., &quot;last Friday&quot;) <br>
+WEEKDAY (e.g., &quot;Friday&quot;) <i><br>
+this</i> WEEKDAY (e.g., &quot;this Friday&quot;) <i><br>
+next</i> WEEKDAY (e.g., &quot;next Friday&quot;)</p>
+
+<p style="margin-left:11%; margin-top: 1em">Using the
+keyword &quot;this&quot; plus the weekday is equivalent to
+using the weekday by itself. The keyword &quot;last&quot;
+yields the given weekday immediately prior to the current
+date; &quot;this&quot; or no keyword yields the weekday
+immediately after the current date; &quot;next&quot; yields
+the weekday immediately after the current date <i>plus
+seven,</i> accordingly to colloquial usage. Note that this
+differs from the behavior of GNU date, which considers
+&quot;this&quot; and &quot;next&quot; synonymous.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Weekdays can be
+entered in their full form, or in an abbreviated form; any
+abbreviation that includes the first three letters of the
+weekday name will be understood. (That is,
+&quot;Thursday&quot; &quot;Thursda&quot;,
+&quot;Thursd&quot;, &quot;Thurs&quot;, &quot;Thur&quot;, and
+&quot;Thu&quot; are all synonymous.) They do, however, need
+to begin with a capital letter and be followed by lowercase
+letters.</p>
+
+<p style="margin-left:11%; margin-top: 1em">ABSOLUTE
+DATES</p>
+
+<p style="margin-left:11%; margin-top: 1em">dozdate will
+also accept a variety of formats for absolute dates, more or
+less as those accepted by GNU date. However, unlike GNU
+date, dozdate insists that years be given in four digits,
+and it also accepts dozenal numbers rather than decimal
+ones, for obvious reasons.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Any of the
+following formats for inputting dates will be accepted and
+correctly understood by dozdate:</p>
+
+<p style="margin-left:22%; margin-top: 1em">11X8-2-25 <br>
+25 February 11X8 <br>
+25February11X8 <br>
+25 Feb 11X8 <br>
+25Feb11X8 <br>
+February 25, 11X8 <br>
+Feb 25, 11X8 <br>
+2/25/11X8</p>
+
+<p style="margin-left:11%; margin-top: 1em">Leading zeroes
+in these numbers are ignored; indeed, leading
+<i>anything</i> in these numbers are ignored. If you input
+&quot;225 Feb 11X8&quot;, dozdate will simply devour what it
+can and ignore the rest, assuming that you meant &quot;25
+Feb 11X8.&quot; Note that this behavior can be
+unpredictable; if you use the common American &quot;slash
+format,&quot; &quot;2/225/11X8&quot;, dozdate parses the
+numbers from the other direction, so you&rsquo;ll get 22 Feb
+11X8 instead. Due to this unpredictability, it&rsquo;s not
+really safe to rely on this behavior except for leading
+zeroes up to the normal number of digits (e.g.,
+&quot;02/02/11X8&quot;).</p>
+
+<p style="margin-left:11%; margin-top: 1em">Months may be
+abbreviated as desired, provided that the abbreviations
+contain at least the first three letters of the month. This
+allows dozdate to accept non-standard abbreviations like
+&quot;Sept&quot; for &quot;September&quot;. They do,
+however, need to begin with a capital letter and be followed
+by lowercase letters.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Incomplete
+dates can be accepted, as well. If the year is omitted,
+dozdate will assume the current year. If the date is omitted
+but the month is given, dozdate will assume the first day of
+the month. If the month and date is omitted but the year is
+given, dozdate will assume the first day of January.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This reasonably
+graceful system breaks down on the characteristically
+American &quot;slash format.&quot; E.g., entering
+&quot;2/11X8&quot; will cause dozdate to interpret the
+&quot;11&quot; as the date, and it will emit &quot;11 Feb
+11X8&quot;, probably not what was intended. This is because
+the American style of date formatting really doesn&rsquo;t
+make sense; it&rsquo;s neither little-endian nor big-endian,
+going neither from smallest unit to largest nor vice-versa.
+However, the other numeric formats do the right thing here;
+&quot;11X8-2&quot; will correctly be interpreted as &quot;1
+Feb 11X8&quot;.</p>
+
+<p style="margin-left:11%; margin-top: 1em">If you ask
+dozdate for a particular date, but give it the wrong
+weekday, dozdate will silently correct this and output the
+correct weekday.</p>
+
+<p style="margin-left:11%; margin-top: 1em">TIMES</p>
+
+<p style="margin-left:11%; margin-top: 1em">dozdate
+understands times in either our accustomed mongrel
+decimal/dozenal/sexagesimal system (that is, hours, minutes,
+and seconds) or in the coherent and rationally dozenal TGM
+format (hours and Tims).</p>
+
+<p style="margin-left:11%; margin-top: 1em">TGM times are
+formatted as HH;TTTT. There are, of course, 10000 Tims in an
+hour, so this format makes sense. dozdate also understands a
+&quot;short time,&quot; similar to our common practice of
+reading the time in hours and minutes while omitting
+seconds, involving only the first two digits of the number
+of Tims: HH;TT. A semicolon must be used, or dozdate will
+think the user intends sexagesimal time and interpret it
+accordingly. Giving a number of Tims greater than EEEE will
+cause dozdate to simply truncate the trailing digits and use
+the result figure.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Omitting the
+number of Tims (e.g., &quot;2;&quot;) will cause dozdate to
+assume a number of Tims the first digit of which is idential
+to the hour. So the above example will yield
+&quot;2;1EEE&quot; (or &quot;2;2000&quot;, depending on how
+your machine rounds it).</p>
+
+<p style="margin-left:11%; margin-top: 1em">Sexagesimal
+times are formatted as usual: HH:MM:SS. Seconds can be
+omitted without consequence; dozdate will simply assume
+&quot;00&quot;. Minutes can be omitted, but dozdate will
+assume the current number of minutes. If minutes are going
+to be omitted, one must still use the colon; e.g.,
+&quot;3:&quot;. Otherwise, dozdate won&rsquo;t know what the
+number is doing and will simply ignore it.</p>
+
+<p style="margin-left:11%; margin-top: 1em">If the time is
+omitted entirely, dozdate will assume midnight
+(&quot;00;0000&quot;, or &quot;00:00:00&quot;).</p>
+
+<h2>ERRORS AND RETURN CODES
+<a name="ERRORS AND RETURN CODES"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">0</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Successful return, no errors
+detected.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>1</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>The date string requires there to be more dates in the
+month than there really are. E.g., it requires there to be a
+March 32.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>2</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Requested 29 February, or a date in Irvember if using
+the Symm676 calendar, but this isn&rsquo;t a leap year.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>3</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Bad month; the month you&rsquo;ve requested
+doesn&rsquo;t exist. E.g., &quot;15&quot;.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>4</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Bad conversion code, either &quot;%&quot; or
+&quot;@&quot;; dozdate doesn&rsquo;t recognize what
+you&rsquo;re asking it to do.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>5</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Insufficient memory to process the format string
+you&rsquo;ve requested. It&rsquo;s exceedingly unlikely that
+you&rsquo;ll ever run into this.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>6</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Bad file; dozdate can&rsquo;t open the file that
+you&rsquo;ve asked it to process.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>7</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Bad hour; the hour you&rsquo;ve asked for isn&rsquo;t a
+sensible value. E.g., it&rsquo;s not 00-1E (in decimal,
+00-23).</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>8</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Bad minute; the minute you&rsquo;ve asked for
+isn&rsquo;t a sensible value. E.g., it&rsquo;s not 00-4E (in
+decimal, 00-59).</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>9</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Bad second; the second you&rsquo;ve asked for
+isn&rsquo;t a sensible value. E.g., it&rsquo;s not 00-50 (in
+decimal, 00-60). Note that this allows for an extra second
+to permit leap seconds to be handled properly, but it does
+not checking as to whether a leap second actually fell
+during that hour.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>10</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Bad year; the year you&rsquo;ve requested is either too
+large or too small. Note the dozdate works with the
+Gregorian calendar, and its tables only go back to 0E98
+(decimal 1700) and forward to 168E (decimal 2699). So
+anything outside of that range will error because dozdate
+can&rsquo;t figure out the day of the week with its current
+tables.</p> </td></tr>
+</table>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">None known at
+this time.</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Donald P.
+Goodman III &lt;dgoodmaniii at gmail dot com&gt;</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dec</b>(1),
+<b>doz</b>(1), <b>dozdc</b>(1), <b>tgmconv</b>(1),
+<b>dozcal</b>(1), <b>dozpret</b>(1), <b>dozword</b>(1)</p>
+<hr>
+</body>
+</html>

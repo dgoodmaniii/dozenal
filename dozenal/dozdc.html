@@ -1,0 +1,742 @@
+<!-- Creator     : groff version 1.22.2 -->
+<!-- CreationDate: Tue Jul 19 10:20:17 2016 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>dozdc</title>
+
+</head>
+<body>
+
+<h1 align="center">dozdc</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#EQUATION SYNTAX">EQUATION SYNTAX</a><br>
+<a href="#OPERATORS">OPERATORS</a><br>
+<a href="#CONSTANTS">CONSTANTS</a><br>
+<a href="#VARIABLES">VARIABLES</a><br>
+<a href="#COMMENTS">COMMENTS</a><br>
+<a href="#OTHER COMMANDS">OTHER COMMANDS</a><br>
+<a href="#GRAPHICAL VERSION, gdozdc">GRAPHICAL VERSION, gdozdc</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">dozdc &minus;
+arbitrary precision dozenal calculator</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozdc
+[-ezdr] [-k</b> <i>precision</i> <b>] [</b> <i>equation</i>
+<b>]</b></p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozdc</b> An
+arbitrary-precision Reverse Polish Notation (RPN, postfix
+notation) calculator which works in dozenal (base-12). All
+normal arithmetic functions, plus trigonometry, some basic
+constants (pi, euler, phi), logarithms, and other functions.
+Supports variables of arbitrary user-defined names.</p>
+
+<p style="margin-left:11%; margin-top: 1em">There is also a
+graphical version, gdozdc, written in Perl/Tk. Obviously,
+this requires a working version of Perl and the Tk
+libraries. gdozdc is pretty self-explanatory; its
+differences are described below.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em">-z</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Indicates that those functions
+which take angles as arguments (trigonometric functions in
+particular) will take them in zeniPis, the TGM unit. This is
+the default.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-r</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Indicates that those functions which take angles as
+arguments (trigonometric functions in particular) will take
+them in radians.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-d</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Indicates that those functions which take angles as
+arguments (trigonometric functions in particular) will take
+them in degrees.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-e</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Write the output in exponential notation.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;">-k precision</p>
+
+<p style="margin-left:22%;">Print the resulting output with
+<i>precision</i> digits of precision. By default, the output
+is printed with four digits after the zenimal point. If
+there is no fractional part, no zenimal point or fractional
+digits will be printed, even if this option is specified. If
+the precision is too high, a message will be printed noting
+this, and the precision will be reduced to the
+system&rsquo;s maximum.</p>
+
+<p style="margin-left:11%;">equation</p>
+
+<p style="margin-left:22%;">If present, must be the final
+argument at the command line. Processes the equation, prints
+the answer, and exits. Must be entered within quotation
+marks so that it&rsquo;s considered a single argument by the
+program.</p>
+
+<h2>EQUATION SYNTAX
+<a name="EQUATION SYNTAX"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The syntax of
+an equation is fairly standard Reverse Polish Notation (also
+called postfix notation or simply RPN). Each operator has
+either two arguments (these are called &quot;binary&quot;
+operators) or one (these are called &quot;unary&quot;
+operators). Operators (like &quot;+&quot; or
+&quot;cos&quot;) come <i>after</i> their arguments (that is,
+the numbers or variables they work on). So, for example,
+rather than writing &quot;1 + 1&quot;, one writes &quot;1 1
++&quot;; rather than writing cos(30), one writes &quot;30
+cos&quot;. This has the benefit of being unambiguous (no
+parentheses are necessary).</p>
+
+<h2>OPERATORS
+<a name="OPERATORS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p style="margin-top: 1em">=</p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Pops and prints the top of the
+stack; in other words, gives you your answer. The operations
+you request will be done after hitting &quot;enter&quot;;
+however, no answer will be printed unless you put in an
+&quot;=&quot; and hit that. This allows long calculations to
+be split between lines without having intermediate results,
+which may not be interesting, printed unless you want them
+to be.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;">+, -, *, /</p>
+
+<p style="margin-left:22%;">The basic arithmetic operators;
+they are all binary. They work precisely as one would expect
+them to. &quot;-&quot; and &quot;/&quot; must have their
+arguments in the right order; however, this is the same as
+the order one would expect. &quot;x - y&quot; is &quot;x y
+-&quot;; &quot;x / y&quot; is &quot;x y /&quot;. So this
+shouldn&rsquo;t trip anyone up. Of course, one cannot divide
+by zero; trying will emit an error message, and the numbers
+will be pushed back onto the stack, as they were before the
+attempt.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p>%</p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>The modulus operator, or &quot;mod&quot;. Internally
+this is fmod(); as such, it works on floating-point numbers
+as well as integers. Like &quot;/&quot;, one cannot divide
+by zero; trying will emit an error message, and the numbers
+will be pushed back onto the stack, as they were before the
+attempt.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p>k</p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>Precision; this is a unary operator. As such, its
+argument comes prior to it. It pops the last number and
+makes that value the new precision. Obviously, fractional
+precisions are meaningless, and will be truncated to a whole
+number. Enter like so: &quot;8 k&quot; will ask that answers
+be printed to eight zenimal places. If the value is too
+large, then, as with the command-line option, it will simply
+be reduced to the largest possible on your machine.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;">sin, cos, tan</p>
+
+<p style="margin-left:22%;">Trigonometric functions that
+we&rsquo;re all familiar with. These are unary operators, so
+they take the number entered immediately before them as
+their argument. By default, they operate on zeniPis; this
+can be changed. See the command &quot;rad&quot; and the
+command-line option &quot;r&quot;, as well as &quot;d&quot;
+and the command-line option &quot;d&quot;.</p>
+
+<p style="margin-left:11%;">asin, acos, atan</p>
+
+<p style="margin-left:22%;">Inverse trigonometric
+functions. Unary; used like the normal trigonometric
+functions. Naturally, these must be in the range of -1 to 1
+(except for atan, which can take any real number); if they
+are fed a different value, they politely cough it back onto
+the stack and let the user know. They emit values in radians
+or degrees, depending on the current angle setting.</p>
+
+<p style="margin-left:11%;">sinh, cosh, tanh</p>
+
+<p style="margin-left:22%;">Hyperbolic trigonometric
+functions. Unary; used like the normal and inverse ones.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>z</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>Makes those functions which work on angles use zeniPis
+rather than degrees or radians. This is the default. See the
+command-line option &quot;z&quot;.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>d</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>Makes those functions which work on angles use degrees
+rather than zeniPis or radians. See the command-line option
+&quot;d&quot;.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>rad</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>Makes those functions which work on angles use radians
+rather than zeniPis or degrees. See the command-line option
+&quot;r&quot;.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>^</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A binary operator; it raises its first argument to the
+power of its second argument. So &quot;2 3 ^&quot; has a
+result of 8; it means &quot;2 raised to the power of
+3&quot;. This can also be used to fake roots greater than
+two; &quot;8 1 3 / ^&quot; raises 8 to the power of 1/3,
+which gives the cube root of 8.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>v</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A unary operator; it takes the square root of its single
+argument. So &quot;41 v&quot; will yield 7. Of course, one
+cannot take the square root of a negative number; trying
+will emit an error message, and the attempted argument will
+be pushed back onto the stack unchanged.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>log</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A unary operator; gives the dozenal logarithm of its
+single argument.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>logx</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A unary operator; gives the base-ten logarithm of its
+single argument. It&rsquo;s worth noting that this computes
+the base-ten logarithm of a <i>dozenal</i> number and emits
+it as a <i>dozenal</i> result. This fact has tripped up the
+author of the program a few times when it didn&rsquo;t match
+up to a base-ten logarithm from another calculator. Trust
+the result; make sure you&rsquo;re entering the same number
+and converting the result to decimal. It&rsquo;s
+correct.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>ln</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A unary operator; gives the natural logarithm (the base
+is the euler number) of its single argument.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>dlg</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>Pendlebury&rsquo;s dublogs; these are logarithms with a
+base of two. dozdc can handle only <i>straight</i> dublogs,
+not the <i>mixed</i> dublogs, which are useful for some
+applications but much harder to handle automatically.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>logb</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A binary operator; permits computation of logs in an
+arbitrary base. Its first argument is the number the log of
+which is sought; its second is the base of that log. So, for
+example, &quot;45 log&quot; is equivalent to &quot;45 10
+logb&quot;; &quot;45 logx&quot; is equivalent to &quot;45 X
+logb&quot;; and &quot;45 ln&quot; is equivalent to &quot;45
+eul logb&quot;.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>!</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A unary operator; takes the factorial of its single
+argument. &quot;5 !&quot; yield &quot;X0&quot;. If a
+non-integer is given, it will simply truncate thre
+fractional part and calculate the factorial of the integer
+value.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>exp</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A unary operator; gives the euler number raised to the
+power of its single argument. So &quot;2 exp&quot; is
+equivalent to &quot;eul 2 ^&quot;.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>ldexp</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A binary operator; it raises 2 to the power of its
+second argument, then multiplies it by its first. So, for
+example, &quot;10 2 ldexp&quot; will result in 40; 2^2 is 4,
+10 * 4 is 40.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>abs</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A unary operator; gives the absolute value of its single
+argument. (That is, it&rsquo;s positive, it leaves it as is;
+if it&rsquo;s negative, it makes it positive.)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>recip</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A unary operator; gives the reciprocal of its single
+argument (that is, one divided by that argument).</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>gcf</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A binary operator; gives the &quot;greatest common
+factor&quot; of its two arguments.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p>lcm</p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>A binary operator; gives the &quot;least common
+multiple&quot; of its two arguments.</p></td></tr>
+</table>
+
+<h2>CONSTANTS
+<a name="CONSTANTS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">dozdc provides
+a number of constants. These are the classic
+&quot;transcendental&quot; numbers, or at least a few of
+them. Of course, they are emitted in dozenal. The
+&quot;=&quot; syntax is helpful here; to learn the dozenal
+value of pi, for example, one need simply tell dozdc
+&quot;pi =&quot;, and pi, the value at the top of the stack,
+will be printed.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p style="margin-top: 1em">pi</p></td>
+<td width="7%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Takes no arguments; simply
+contains the value of pi.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p>eul</p></td>
+<td width="7%"></td>
+<td width="78%">
+
+
+<p>Takes no arguments; simply contains the value of the
+euler constant.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p>phi</p></td>
+<td width="7%"></td>
+<td width="78%">
+
+
+<p>Takes no arguments; simply contains the value of phi,
+the &quot;Golden Ratio.&quot;</p></td></tr>
+</table>
+
+<h2>VARIABLES
+<a name="VARIABLES"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">dozdc has basic
+variable handling; it is basic, but it&rsquo;s powerful
+enough for many uses. The program allows for up to fifty
+separate variables, each of which can be arbitrarily named.
+These names can be up to thirty characters long; longer and
+they will be silently truncated by the program. The names
+must begin with a dollar sign (&rsquo;$&rsquo;), after the
+manner of Perl or bash.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The first time
+a variable name appears, the last value on the stack is
+popped off the stack and assigned to it; ever after, when
+the variable name appears it pushes that value back onto the
+stack. The variable cannot be assigned a new value.</p>
+
+<p style="margin-left:11%; margin-top: 1em">So, for
+example, a typical usage scenario might be such:</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>1 3 /
+$result ($result == 1/3, or 0;4)</b></p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>8 $result ^
+= (prints 8 ^ 0;4, the cube root of 8,</b> which is
+2)&quot;</p>
+
+<p style="margin-left:11%; margin-top: 1em">They really are
+that simple.</p>
+
+<h2>COMMENTS
+<a name="COMMENTS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Comments are
+available, and are useful in particularly long or complex
+files that will be handed to dozdc for computation. Because
+dozdc works by words, not by lines, comments are word-based.
+Fortunately, the words can be as long as one wants.
+It&rsquo;s important, however, to make sure that the
+comments contain no spaces, tabs, or newlines, or dozdc will
+misinterpret the text after the first one such as a command
+or number it needs to deal with.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Comments are
+all proceeded with the &rsquo;#&rsquo; character, and
+include all characters following it in the same word. So, in
+our above variable example, we might do the following:</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>1 3 /
+$result</b></p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>#_gives_us_exponent_for_cube_roots</b></p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>8 $result ^
+=</b></p>
+
+<p style="margin-left:11%; margin-top: 1em">This will
+accomplish the same thing, but make it clear what
+&quot;$result&quot; is doing explicitly. (Of course, one
+could just name the variable &quot;$cuberoot&quot; or
+something similar, but we&rsquo;re doing examples here.)</p>
+
+<p style="margin-left:11%; margin-top: 1em">One should be
+aware that blank lines in the input files will mess up the
+results, because of the way dozdc deals with words. However,
+inserting a comment (a line consisting solely of
+&rsquo;#&rsquo;) rather than a blank line will preserve a
+correct result while still allowing the helpful
+whitespace.</p>
+
+<h2>OTHER COMMANDS
+<a name="OTHER COMMANDS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="6%">
+
+
+<p style="margin-top: 1em">quit</p></td>
+<td width="5%"></td>
+<td width="47%">
+
+
+<p style="margin-top: 1em">Quits the program. &rsquo;Nuff
+said.</p> </td>
+<td width="31%">
+</td></tr>
+</table>
+
+<h2>GRAPHICAL VERSION, gdozdc
+<a name="GRAPHICAL VERSION, gdozdc"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">gdozdc is the
+graphical version of dozdc, and it differs in some
+significant points. Specifically, it&rsquo;s <i>infix,</i>
+not postfix; that means that you enter your equations in the
+same way you learned to write them down in school, with your
+binary operators (the ones that take two arguments, like the
+basic arithmetic functions) in between their two arguments.
+E.g., you write &quot;4 + 5&quot;, rather than dozdc&rsquo;s
+&quot;4 5 +&quot;.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This system is
+not particularly extensible; that is, it only works with
+binary operators, and it&rsquo;s inherently ambiguous.
+gdozdc therefore offers the usual infix disambiguation
+operators, parentheses, which can be used to group
+operations however might be necessary. This applies to *all*
+binary operators, even ones where this behavior might be
+surprising; e.g., for arbitrary base logarithms, one inputs
+the base, &quot;logb&quot;, then the number; so for the
+logarithm of three to base two, one writes &quot;2 logb
+3&quot;.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Non-binary
+operations work as they do in dozdc; that is, they are
+postfix. This is typical even for modern infix calculators.
+For example, one writes &quot;5 !&quot; for factorial five,
+and &quot;0;6 sin&quot; for the sine of 0;6.</p>
+
+<p style="margin-left:11%; margin-top: 1em">gdozdc also
+implements some memory functions. &quot;CM&quot; means to
+clear memory; &quot;M&quot; means to save the current field
+to memory (this is the whole field, not the result of the
+operations contained in it); &quot;M+&quot; means to replace
+the current field with the contents of the memory; and
+&quot;M++&quot; means to append the contents of the memory
+to the current field.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Hovering over a
+button will give the keyboard shortcut in a small popup
+balloon, as well as list it and a brief explanation in the
+lower bar.</p>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">None known at
+this time.</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Donald P.
+Goodman III &lt;dgoodmaniii at gmail dot com&gt;</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dec</b>(1),
+<b>dozdc</b>(1), <b>tgmconv</b>(1), <b>dozdate</b>(1),
+<b>dozcal</b>(1), <b>dozword</b>(1), <b>dozpret</b>(1)
+<b>dozstring</b>(1)</p>
+<hr>
+</body>
+</html>
