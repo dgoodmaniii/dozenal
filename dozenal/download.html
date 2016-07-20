@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- +AMDG -->
+
+<head>
+<title>dozenal | Download and Install</title>
+<meta charset="UTF-8" />
+<meta name="description" content="dozenal, a complete suite
+of dozenal programs, including number converts, an RPN
+calculator, a graphical calculator, a metric system
+converter, a pretty printer, a date and time program, and a
+calendar program." />
+<link rel="stylesheet" type="text/css" href="dozsty.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="license" 
+	href="https://creativecommons.org/licenses/by-sa/2.0/" />
+</head>
+<body>
+
+<div class="dedic">
+<a href="amdg.html">+<br />
+AMDG</a><br />
+</div>
+
+<header class="topbar">
+<h1><a class="imglink" href="index.html"><img src="dozclock.png" alt="dozenal Logo" /></a>dozenal</h1>
+
+<nav class="toolbar">
+<ul>
+<li><a title="dozenal:  Download and Install" href="download.html">Download</a>&nbsp;|</li>
+<li><a title="dozenal:  Documentation" href="doz_docs.html">Documentation</a>&nbsp;|</li>
+<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="mainpart">
+
+<h1>Downloading and Installing dozenal</h1>
+
+<p><span class="fl">D</span>ownloading and installing
+dozenal is pretty straightforward; an outside contribution
+has significantly streamlined the build process.  So
+presuming that you don't have a prebuilt version for your
+distribution, you can read through this page.</p>
+
+<h2>Downloading dozenal</h2>
+
+<p>The dozenal source is all available at Github:</p>
+
+<center>
+<a href="http://www.github.com/dgoodmaniii/dozenal/">dozenal
+source</a>
+</center>
+
+<p>Now, Github can be frightening for those who don't know
+<a href="https://git-scm.com">git</a>, so for those who
+can't navigate it, you can just download this archive:</p>
+
+<center>
+<a
+href="https://github.com/dgoodmaniii/dozenal/archive/master.zip">zip
+of dozenal source</a>
+</center>
+
+<p>If you <em>do</em> happen to know <a
+href="https://git-scm.com">git</a>, then go ahead and work
+your magic; clone that repository to your heart's
+content.</p>
+
+<h2>Installing dozenal</h2>
+
+<p>This should also be pretty simple, even simpler than
+usual, since dozenal does not include the usual "./configure"
+step that most source downloads do.  I'll be assuming here
+that you're working with the zip archive, since anyone who
+knows enough <a href="https://git-scm.com">git</a> to clone
+the repository will be able to figure out the rest for
+themselves.</p>
+
+<ol>
+<li>Find the directory you want to put dozenal into, and go
+to it.</li>
+<li>Unzip the archive:
+<pre class="demo">
+unzip master.zip
+</pre>
+</li>
+<li>Go to the directory that said unzipping created.  It
+will be immediately beneath the directory that you
+created.</li>
+<li>Build the source:
+<pre class="demo">
+make
+</pre>
+</li>
+<li>You now have a working dozenal in this directory.
+Probably, however, you want more than that:  you want to be
+able to run dozenal from any directory, read the manpage when
+you need to, and so forth.  So become root however you
+normally would (<strong>sudo</strong>, or <strong>su
+-</strong>, or whatever), and run the following:
+<pre class="demo">
+make install
+</pre>
+That should cover it; you've now got dozenal running on your
+computer.</li>
+</ol>
+
+<p>If you need help learning to run dozenal, visit the <a
+href="doz_docs.html">documentation</a> page, where you'll
+find both manuals and tutorials for the various programs.
+And then, happy mathing!</p>
+
+<hr />
+<footer class="bottomstuff">
+<div class="homelink"><a href="index.html">Home</a></div>
+<a href="webmas.html">E-Mail the Webmaster</a><br />
+<a href="changes.html">Change Log</a><br />
+</footer>
+</div>
+</body>
+</html>
