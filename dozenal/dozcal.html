@@ -1,0 +1,1190 @@
+<!-- Creator     : groff version 1.22.2 -->
+<!-- CreationDate: Fri Jul 22 12:19:07 2016 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>dozcal</title>
+
+</head>
+<body>
+
+<h1 align="center">dozcal</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#FILES">FILES</a><br>
+<a href="#ERRORS">ERRORS</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">dozcal &minus;
+a command-line dozenal calendar program</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozcal</b>
+[<b>&minus;V</b>] [<b>&minus;E</b>] [<b>&minus;T</b>]
+[<b>&minus;m</b> <i>full|major</i>] [<b>&minus;h</b>
+<i>religious</i>] [<b>&minus;n</b> <i>national</i>]
+[<b>&minus;s</b> <i>startdate</i>] [<b>&minus;e</b>
+<i>enddate</i>] [<b>&minus;d</b> <i>dateformat</i>]
+[<b>&minus;t</b> <i>timeformat</i>] [<b>&minus;r</b>
+<i>eventformat</i>] [<b>&minus;R</b> <i>todoformat</i>]
+[<b>&minus;c</b> <i>configfile</i>] [<b>&minus;f</b>
+<i>inputfile</i>]</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozcal</b> A
+text-based calendar program which operates using dozenal
+dates and times. Uses a simple plain-text file format.
+Multiple files can be specified on the command line. Date
+formats and time formats can also be specified on the
+command line. There are options to display religious and
+national holidays. All can further be specified in a
+configuration file, which is also plain-text and easily
+understandable.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em"><b>&minus;V</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Print version and licensing
+information, then exit successfully.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p><b>&minus;E</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Do <i>not</i> print events. Events are printed by
+default, so this flag turns event printing <i>off</i>.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p><b>&minus;T</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Print todos. Unlike the <b>&minus;E</b> flag, this turns
+printing of todos <i>on</i>, because printing of todos is
+off by default.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>&minus;m [all |
+major]</b></p>
+
+<p style="margin-left:22%;">Include the phases of the moon
+in your output. This must take one of two arguments:
+&quot;all&quot;, which will print the phase of the moon for
+all days in your date range; or &quot;major&quot;, which
+will only print the major phases (i.e., &quot;new&quot;,
+&quot;first quarter&quot;, &quot;full&quot;, and &quot;last
+quarter&quot;). In either case, the age of the moon in days
+is printed as its phase, with some text for the major
+phases.</p>
+
+<p style="margin-left:11%;"><b>&minus;h [holiday
+string]</b></p>
+
+<p style="margin-left:22%;">Include religious holidays.
+This takes a single string as an argument, and the contents
+of the string determine which holidays will be added. The
+holidays are added for the year before your current year,
+the current year, and the year after. These strings may be
+concatenated however you wish and in whatever order; e.g.,
+&quot;westjew&quot; and &quot;jew, west&quot; will give the
+same result.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="6%">
+
+
+<p><b>west</b></p></td>
+<td width="4%"></td>
+<td width="68%">
+
+
+<p>Include Western Christian holidays. This includes a
+subset of Western Christian holidays: Ash Wednesday, Palm
+Sunday, Good Friday, Easter, the Ascension, Pentecost, and
+Christmas.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="6%">
+
+
+<p><b>east</b></p></td>
+<td width="4%"></td>
+<td width="68%">
+
+
+<p>Include Eastern Christian holidays. This includes a
+subset of Eastern Christian holidays: Clean Monday, Lazarus
+Saturday, Palm Sunday, Easter, Mid-Pentecost, the Ascension,
+Pentecost, and Christmas.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="6%">
+
+
+<p><b>jew</b></p></td>
+<td width="4%"></td>
+<td width="68%">
+
+
+<p>Include Jewish holidays. This setting ignores some of
+the prickier issues of the Hebrew calendar, including those
+holidays which sometimes fall in the leap month. Includes
+Passover; Yom Kippur; Rosh Hashanah; Hanukkah; and
+Sukkot.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="6%">
+
+
+<p><b>isl</b></p></td>
+<td width="4%"></td>
+<td width="68%">
+
+
+<p>Include Islamic holidays. It&rsquo;s important to
+remember that the Islamic calendar is fundamentally
+observational, not mathematical; it&rsquo;s therefore
+impossible to get a perfectly accurate prediction of when
+these holidays will occur. We can get pretty close, though,
+and <b>dozcal</b> gets an approximation that agrees more or
+less with the other sources around (which often read
+&quot;dates may vary&quot; for precisely this reason).
+Includes Ramadan, Eid Al-Fitr, and Eid Al-Adha.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>&minus;n [national holiday
+string]</b></p>
+
+<p style="margin-left:22%;">Include national holidays in
+your results. Takes a string as its argument; the contents
+of the string determines which national holidays will be
+added. These can be added in whatever order, and they may or
+not be separated by other text; e.g., &quot;eng,rire&quot;
+is the same as &quot;engrire&quot;. The holidays will be
+added for your current year, the previous year, and the next
+year. Supported national holidays are:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="7%">
+
+
+<p><b>usa</b></p></td>
+<td width="3%"></td>
+<td width="68%">
+
+
+<p>Includes all federal American holidays: New Year&rsquo;s
+Day, Martin Luther King Day, Presidents&rsquo; Day
+(officially still called &quot;Washington&rsquo;s
+Birthday&quot;, though it never actually falls on
+Washington&rsquo;s birthday), Memorial Day, Independence
+Day, Labor Day, Columbus Day, Veterans Day, Thanksgiving
+Day, and Christmas Day. It also includes election day,
+though this is not a federal holiday. Does <i>not</i>
+include any of the individual state holidays.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="7%">
+
+
+<p><b>uk</b></p></td>
+<td width="3%"></td>
+<td width="68%">
+
+
+<p>This option is equivalent to adding <b>end</b>,
+<b>wales</b>, <b>scot</b>, and <b>nire</b>. Since most of
+these holidays are shared, this will result in many
+duplicates.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="7%">
+
+
+<p><b>eng</b></p></td>
+<td width="3%"></td>
+<td width="68%">
+
+
+<p>English national holidays. Includes New Year&rsquo;s
+Day, Christmas, Boxing Day, Easter Monday, the Spring Bank
+Holiday, and the Late Summer Bank Holiday.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="7%">
+
+
+<p><b>wales</b></p></td>
+<td width="3%"></td>
+<td width="68%">
+
+
+<p>Welsh national holidays. These are the same as English
+national holidays. St. David&rsquo;s Day <i>is</i> included,
+as it&rsquo;s not an official Welsh holiday, even though
+it&rsquo;s observed throughout most of Wales with
+considerable fanfare.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="7%">
+
+
+<p><b>scot</b></p></td>
+<td width="3%"></td>
+<td width="68%">
+
+
+<p>Scottish national holidays. Includes New Year&rsquo;s
+Day, Christmas, Boxing Day, Labour Day (May Day), Good
+Friday, Spring Holiday, Summer Holiday, and St.
+Andrew&rsquo;s Day.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="7%">
+
+
+<p><b>nire</b></p></td>
+<td width="3%"></td>
+<td width="68%">
+
+
+<p>Northern Irish national holidays. These are the same as
+English and Welsh national holidays, with the additional of
+St. Patrick&rsquo;s Day and the day of the Battle of the
+Boyne, or Orangemen&rsquo;s Day.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="7%">
+
+
+<p><b>rire</b></p></td>
+<td width="3%"></td>
+<td width="68%">
+
+
+<p>National holidays of the Republic of Ireland. Includes
+New Year&rsquo;s Day, Easter Monday, St. Patrick&rsquo;s
+Day, May Day, June Holiday, August Holiday, October Holiday,
+Christmas, and St. Stephen&rsquo;s Day.</p></td></tr>
+</table>
+
+<p style="margin-left:22%;"><b>austral</b></p>
+
+<p style="margin-left:32%;">Australian national holidays.
+Includes New Year&rsquo;s Day, Australia Day, Good Friday,
+Easter Monday, Anzac Day, and Christmas Day.</p>
+
+<p style="margin-left:22%;"><b>nz | kiwi</b></p>
+
+<p style="margin-left:32%;">New Zealand&rsquo;s national
+holidays. Includes New Year&rsquo;s Day, the day after New
+Year&rsquo;s Day, Waitangi Day, Good Friday, Easter Monday,
+Labour Day, Anzac Day, the Queen&rsquo;s Birthday,
+Christmas, and Boxing Day.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>canada</b></p></td>
+<td width="1%"></td>
+<td width="68%">
+
+
+<p>Includes Canadian national holidays; does <i>not</i>
+include provincial holidays. The national holidays are New
+Year&rsquo;s Day; Good Friday; Canada Day; Labour Day; and
+Christmas Day.</p></td></tr>
+</table>
+
+<p style="margin-left:22%; margin-top: 1em">Countries with
+their holidays not included: this is not meant as a slight,
+I&rsquo;m just most familiar with these Anglophone countries
+and built them in for no other reason. We hope to add
+facilities for easily including new programmable holidays
+that will hopefully resolve this issue. Otherwise, such
+holidays must be included in an input data file.</p>
+
+<p style="margin-left:11%;"><b>&minus;s [startdate]</b></p>
+
+<p style="margin-left:22%;">The first date that you want
+results from. If this is not specified, <b>dozcal</b> will
+return all results from its earliest date.</p>
+
+<p style="margin-left:11%;"><b>&minus;e [enddate]</b></p>
+
+<p style="margin-left:22%;">The last date that you want
+results from. Combined with <b>&minus;s</b>, you can
+restrict the range of results you&rsquo;ll receive. If this
+isn&rsquo;t specified, <b>dozcal</b> will return results
+from the start date until it runs out.</p>
+
+<p style="margin-left:11%;"><b>&minus;d [date format
+string]</b></p>
+
+<p style="margin-left:22%;">The date format. These are
+specified identically to those of the standard Unix
+<b>date</b> command; please see the documentation for that
+for more details. (Note that this does <i>not</i> include
+the <b>dozdate</b> extensions, beginning with <i>@</i>
+rather than <i>%</i>; they&rsquo;re not necessary for this
+problem domain.)</p>
+
+<p style="margin-left:11%;"><b>&minus;t [time format
+string]</b></p>
+
+<p style="margin-left:22%;">The time format. Much simpler
+than date format, <b>dozcal</b> assumes the use of hours and
+Tims for time, and doesn&rsquo;t support anything else at
+this time. Only two interpreted sequences are allowed:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%h</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The hours.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%b</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>Tims. These are the number of Tims in an hour, so they
+cap off at EEEE. <b>dozcal</b> will happily display these to
+less than 4 digits, if requested.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>&minus;r [event format
+string]</b></p>
+
+<p style="margin-left:22%;">The event format. Each event in
+your calendar is printed as a separate record; the argument
+to this option allows you to specify its format. It operates
+independently of <b>&minus;d</b> and <b>&minus;t</b>, which
+will still be formatted as you request. It accepts the
+following conversion strings:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%e</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The event title.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%d</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The event date, formatted as you requested if
+you&rsquo;ve given <b>dozcal</b> a date formatting
+string.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%s</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The event&rsquo;s starting time, formatted as you
+requested if you&rsquo;ve given <b>dozcal</b> a time
+formatting string.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%c</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The event&rsquo;s closing (ending) time, formatted as
+you requested if you&rsquo;ve given <b>dozcal</b> a time
+formatting string.A</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%C</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The event&rsquo;s list of categories.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%t</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The event&rsquo;s class.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%l</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The event&rsquo;s location.</p></td></tr>
+</table>
+
+<p style="margin-left:22%; margin-top: 1em">Event formats
+can also include newlines, specified in the usual way as
+<i>\n</i>, and tabs, specified in the usual way as
+<i>\t</i>.</p>
+
+<p style="margin-left:11%;"><b>&minus;R [todo format
+string]</b></p>
+
+<p style="margin-left:22%;">The todo format. Each todo in
+your calendar is printed as a separate record; the argument
+to this option allows you to specify its format. It operates
+independently of <b>&minus;d</b> and <b>&minus;t</b>, which
+will still be formatted as you request. It accepts the
+following conversion strings:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%i</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The todo item; could be called the &quot;title&quot;.
+It&rsquo;s loaded from the <i>TITLE</i> line in your data
+file.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%p</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The priority of the todo.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%d</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The due date of the todo.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%t</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The due time of the todo.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%c</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The completedness of the todo; that is, whether
+you&rsquo;re done or not. This is &quot;0&quot; for not
+done, &quot;1&quot; for done.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%g</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>How much progress has been made on the todo. Given as a
+perbiqua (1-100).</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%l</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The location of the todo.</p></td></tr>
+</table>
+
+<p style="margin-left:22%; margin-top: 1em">Event formats
+can also include newlines, specified in the usual way as
+<i>\n</i>, and tabs, specified in the usual way as
+<i>\t</i>.</p>
+
+<p style="margin-left:11%;"><b>&minus;f [inputfile]</b></p>
+
+<p style="margin-left:22%;">Names an input data file for
+<b>dozcal</b> to use. (See the section below about how to
+format such data files.) This option can be specified more
+than once; <b>dozcal</b> will use all the files so
+specified, sorting them without regard to the order of their
+inclusion.</p>
+
+<p style="margin-left:11%;"><b>&minus;c
+[configfile]</b></p>
+
+<p style="margin-left:22%;">Names a config file for
+<b>dozcal</b> to use. (See the section below about how to
+format such config files.) If not specified, <b>dozcal</b>
+will look for <i>$HOME/.dozcalrc</i>; if it cannot find
+that, it will proceed without any config files. If this is
+specified multiple times, any options in later config files
+will override those in earlier ones.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Command line
+options listed <i>after</i> the config file option will take
+precedence; those listed <i>before</i> will be overridden if
+the config file contradicts them.</p>
+
+<h2>FILES
+<a name="FILES"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozcal</b>
+uses two files primarily: the data, or library file, which
+has the actual library information in it, and a run-control,
+or config file, which contains simple lines to control
+<b>dozcal</b>&rsquo;s behavior.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>The Data
+File <br>
+dozcal</b> works with data files that follow a simple but
+specific format. Each record begins with a line containing
+the string <i>[EVENT]</i>, <i>[TODO]</i>, or
+<i>[JOURNAL]</i>, and ends either at the end of the file or
+at the next line containing one of those strings; blank
+lines are ignored.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Within each
+event, you must specify at least a <i>TITLE</i> and a
+<i>START_DATE</i>. The following are recognized fields:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>TITLE:</b></p></td>
+<td width="1%"></td>
+<td width="68%">
+
+
+<p>Gives the title of the event; e.g., &quot;Meeting with
+Roy&quot; or &quot;Traffic Court&quot;.</p></td></tr>
+</table>
+
+<p style="margin-left:22%;"><b>START_DATE:</b></p>
+
+<p style="margin-left:32%;">The date on which the event
+occurs. It is called start-date because many events recur on
+the calendar, but this one serves as either the only event
+or the first day of a recurring event.</p>
+
+<p style="margin-left:22%;"><b>END_DATE:</b></p>
+
+<p style="margin-left:32%;">The last date of the event, and
+(if you&rsquo;ve specified an <i>INTERVAL</i> for this
+event) the last day that <b>dozcal</b> will check to see if
+a recurrence should occur.</p>
+
+<p style="margin-left:22%;"><b>INTERVAL:</b></p>
+
+<p style="margin-left:32%;">The number of days&rsquo;
+interval for a recurring date. That is, starting at the
+<i>START_DATE</i>, how many days should <b>dozcal</b> skip
+before placing the event on the calendar again? To make a
+weekly event, for example, say <i>INTERVAL: 7</i>. If you
+say <i>INTERVAL: 1</i>, the event will occur every day (in
+which case, you may as well not specify an interval, because
+<b>dozcal</b> will assume you mean every day until the
+<i>END_DATE</i> unless you tell it otherwise).</p>
+
+<p style="margin-left:32%; margin-top: 1em">If you&rsquo;ve
+utilized the <i>FREQ</i> option, this interval will be the
+number of that unit. E.g., if your <i>FREQ</i> is
+&quot;monthly&quot;, it will be <i>interval</i> number of
+months.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="7%">
+
+
+<p><b>FREQ:</b></p></td>
+<td width="3%"></td>
+<td width="68%">
+
+
+<p>This gives a generalized statement of the frequency of
+the event. If you&rsquo;re using a standard number of days,
+then there is no need for this line, as <i>INTERVAL</i>
+works with a number of days by default. If, on the other
+hand, you&rsquo;re working with some other interval (say,
+months), <i>FREQ</i> is what you need.</p></td></tr>
+</table>
+
+<p style="margin-left:32%; margin-top: 1em"><i>FREQ</i>
+works by a pretty simple heuristic. If it finds the name of
+a weekday, then it looks for an ordinal number (e.g.,
+&quot;first&quot;, &quot;second&quot;, &quot;third&quot;,
+&quot;fourth&quot;, or &quot;last&quot;). If it finds one,
+then it looks for the name of a month (at least the first
+three letters of one). If it finds all three of these, it
+interprets this as asking for the event on the ordinal of
+that weekday of that month. An example would be &quot;Third
+Tuesday of April.&quot;</p>
+
+<p style="margin-left:32%; margin-top: 1em">If it finds a
+weekday and an ordinal but not the name of a month, it
+interprets this as the ordinal of that weekday for every
+month in your range (from your given <i>START_DATE</i> to
+your given <i>END_DATE</i>, or for the given month if you
+gave no <i>END_DATE</i>). An example would be &quot;the last
+Thursday&quot;.</p>
+
+<p style="margin-left:32%; margin-top: 1em">If it finds a
+weekday but no ordinal or month name, it interprets this as
+that ordinal day every month between <i>START_DATE</i> and
+<i>END_DATE</i>, or for the start date&rsquo;s month if
+there is not <i>END_DATE</i>. An example might be
+&quot;Wednesdays&quot;.</p>
+
+<p style="margin-left:32%; margin-top: 1em">If it finds no
+weekday, no ordinal, and no month name, it looks for the
+strings &quot;monthly&quot; or &quot;yearly&quot; (with no
+regard to capitalization; the search is case-insensitive).
+It it finds &quot;monthly&quot;, it will repeat the event
+every month from <i>START_DATE</i> to <i>END_DATE</i> (or to
+the end of the following year if there is no
+<i>END_DATE</i>). If it finds &quot;yearly&quot;, it will do
+the same every year.</p>
+
+<p style="margin-left:32%; margin-top: 1em"><i>FREQ</i>
+does respect <i>INTERVAL</i>; so if your interval is
+&quot;3&quot;, and your <i>FREQ</i> is &quot;monthly&quot;,
+<b>dozcal</b> will place the event on the appropriate date
+every third month.</p>
+
+<p style="margin-left:32%; margin-top: 1em">Note that while
+this system is designed to enable English-like syntax,
+it&rsquo;s not necessary; &quot;third Tuesday in
+August&quot; will yield the same results as &quot;August
+Tuesday third&quot;.</p>
+
+<p style="margin-left:22%;"><b>EXCEPT_DATE:</b></p>
+
+<p style="margin-left:32%;">In a recurring event,
+<i>don&rsquo;t</i> add an event on this date, even if it
+otherwise qualifies. You can have as many of these as
+you&rsquo;d like.</p>
+
+<p style="margin-left:22%;"><b>START_TIME:</b></p>
+
+<p style="margin-left:32%;">The time you&rsquo;d like this
+to start. This can be specified in either our normal
+dozenal-sexagesimal time (two dozen hours in a day, five
+dozen minutes in an hour), or in TGM (two dozen hours in a
+day, divided into 10000 Tims each). <b>dozcal</b> will
+interpret the time as dozenal-sexagesimal if you use a colon
+(<i>:</i>) to separate the hours from minutes; if you use a
+semicolon (<i>;</i>), or no punctuation, it will interpret
+the time as hours and Tims.</p>
+
+<p style="margin-left:22%;"><b>END_TIME:</b></p>
+
+<p style="margin-left:32%;">The obvious corrollary of
+<i>START_TIME</i>.</p>
+
+<p style="margin-left:22%;"><b>LOCATION:</b></p>
+
+<p style="margin-left:32%;">Pretty self-explanatory, as
+well; where the event is going to occur.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>CLASS:</b></p></td>
+<td width="1%"></td>
+<td width="68%">
+
+
+<p>Typically a single word to describe something special
+about the event; for example, &quot;private&quot; or
+&quot;public.&quot;</p> </td></tr>
+</table>
+
+<p style="margin-left:22%;"><b>CATEGORY:</b></p>
+
+<p style="margin-left:32%;">You can specify this line as
+many times as necessary. Typically just describes the type
+of the event; for example, &quot;Anniversary&quot; might
+fall under both &quot;marriage&quot; and
+&quot;personal&quot;. If you put this in your formatting
+string, multiple categories will be printed together,
+separated by a a comma.</p>
+
+<p style="margin-left:11%; margin-top: 1em">An example
+record:</p>
+
+<p style="margin-left:22%;">[EVENT] <br>
+START_DATE: 1200-0X-27 <br>
+END_DATE: 1200-0E-0X <br>
+START_TIME: 0X00 <br>
+END_TIME: 1E30 <br>
+EXCEPT_DATE: 1200-0E-04 <br>
+EXCEPT_DATE: 1200-0E-05 <br>
+TITLE: My Test Event #1</p>
+
+<p style="margin-left:11%; margin-top: 1em">Events are
+sorted first by start date; then by start time; then by
+title.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Todos are
+formatted similarly; naturally, however, their possible
+categories are a bit different. Possible fields are:</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>TITLE:</b></p></td>
+<td width="1%"></td>
+<td width="68%">
+
+
+<p>The todo&rsquo;s title or description. For example,
+&quot;Finish the taxes&quot; or &quot;buy birthday present
+for Susie.&quot;</p></td></tr>
+</table>
+
+<p style="margin-left:22%;"><b>DUE_DATE:</b></p>
+
+<p style="margin-left:32%;">Self-explanatory.</p>
+
+<p style="margin-left:22%;"><b>DUE_TIME:</b></p>
+
+<p style="margin-left:32%;">Self-explanatory.</p>
+
+<p style="margin-left:22%;"><b>COMPLETED:</b></p>
+
+<p style="margin-left:32%;">If for some reason you want to
+keep completed todos in your list, you can set this flag to
+make it clear that it&rsquo;s already done. A &quot;0&quot;
+indicates that the item is <i>not</i> complete; a
+&quot;1&quot; indicates that it is.</p>
+
+<p style="margin-left:22%;"><b>PERGROSS:</b></p>
+
+<p style="margin-left:32%;">Gives the degree of completion
+of the todo, considered as parts per biqua. E.g., if
+you&rsquo;re half-done with a todo, you might want to set
+this as &quot;60&quot;. Do <i>not</i> use a
+&quot;%&quot;.</p>
+
+<p style="margin-left:22%;"><b>LOCATION:</b></p>
+
+<p style="margin-left:32%;">Self-explanatory.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>CLASS:</b></p></td>
+<td width="1%"></td>
+<td width="30%">
+
+
+<p>Same as for events.</p></td>
+<td width="38%">
+</td></tr>
+</table>
+
+<p style="margin-left:22%;"><b>CATEGORY:</b></p>
+
+<p style="margin-left:32%;">Same as for events.</p>
+
+<p style="margin-left:22%;"><b>PRIORITY:</b></p>
+
+<p style="margin-left:32%;">How important this todo is,
+expressed as an integer. Lower integers are more
+important.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Todos are
+sorted first by priority; then by due date; then by due
+time; and then by title.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>The Config
+File <br>
+dozcal</b>&rsquo;s config file is very simply formatted; the
+option is specified in all-caps, followed by a colon,
+followed by some optional space, and finally followed by the
+value. Anything that can be specified on the command line
+can also be specified in the config file. By default, if you
+don&rsquo;t give <b>dozcal</b> a config file with
+<i>&minus;c</i>, it will look for one at
+<i>$HOME/.dozcalrc</i>; if it can&rsquo;t find that, it will
+print a message to stderr and then continue with no config
+file.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Possible
+options in the config file are:</p>
+
+<p style="margin-left:22%;"><b>NATIONAL:</b></p>
+
+<p style="margin-left:32%;">Specifies the national holidays
+you want listed. Argument is listed exactly as for the
+<i>&minus;n</i> command line option.</p>
+
+<p style="margin-left:22%;"><b>RELIGIOUS:</b></p>
+
+<p style="margin-left:32%;">Specifies the religious
+holidays you want listed. Argument is listed exactly as for
+the <i>&minus;h</i> command line option.</p>
+
+<p style="margin-left:22%;"><b>MOON_PHASE:</b></p>
+
+<p style="margin-left:32%;">Specifies the way in which you
+want moon phases listed. Argument is exactly as for the
+<i>&minus;m</i> command line option.</p>
+
+<p style="margin-left:22%;"><b>DATE_FORMAT:</b></p>
+
+<p style="margin-left:32%;">The format for the date when
+displayed. Argument is exactly as for the <i>&minus;d</i>
+command line option.</p>
+
+<p style="margin-left:22%;"><b>TIME_FORMAT:</b></p>
+
+<p style="margin-left:32%;">The format for the time when
+displayed. Argument is exactly as for the <i>&minus;t</i>
+command line option.</p>
+
+<p style="margin-left:22%;"><b>EVENT_FORMAT:</b></p>
+
+<p style="margin-left:32%;">The format for the events when
+they are printed. Argument is exactly as for the
+<i>&minus;r</i> command line option.</p>
+
+<p style="margin-left:22%;"><b>TODO_FORMAT:</b></p>
+
+<p style="margin-left:32%;">The format for the todos, if
+they are to be printed. Argument is exactly as for the
+<i>&minus;R</i> command line option.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>INPUT:</b></p></td>
+<td width="1%"></td>
+<td width="68%">
+
+
+<p>Specifies a data file for <b>dozcal</b> to use, similar
+to the <i>&minus;f</i> command line option. You can include
+as many of these as you like, and even mix them with
+<i>&minus;f</i> on the command line, but be aware that if
+you name the same file more than once, it will be included
+more than once; <b>dozcal</b> assumes that you tell it what
+you really want and does not check for duplicate files.</p></td></tr>
+</table>
+
+<h2>ERRORS
+<a name="ERRORS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozcal</b>
+emits fairly specific error codes when things go wrong.
+Successful completion is returned to the environment as
+<i>0</i>.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p style="margin-top: 1em"><b>1</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">You supplied <b>dozcal</b> an
+option which requires an argument, but didn&rsquo;t send it
+an argument. E.g., you said <b>&minus;s</b>, but
+didn&rsquo;t say what you wanted the starting date of your
+results to be.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p><b>2</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>You gave <b>dozcal</b> an option that it doesn&rsquo;t
+recognize.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p><b>3</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>There&rsquo;s insufficient memory for somethinng that
+<b>dozcal</b> needs to do; see the error message emitted to
+see what exactly it was.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p><b>4</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p><b>dozcal</b> is trying to open a file you gave it
+(perhaps with <b>&minus;f</b> or <b>&minus;c</b>), but is
+running into problems. <b>dozcal</b> will print an error
+message detailing the specific error.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p><b>5</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>You&rsquo;ve given a conversion character in your time
+format (perhaps with the <b>&minus;t</b> option) that
+<b>dozcal</b> doesn&rsquo;t recognize.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p><b>6</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>You&rsquo;ve given a conversion character in your event
+format (perhaps with the <b>&minus;r</b> option) that
+<b>dozcal</b> doesn&rsquo;t recognize.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p><b>7</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>The phrase you&rsquo;ve entered for the moon phase
+option doesn&rsquo;t make sense to <b>dozcal</b>; please use
+either <i>full</i> or <i>major</i>.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p><b>8</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>The file you&rsquo;ve specified for your config file
+isn&rsquo;t working correctly; see the specific error
+message for reasons.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p><b>9</b></p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>You&rsquo;ve given a conversion character in your todo
+format (perhaps with the <b>&minus;R</b> option) that
+<b>dozcal</b> doesn&rsquo;t recognize.</p></td></tr>
+</table>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">None known at
+this time.</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Donald P.
+Goodman III &lt;dgoodmaniii at gmail dot com&gt;</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dec</b>(1),
+<b>dozdc</b>(1), <b>tgmconv</b>(1), <b>dozdate</b>(1),
+<b>dozword</b>(1), <b>dozpret</b>(1) <b>dozstring</b>(1)</p>
+<hr>
+</body>
+</html>
