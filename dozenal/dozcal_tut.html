@@ -210,10 +210,37 @@ date.  E.g., "Tuesdays."</li>
 strings "monthly" or "yearly" (with no regard to
 capitalization; the search is case-insensitive).  If it
 finds "monthly", it will repeat the event every month from
-the start date to the end date (or to the end of the start
-date's month is there is no end date).  If it finds
+the start date to the end date (or to the end of the
+following year if there is no end date).  If it finds
 "yearly", it will do the same every year.</li>
 </ul>
+
+<p>FREQ respects INTERVAL, so you can combine these in
+interesting ways.  For example, by default INTERVAL is an
+integer referring to a number of days (that's why there's no
+"weekly"; you can just set INTERVAL to 7).  But if you've
+put "monthly" in your FREQ, the interval will be counted by
+<em>months</em>, not by days; so to set an event every other
+month:</p>
+
+<pre class="demo">
+FREQ:  monthly
+INTERVAL:  2
+</pre>
+
+<p>This also works with the more specific FREQ settings:</p>
+
+<pre class="demo">
+FREQ:  Tuesdays in April
+INTERVAL:  2
+</pre>
+
+<p>This will set the first and third Tuesdays in April (and,
+of course, the fifth if there is one); the INTERVAL being 2
+makes it select every other Tuesday in April, rather than
+every one.</p>
+
+<p>To set the second and fourth Tuesdays, you can 
 
 <a name="todos"></a>
 <h3>Todos</h3>
