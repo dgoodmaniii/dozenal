@@ -137,12 +137,85 @@ which we'll see in due time.</p>
 <a name="dateentry"></a>
 <h4>Date Entry Formats</h4>
 
+<p>Dates can be entered in the following formats:</p>
+
+<center>
+<table class="realtable">
+<tr><td>year-mo-da</td></tr>
+<tr><td>mo-da-year</td></tr>
+<tr><td>da mon year</td></tr>
+<tr><td>mon da, year</td></tr>
+</table>
+</center>
+
+<p>In the first two cases, the hyphens can be replaced by
+forward slashes, as is common in the United States.  The
+spaces are optional in the second two.  The month must be
+listed with at least the first three letters (capital or
+lowercase is irrelevant), but can be listed with more.  The
+year must always be given as all four digits.</p>
+
 <a name="timeentry"></a>
 <h4>Time Entry Formats</h4>
+
+<p>Time can be entered in the following formats:</p>
+
+<center>
+<table class="realtable">
+<tr><td>HH:MM</td></tr>
+<tr><td>HH;BB</td></tr>
+<tr><td>HH;BBBB</td></tr>
+<tr><td>HHBB</td></tr>
+</table>
+</center>
+
+<p>"H" stands for hours; "M" for minutes; "B" for biquas of
+Tims, the standard TGM unit of time.  If the time includes a
+colon, dozcal assumes that we're dealing with our standard
+mongrel dozenal-sexagesimal time of hours and minutes, and
+interprets it accordingly.  Otherwise, it assumes that we're
+dealing with hours and Tims.</p>
 
 <a name="freq"></a>
 <h4>Frequency for Repetitive Events</h4>
 
+<p>The only attribute for events that we haven't discussed
+yet is <span class="sdemo">FREQ</span>,which provides a
+generalized way to govern the frequency of an event.</p>
+
+<p>FREQ works pretty simply:</p>
+
+<ul>
+<li>If there is the name of a weekday, then:</li>
+<ul>
+<li>If there is an ordinal number ("first"/"1st", etc.),
+then:</li>
+<ul>
+<li>If there is a month name, then the event will be placed
+on that ordinal weekday of that month whenever it falls
+between the start date and end date; or, if there is no end
+date, in the month named.  E.g., "third Tuesday in
+April."</li>
+<li>If there is no month name, then the event will be placed
+on that ordinal weekday of every month in your range, or the
+month of your start date if there is no end date.  E.g.,
+"third Tuesdays."</li>
+</ul>
+<li>If there is no ordinal number, then it will be placed on
+all of that weekday in your range, or in the month of your
+start date (after the start date itself) if there is no end
+date.  E.g., "Tuesdays."</li>
+</ul>
+<li>If there is not the name of a weekday, it looks for the
+strings "monthly" or "yearly" (with no regard to
+capitalization; the search is case-insensitive).  If it
+finds "monthly", it will repeat the event every month from
+the start date to the end date (or to the end of the start
+date's month is there is no end date).  If it finds
+"yearly", it will do the same every year.</li>
+</ul>
+
+<a name="todos"></a>
 <h3>Todos</h3>
 
 
