@@ -150,6 +150,12 @@ a:hover {
 	font-variant:  small-caps;
 	font-weight:  bold;
 }
+.mainpart h4 {
+	font-size:  100%;
+	color:  blue;
+	font-variant:  small-caps;
+	font-weight:  bold;
+}
 
 /******************************************/
 /* Format the AMDG div                    */

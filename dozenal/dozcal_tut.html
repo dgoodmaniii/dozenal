@@ -55,9 +55,96 @@ that way without you having to tell it to every time.</p>
 <a name="data"></a>
 <h2>Keeping a Calendar:  Your Data File(s)</h2>
 
+<p>Dozcal knows about two types of file:  config files and
+data files.  Your data file is what dozcal uses to determine
+what information you want in your calendar:  it consists of
+two types of entry, events and todos (that's "to do", as in
+"things to do"), each of which is accompanied by a variety
+of data.</p>
+
 <h3>Events</h3>
 
+<p>Events are the typical calendar entry:  "Our
+anniversary", "Staff Meeting."  A typical event entry might
+look like this:</p>
+
+<pre class="demo">
+[EVENT]
+TITLE:  Vacation
+START_DATE:  14 August 1200
+END_DATE:  21 August 1200
+LOCATION:  Nag's Head, North Carolina
+INTERVAL:  1
+CLASS:  private
+CATEGORY:  vacation
+CATEGORY:  personal
+</pre>
+
+<p>This entry uses almost all of the possible parameters for
+an event.  The remaining four are START_TIME, END_TIME,
+EXCEPT_DATE, and FREQ, which we'll examine in due time.</p>
+
+<p><span class="sdemo">TITLE</span> is just what it sounds
+like:  what the event should be called.  The icalendar
+standard calls this the event's "description."  <span
+class="sdemo">START_DATE</span> and <span
+class="sdemo">END_DATE</span> are pretty self-explanatory;
+the event will cover the dates beginning with the starting
+date and ending with the end date.  Dates can be entered in
+<a href="#dateentry">a variety of formats</a>.</p>
+
+<p>If there are dates within your range (between your start
+date and end date) that you <em>not</em> want included, name
+it with <span class="sdemo">EXCEPT_DATE</span>; dozcal will
+not include your event on any date so listed.  You can
+include as many exception dates as you wish.</p>
+
+<p><span class="sdemo">START_TIME</span> and <span
+class="sdemo">END_TIME</span> are also pretty
+self-explanatory.  If you omit either, dozcal will just
+treat it as an all-day event.  If you include a start time
+but no end time or vice versa, dozcal won't complain, but
+note that the latter doesn't make much sense.  Times can
+also be entered in <a href="#timeentry">a few different
+formats</a>.</p>
+
+<p><span class="sdemo">LOCATION</span> is an arbitrary
+string, meaning exactly what it sounds like.</p>
+
+<p><span class="sdemo">CLASS</span> is typically a single
+word telling something about the event; e.g., "private",
+"confidential."  <span class="sdemo">CATEGORY</span> is
+also what it sounds like; you can include as many category
+lines as you wish, and they will be displayed as a
+comma-separated list.</p>
+
+<p><span class="sdemo">INTERVAL</span> is how many days
+until the next iteration of the event.  By default, it is
+set at 1, and in our example, it is explicitly set at 1,
+which is useless but harmless.  If it had been set at 2,
+then <em>every other date</em> in the range would have been
+included; that is, the "Vacation" event would have been on
+14 August 1200 (the start date); then on 16 August 1200;
+then on 18 August; then on 1X August; then on 20 August; and
+that would end it.  If it had been set at 3, then <em>every
+third day</em> in the range would have been included; that
+is, the "Vacation" event would have been on 14 August 1200;
+17 August 1200; 1X August 1200; and 21 August 1200.</p>
+
+<p>Intervals are often useful with <a href="#freq">FREQ</a>,
+which we'll see in due time.</p>
+
+<a name="dateentry"></a>
+<h4>Date Entry Formats</h4>
+
+<a name="timeentry"></a>
+<h4>Time Entry Formats</h4>
+
+<a name="freq"></a>
+<h4>Frequency for Repetitive Events</h4>
+
 <h3>Todos</h3>
+
 
 <a name="display"></a>
 <h2>Displaying your Calendar</h2>
