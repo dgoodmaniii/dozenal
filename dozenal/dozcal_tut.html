@@ -238,20 +238,32 @@ INTERVAL:  2
 <p>This will set the first and third Tuesdays in April (and,
 of course, the fifth if there is one); the INTERVAL being 2
 makes it select every other Tuesday in April, rather than
-every one.</p>
+every one.  A similar construction with a FREQ setting of
+"monthly" and an INTERVAL of 2 will set an event in every
+other month; or a FREQ setting of "monthly", a START_DATE
+setting of "01 Jan 1200", and an INTERVAL of 3 will set the
+event quarterly.</p>
 
-<p>To set the second and fourth Tuesdays, you just have to
-set your start date properly:</p>
+<p>You can use up to 14 (one dozen four) FREQ directives,
+and dozcal will respect all of them.  For example, say you
+have a special meeting from 11;00-12;00 every second and
+fourth Wednesday of the month.  The following will set it up
+for you:
 
 <pre class="demo">
-START_DATE:  7 Oct 1200
-FREQ:  Tuesdays in October
-INTERVAL:  2
+TITLE:  Special Meeting
+FREQ:  Second Wednesday
+FREQ:  Fourth Wednesday
+START_DATE:  01 Jan 1200
+END_DATE:  27 Dec 1200
+START_TIME:  11;00
+END_TIME:  12;00
 </pre>
 
-<p>These strategies will work for a single month; but of
-course it may not work for multiple months, in which case
-you'll have to set two events.</p>
+
+
+
+
 
 <a name="todos"></a>
 <h3>Todos</h3>
