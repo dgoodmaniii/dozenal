@@ -401,15 +401,20 @@ formats:</p>
 
 <center>
 <table class="realtable">
-<tr><th>Seq.</th><th>Meaning</th></tr>
-<tr><td>%e</td><td>Event title</td></tr>
-<tr><td>%d</td><td>Event date; equivalent to the start date</td></tr>
-<tr><td>%s</td><td>Event's start time</td></tr>
-<tr><td>%c</td><td>Event's end (closing) time</td></tr>
+<tr><th>Seq.</th><th>Meaning</th><th>Data File Line</th></tr>
+<tr><td>%e</td><td>Event title</td><td>TITLE:</td></tr>
+<tr><td>%d</td><td>Event date; equivalent to the start date</td>
+	<td>START_DATE:</td></tr>
+<tr><td>%s</td><td>Event's start time</td>
+	<td>START_TIME:</td></tr>
+<tr><td>%c</td><td>Event's end (closing) time</td>
+	<td>END_TIME:</td></tr>
 <tr><td>%C</td><td>Event's list of categories; if there are multiple
-categories, they will be separated by commas</td></tr>
-<tr><td>%t</td><td>Event's class ("type")</td></tr>
-<tr><td>%l</td><td>Event's location</td></tr>
+	categories, they will be separated by commas</td>
+	<td>CATEGORY:</td></tr>
+<tr><td>%t</td><td>Event's class ("type")</td>
+	<td>CLASS:</td></tr>
+<tr><td>%l</td><td>Event's location</td><td>LOCATION:</td></tr>
 </table>
 </center>
 
@@ -435,23 +440,33 @@ them.</p>
 
 <center>
 <table class="realtable">
-<tr><th>Seq.</th><th>Meaning</th></tr>
-<tr><td>%i</td><td>The todo item, or title</td></tr>
-<tr><td>%p</td><td>The priority of the todo</td></tr>
-<tr><td>%d</td><td>The due date of the todo</td></tr>
-<tr><td>%t</td><td>The due time of the todo</td></tr>
+<tr><th>Seq.</th><th>Meaning</th><th>Date File Line</th></tr>
+<tr><td>%i</td><td>The todo item, or title</td>
+	<td>TITLE:</td></tr>
+<tr><td>%p</td><td>The priority of the todo</td>
+	<td>PRIORITY:</td></tr>
+<tr><td>%d</td><td>The due date of the todo</td>
+	<td>DUE_DATE:</td></tr>
+<tr><td>%t</td><td>The due time of the todo</td>
+	<td>DUE_TIME:</td></tr>
 <tr><td>%c</td><td>The completedness of the todo; remember
-that this will be either 0 (if incomplete) or 1 (if
-complete)</td></tr>
+	that this will be either 0 (if incomplete) or 1 (if
+	complete)</td>
+	<td>COMPLETED:</td></tr>
 <tr><td>%g</td><td>The pergross completedness of the todo;
-do <em>not</em> use a "%"</td></tr>
-<tr><td>%T</td><td>The class or type of the todo.</td></tr>
+	do <em>not</em> use a "%"</td>
+	<td>PERGROSS:</td></tr>
+<tr><td>%T</td><td>The class or type of the todo.</td>
+	<td>CLASS:</td></tr>
 <tr><td>%C</td><td>The category list of the todo, with
-multiple categories separated by commas</td></tr>
-<tr><td>%l</td><td>The location of the todo.</td></tr>
+	multiple categories separated by commas</td>
+	<td>CATEGORY:</td></tr>
+<tr><td>%l</td><td>The location of the todo.</td>
+	<td>LOCATION:</td></tr>
 </table>
 </center>
 
+<p>The default todo format line is as follows:</p>
 
 <pre class="demo">
 %p | %d | %t | %i | %c | %g | %T | %C | %l
