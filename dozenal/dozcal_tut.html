@@ -430,7 +430,35 @@ them.</p>
 
 <a name="todoform"></a>
 <h3>Todo Formatting</h3>
-	const char *def_todo_form = "%p | %d | %t | %i | %c | %g";
+
+<p>Todos have different available control strings:</p>
+
+<center>
+<table class="realtable">
+<tr><th>Seq.</th><th>Meaning</th></tr>
+<tr><td>%i</td><td>The todo item, or title</td></tr>
+<tr><td>%p</td><td>The priority of the todo</td></tr>
+<tr><td>%d</td><td>The due date of the todo</td></tr>
+<tr><td>%t</td><td>The due time of the todo</td></tr>
+<tr><td>%c</td><td>The completedness of the todo; remember
+that this will be either 0 (if incomplete) or 1 (if
+complete)</td></tr>
+<tr><td>%g</td><td>The pergross completedness of the todo;
+do <em>not</em> use a "%"</td></tr>
+<tr><td>%T</td><td>The class or type of the todo.</td></tr>
+<tr><td>%C</td><td>The category list of the todo, with
+multiple categories separated by commas</td></tr>
+<tr><td>%l</td><td>The location of the todo.</td></tr>
+</table>
+</center>
+
+
+<pre class="demo">
+%p | %d | %t | %i | %c | %g | %T | %C | %l
+</pre>
+
+
+
 
 <a name="config"></a>
 <h2>Configuring your Calendar</h2>
