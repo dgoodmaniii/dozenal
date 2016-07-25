@@ -371,13 +371,66 @@ are not needed for <span class="prog">dozcal</span>'s use
 case.</p>
 
 <p>All the numbers requested in the date format will be in
-dozenal.  The default date format is:
+dozenal.  The default date format is:</p>
+
+<pre class="demo">
+%Y-%m-%d
+</pre>
+
+<p>This will produce dates in the form of:  "1200-07-27".
+The default time format is:</p>
+
+<pre class="demo">
+"%h;%4b"
+</pre>
+
+<p>This will produce times in the form of:  "11;2345".
+Note that the time format only has two available control
+sequences, <span class="sdemo">%h</span> and <span
+class="sdemo">%b</span>, which stand for "hours" and "biqua"
+respectively.  (The four-digit Tim number is referred to as
+biqua of Tims, because it's often listed in two digits,
+which shows us the number of biquaTim and triquaTim.)</p>
 
 <a name="eventform"></a>
 <h3>Event Formatting</h3>
 
+<p>The event format is where things get a bit different.
+There are five possible control sequences for event
+formats:</p>
+
+<center>
+<table class="realtable">
+<tr><th>Seq.</th><th>Meaning</th></tr>
+<tr><td>%e</td><td>Event title</td></tr>
+<tr><td>%d</td><td>Event date; equivalent to the start date</td></tr>
+<tr><td>%s</td><td>Event's start time</td></tr>
+<tr><td>%c</td><td>Event's end (closing) time</td></tr>
+<tr><td>%C</td><td>Event's list of categories; if there are multiple
+categories, they will be separated by commas</td></tr>
+<tr><td>%t</td><td>Event's class ("type")</td></tr>
+<tr><td>%l</td><td>Event's location</td></tr>
+</table>
+</center>
+
+<p>Oftentimes, all of this information will not be
+interesting to you, but you can put as much or as little of
+this in your event formats as you wish.  The default event
+format is:</p>
+
+<pre class="demo">
+%d | %s | %c | %e | %t | %C | %l
+</pre>
+
+<p>Note that this includes all possible fields clearly
+delineated by a consistent character.  This format enables
+easy parsing by other programs, if <span
+class="prog">dozcal</span>'s output should be sent to one of
+them.</p>
+
 <a name="todoform"></a>
 <h3>Todo Formatting</h3>
+	const char *def_todo_form = "%p | %d | %t | %i | %c | %g";
 
 <a name="config"></a>
 <h2>Configuring your Calendar</h2>
