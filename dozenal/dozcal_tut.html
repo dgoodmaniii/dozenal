@@ -62,6 +62,10 @@ two types of entry, events and todos (that's "to do", as in
 "things to do"), each of which is accompanied by a variety
 of data.</p>
 
+<p>Blank lines are ignored in these files; so put them in or
+leave them out, dozcal won't care.  Lines cannot be broken,
+however, and there's presently no way to add comments.</p>
+
 <h3>Events</h3>
 
 <p>Events are the typical calendar entry:  "Our
@@ -188,8 +192,8 @@ generalized way to govern the frequency of an event.</p>
 <ul>
 <li>If there is the name of a weekday, then:</li>
 <ul>
-<li>If there is an ordinal number ("first"/"1st", etc.),
-then:</li>
+<li>If there is an ordinal number ("first"/"1st", etc.), or
+the word "last", then:</li>
 <ul>
 <li>If there is a month name, then the event will be placed
 on that ordinal weekday of that month whenever it falls
@@ -248,9 +252,10 @@ event quarterly.</p>
 and dozcal will respect all of them.  For example, say you
 have a special meeting from 11;00-12;00 every second and
 fourth Wednesday of the month.  The following will set it up
-for you:
+for you:</p>
 
 <pre class="demo">
+[EVENT]
 TITLE:  Special Meeting
 FREQ:  Second Wednesday
 FREQ:  Fourth Wednesday
@@ -260,10 +265,14 @@ START_TIME:  11;00
 END_TIME:  12;00
 </pre>
 
+<p>These attributes give ample power to set dates whenever
+you want, without having to individually pick out each of
+recurring dates.  In other words, it leaves the drudgery to
+the computer, where it belongs, and leaves you the important
+task of deciding what you're actually doing.</p>
 
-
-
-
+<p>Next, we'll look at todos, which allow you to set and
+prioritize tasks for yourself.</p>
 
 <a name="todos"></a>
 <h3>Todos</h3>
