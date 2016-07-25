@@ -40,7 +40,7 @@ AMDG</a><br />
 
 <h1>dozcal:  A Tutorial</h1>
 
-<p><span class="fl">D</span>ozcal is an extremely powerful
+<p><span class="fl">D</span> ozcal is an extremely powerful
 program, and learning to use it effectively will do a world
 of good, as well as enable you to use the power of your
 computer to help you keep your calendar in dozenal.  We'll
@@ -56,14 +56,14 @@ that way without you having to tell it to every time.</p>
 <h2>Keeping a Calendar:  Your Data File(s)</h2>
 
 <p>Dozcal knows about two types of file:  config files and
-data files.  Your data file is what dozcal uses to determine
+data files.  Your data file is what <span class="prog">dozcal</span> uses to determine
 what information you want in your calendar:  it consists of
 two types of entry, events and todos (that's "to do", as in
 "things to do"), each of which is accompanied by a variety
 of data.</p>
 
 <p>Blank lines are ignored in these files; so put them in or
-leave them out, dozcal won't care.  Lines cannot be broken,
+leave them out,<span class="prog">dozcal</span> won't care.  Lines cannot be broken,
 however, and there's presently no way to add comments.</p>
 
 <h3>Events</h3>
@@ -99,15 +99,15 @@ date and ending with the end date.  Dates can be entered in
 
 <p>If there are dates within your range (between your start
 date and end date) that you <em>not</em> want included, name
-it with <span class="sdemo">EXCEPT_DATE</span>; dozcal will
+it with <span class="sdemo">EXCEPT_DATE</span>;<span class="prog">dozcal</span> will
 not include your event on any date so listed.  You can
 include as many exception dates as you wish.</p>
 
 <p><span class="sdemo">START_TIME</span> and <span
 class="sdemo">END_TIME</span> are also pretty
-self-explanatory.  If you omit either, dozcal will just
+self-explanatory.  If you omit both,<span class="prog">dozcal</span> will just
 treat it as an all-day event.  If you include a start time
-but no end time or vice versa, dozcal won't complain, but
+but no end time or vice versa,<span class="prog">dozcal</span> won't complain, but
 note that the latter doesn't make much sense.  Times can
 also be entered in <a href="#timeentry">a few different
 formats</a>.</p>
@@ -145,10 +145,11 @@ which we'll see in due time.</p>
 
 <center>
 <table class="realtable">
-<tr><td>year-mo-da</td></tr>
-<tr><td>mo-da-year</td></tr>
-<tr><td>da mon year</td></tr>
-<tr><td>mon da, year</td></tr>
+<tr><th>Format</th><th>Example</th></tr>
+<tr><td>year-mo-da</td><td>1200-07-21</td></tr>
+<tr><td>mo-da-year</td><td>07-21-1200</td></tr>
+<tr><td>da mon year</td><td>21 Jul 1200</td></tr>
+<tr><td>mon da, year</td><td>Jul 21, 1200</td></tr>
 </table>
 </center>
 
@@ -175,7 +176,7 @@ year must always be given as all four digits.</p>
 
 <p>"H" stands for hours; "M" for minutes; "B" for biquas of
 Tims, the standard TGM unit of time.  If the time includes a
-colon, dozcal assumes that we're dealing with our standard
+colon,<span class="prog">dozcal</span> assumes that we're dealing with our standard
 mongrel dozenal-sexagesimal time of hours and minutes, and
 interprets it accordingly.  Otherwise, it assumes that we're
 dealing with hours and Tims.</p>
@@ -249,7 +250,7 @@ setting of "01 Jan 1200", and an INTERVAL of 3 will set the
 event quarterly.</p>
 
 <p>You can use up to 14 (one dozen four) FREQ directives,
-and dozcal will respect all of them.  For example, say you
+and <span class="prog">dozcal</span> will respect all of them.  For example, say you
 have a special meeting from 11;00-12;00 every second and
 fourth Wednesday of the month.  The following will set it up
 for you:</p>
@@ -277,14 +278,105 @@ prioritize tasks for yourself.</p>
 <a name="todos"></a>
 <h3>Todos</h3>
 
+<p>Todos provide a means of listing tasks that need to be
+completed, along with due dates and times; whether the tasks
+are already completed or not; the perbiqua (dozenal
+equivalent of percent) completed that they are; and the
+priority of the task.  A typical todo is below:</p>
+
+<pre class="demo">
+[TODO]
+DUE_DATE:	1200/07/27
+TITLE:		Finish Garden Project
+LOCATION:	Home
+PRIORITY:	4
+DUE_TIME:	1700
+COMPLETED:	0
+PERGROSS:	57
+CLASS:		Private
+CATEGORY:	home
+CATEGORY:	personal
+CATEGORY:	agricultural
+</pre>
+
+<p>(Notice that, unlike the example event above, this todo
+has used tabs to separate the field names from the field
+values.  Tabs and spaces can be mixed interchangeably with
+no difference in meaning.)</p>
+
+<p>The above example include all the possible fields for a
+todo.  Note that, rather than start times and end times, we
+are now dealing with due dates and due times.  These can be
+entered with the same formats as dates and times for
+events.</p>
+
+<p>The <span class="sdemo">COMPLETED</span> field is either
+a 0, for incomplete, or 1, for complete.</p>
+
+<p>The <span class="sdemo">PERGROSS</span> field tells how
+much progress you hae made on the todo, expressed as parts
+per biqua (traditionally called a "gross").  You should
+<em>not</em> use a "%" sign when entering this.</p>
+
+<p>Finally, <span class="sdemo">PRIORITY</span> is what it
+sounds like, and is entered as an integer:  the lower the
+integer, the more important the task.  So a 0 is highest
+priority.  How you scale these things is up to you, of
+course.</p>
+
+<p>The rest of the fields of a todo are identical to their
+analogues in events, so they won't require any
+elaboration.</p>
+
+<p>This much is all well and good; but now that we know how
+to put our calendar into text, what good is <span class="prog">dozcal</span> to us?
+How can we access and display our calendar in a convenient
+way?</p>
 
 <a name="display"></a>
 <h2>Displaying your Calendar</h2>
 
+<p>When you ask <span class="prog">dozcal</span> for your
+calendar events, it takes care of sorting them for you.
+Events are sorted by start date, then by start time, then by
+title.  Todos are sorted by priority; then by due date; then
+by due time; and then by title.  Events and todos are sorted
+separately.</p>
+
+<a name="datetimeform"></a>
 <h3>Date and Time Formatting</h3>
 
+<p>If you're not familiar with how format control strings
+work, reading through "<a
+href="dozdate_tut.html#formstring">Formatting Strings</a>
+should give you a decent introduction.  All of dozcal's
+formatting works through such formatting strings, so getting
+a good idea of the concept is important.</p>
+
+<p>The date and time are formatted independently from <a
+href="#eventform">events</a> and <a
+href="#todoform">todos</a> (that is, when you include a date
+or time in an event or todo formatting string, it will be in
+the form dictated by the date or time formatting string), so
+date and time strings are broadly applicable.</p>
+
+<p>The date is formatted exactly as in standard Unix <span
+class="prog">date</span>, which has <a
+href="http://www.linux.die.net/man/1/date">a very complete
+manual</a> for your use.  You can also see the <a
+href="dozdate.html">dozdate manual</a>, but remember that
+<span class="prog">dozcal</span> does <em>not</em> accept the
+"@" sequences from <span class="prog">dozdate</span>, as they
+are not needed for <span class="prog">dozcal</span>'s use
+case.</p>
+
+<p>All the numbers requested in the date format will be in
+dozenal.  The default date format is:
+
+<a name="eventform"></a>
 <h3>Event Formatting</h3>
 
+<a name="todoform"></a>
 <h3>Todo Formatting</h3>
 
 <a name="config"></a>
