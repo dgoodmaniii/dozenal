@@ -508,13 +508,30 @@ Essentially, the last-specified option is the one that <span
 class="prog">dozcal</span> will respect.</p>
 
 <p>All command-line options can also be set in a config
-file, so we'll present them together below.</p>
+file, so we'll present them together below.  Config-file
+options followed by a colon require an argument; those
+without can be used on their own.  The colon is necessary
+for <span class="prog">dozcal</span> to understand the
+option and its argument.</p>
 
 <table class="realtable">
 <tr><th>CLI Opt.</th><th>Config Opt.</th><th>Meaning</th></tr>
-<tr><td>-T</td><td>PRINT_TODO</td>
+<tr><td>-T</td><td>PRINT_TODOS</td>
 	<td>Print todos as well as events; by default, events 
 	are printed by todos are not</td></tr>
+<tr><td>-E</td><td>NO_EVENTS</td>
+	<td>Do <em>not</em> print events, which are printed by
+	default.  If you have not also use -T or PRINT_TODOS,
+	nothing will be printed.</td></tr>
+<tr><td>-m</td><td>MOON_PHASE:</td>
+	<td>Print the moon phases in your calendar.  Takes a
+	single word as an argument:  "major", which will print
+	the four primary phases (new, first quarter, full, third
+	quarter), or "all", which will print the primary phases
+	but also the phase for every day of the cycle.  This
+	takes the form of an integer between 1 and 24 (28 in
+	decimal), where "0" is new and "13" is full.</td></tr>
+</table>
 
 <hr />
 <footer class="bottomstuff">
