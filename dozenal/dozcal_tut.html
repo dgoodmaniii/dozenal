@@ -479,7 +479,42 @@ post-processing by other programs.</p>
 <a name="config"></a>
 <h2>Configuring your Calendar</h2>
 
+<p>Finally, <span class="prog">dozcal</span> allows you to
+configure your calendar to work precisely the way you'd like
+it to.  You can do this in two ways:  by command line
+switches, or by a config file.  (Or both; the last loaded
+option will take precedence.)</p>
 
+<a name="conffile"></a>
+<h3>Config Files</h3>
+
+<p>By default, <span class="prog">dozcal</span> will first
+check the command line that started it for a <span
+class="sdemo">-c</span> option, which takes a single
+argument, the path of a file.  If there is a <span
+class="sdemo">-c</span> argument, <span
+class="prog">dozcal</span> will use that file as its config
+file; if there is not, it will look for <span
+class="sdemo">$HOME/.dozcal/dozcalrc</span>.  If that file
+exists, it will use that file as a config file; if it does
+not, it will proceed with no config file.</p>
+
+<p>You <em>can</em> list more than one config file with
+<span class="sdemo">-c</span>; options loaded in later files
+will take precedence over those loaded in earlier files.
+Config file options will also take precedence over
+command-linue options loaded prior to the config file.
+Essentially, the last-specified option is the one that <span
+class="prog">dozcal</span> will respect.</p>
+
+<p>All command-line options can also be set in a config
+file, so we'll present them together below.</p>
+
+<table class="realtable">
+<tr><th>CLI Opt.</th><th>Config Opt.</th><th>Meaning</th></tr>
+<tr><td>-T</td><td>PRINT_TODO</td>
+	<td>Print todos as well as events; by default, events 
+	are printed by todos are not</td></tr>
 
 <hr />
 <footer class="bottomstuff">
