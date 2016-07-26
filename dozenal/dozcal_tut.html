@@ -529,9 +529,63 @@ option and its argument.</p>
 	the four primary phases (new, first quarter, full, third
 	quarter), or "all", which will print the primary phases
 	but also the phase for every day of the cycle.  This
-	takes the form of an integer between 1 and 24 (28 in
+	takes the form of an integer between 1 and 25 (29 in
 	decimal), where "0" is new and "13" is full.</td></tr>
+<tr><td>-n</td><td>NATIONAL:</td>
+	<td>Takes a string which includes any number of countries
+	for which you'd like national holidays displayed.
+	Possible options are "usa", "uk", "eng", "wales", "scot",
+	"nire" (for Northern Ireland), "rire" (for Republic of
+	Ireland), "austral", "nz" or "kiwi", and "canada".  Note
+	that many of these will be duplicates.</td></tr>
+<tr><td>-h</td><td>RELIGIOUS:</td>
+	<td>Takes a string which includes any number of religious
+	holidays which you'd like displayed.  Possible strings
+	are "west" (for Western Christian holidays); "east" (for
+	Eastern Christian holidays); "jew" (for Jewish holidays);
+	and "isl" for Islamic holidays.  Note that all of these
+	only include a few prominent holidays (see the manual for
+	which); further note that the "jew" and "isl" settings
+	ignore some of the pricklier issues of the traditional
+	religious lunar calendars.</td></tr>
+<tr><td>-s</td><td>N/A</td><td>The beginning of the date
+	range that you'd like <span class="prog">dozcal</span> to
+	output to you.</td></tr>
+<tr><td>-e</td><td>N/A</td><td>The end of the date range
+	that you'd like <span class="prog">dozcal</span> to
+	output to you.</td></tr>
+<tr><td>-d</td><td>DATE_FORMAT:</td>
+	<td>The format of the date when it is displayed; see <a
+	href="#datetimeform">Date and Time Formatting</a>, and
+	the <a href="dozcal.html">manual</a>, for more
+	detail.</td></tr>
+<tr><td>-t</td><td>TIME_FORMAT:</td>
+	<td>The format of the time when it is displayed; see <a
+	href="#datetimeform">Date and Time Formatting</a>, and
+	the <a href="dozcal.html">manual</a>, for more
+	detail.</td></tr>
+<tr><td>-r</td><td>EVENT_FORMAT:</td>
+	<td>The format of the events when they are displayed; see
+	<a href="#eventform">Event Formatting</a>, and the <a
+	href="dozcal.html">manual</a>, for more detail.</td></tr>
+<tr><td>-R</td><td>TODO_FORMAT:</td> <td>The format of the
+	todos when they are displayed; see <a
+	href="#todoform">Event Formatting</a>, and the <a
+	href="dozcal.html">manual</a>, for more detail.</td></tr>
+<tr><td>-f</td><td>INPUT:</td>
+	<td>A data file for <span class="prog">dozcal</span> to
+	process and include in its internal database of events
+	and todos.  You can repeat these with as many different
+	files as you'd like, though note that if you include the
+	same file twice its events and todos will also be
+	included twice.</td></tr>
+<tr><td>-c</td><td>N/A</td><td>A config file for <span
+	class="prog">dozcal</span> to process.</td></tr>
 </table>
+
+<p>With these options, you can make dozcal output in almost
+any way you like; and by filtering its output, you can get
+formatted output, such as HTML or LaTeX.</p>
 
 <hr />
 <footer class="bottomstuff">
