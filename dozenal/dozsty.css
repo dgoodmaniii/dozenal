@@ -45,7 +45,10 @@ body {
 	vertical-align: middle;
 	border: none;
 	padding: 1%;
-	width:  15%;
+	margin-right:  1%;
+	border-style:  solid;
+	border-color:  yellow;
+	border-width:  2px;
 }
 .topbar a {
 	text-decoration: none;
