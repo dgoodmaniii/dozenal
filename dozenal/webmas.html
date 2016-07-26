@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- +AMDG -->
+
+<head>
+<title>dozenal | A Complete Suite of Programs for the Dozenal Base</title>
+<meta charset="UTF-8" />
+<meta name="description" content="dozenal, a complete suite
+of dozenal programs, including number converts, an RPN
+calculator, a graphical calculator, a metric system
+converter, a pretty printer, a date and time program, and a
+calendar program." />
+<link rel="stylesheet" type="text/css" href="dozsty.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="license" 
+	href="https://creativecommons.org/licenses/by-sa/2.0/" />
+</head>
+<body>
+
+<div class="dedic">
+<a href="amdg.html">+<br />
+AMDG</a><br />
+</div>
+
+<header class="topbar">
+<h1><a class="imglink" href="index.html"><img src="oth_digits.png" alt="dozenal Logo" /></a>dozenal</h1>
+
+<nav class="toolbar">
+<ul>
+<li><a title="dozenal:  Download and Install" href="download.html">Download</a>&nbsp;|</li>
+<li><a title="dozenal:  Documentation" href="doz_docs.html">Documentation</a>&nbsp;|</li>
+<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="mainpart">
+
+<p><span class="fl">B</span>ecause those wishing to email
+the Webmaster have probably found some problem with the
+design or function of the site, that same Webmaster has
+elected to explain his basic design philosophies here, so
+that perhaps some perceived problems will actually be found
+to be virtues of superior web design (!).  However, on the
+off (again, !) chance that some real bug has appeared
+despite a great deal of testing, the manner of contacting
+the Webmaster has been included at the bottom.</p>
+
+<h3>Design Techniques</h3>
+
+<h4>Issues of Media</h4>
+
+<p>I am firmly convinced that the Internet medium is
+<em>not</em> the same as print.  While it certainly bears
+some similarity to print in many ways, it is a different
+medium and must therefore be treated differently.
+Similarities include the existence of text; the organization
+of that text into lines and paragraphs; often, the ordering
+of paragraphs into sections and subsections; and others
+which are doubtlessly important but do not require
+mentioning.  Differences, however, include the lack of page
+breaks, and consequently the absence of a distinction
+between verso and recto pages; the lack of necessity for
+running headers or footers; the removal of the danger of a
+paragraph break coinciding with a page break, thus not
+requiring indentation of new paragraphs and making increased
+spacing between paragraphs a practical and useful option;
+the luminosity of the screen, as opposed to the reflective
+nature of a paper page; and many others.  This means that
+the design of the site for screen viewing, undoubtedly its
+primary medium, must be different from its design on the
+printed page.</p>
+
+<p>The differences in design will mostly be obvious, when
+the differences of the medium are remembered.  I have
+already mentioned the differences in paragraph breaking;
+rather than indenting and not increasing the space, useful
+in a book when otherwise a page break after a period would
+produce an ambiguous paragraph break, I have followed the
+HTML standard and simply increased the spacing between
+paragraphs.  Since there are no page breaks, no confusion
+should result.  The luminosity of the screen is a harder nut
+to crack; this resulted in the use of an off-white for the
+background, a straight white being too bright and very hard
+on the eyes.  A darker background in a printed book,
+however, would be most irritating, and make the book much
+more difficult to read.  I have simply eliminated running
+headers and footers, since the title bar of the browser
+provides a perfectly effective and universally supported way
+of reminding people what page they are viewing, should they
+pay so little attention that they forget.  I have, however,
+included a more obvious title bar at the top of each page
+and a link to the home at both top (the logo with the
+picture of little St. Maria) and bottom to facilitate
+navigation.  Furthermore, near the top of each page I have
+provided a tool bar with links to all of the likely-visited
+sites; those likely to be more rarely sought (really, just
+this page, though others are linked there) I have limited to
+the bottom of the <a href="index.html">main page</a>.
+Navigation should therefore be easy and straight-forward,
+and reading, even long-term, should not present abnormal
+difficulty.</p>
+
+<p>The similarities in design may not be so obvious, but
+being a good traditionalist I have endeavored not to alter
+the lessons of biquennia of printing experience
+unless necessitated by the two dozen or so years of Web
+publishing savvy that I've tried to absorb.  One of these
+lessons, which most Web designers completely ignore, is the
+desirability of certain fonts.  Namely, <em>serif</em>
+fonts.  Serif fonts are easier to read; they pull words
+together much more effectively than sans-serif, and
+consequently I've selected them as my choice in all
+situations, even those in which conventional wisdom (and,
+admittedly, printing experience) permit, but do not require,
+sans-serif.  Another peeve of mine, also widely ignored
+throughout the Web, is text justification.  Flush-left is
+great for headings and all, but text ought to be justified
+on both sides, not ragged-right.  Experience tells us that
+justified text is easier to read; the line length is
+consistent and therefore the mind can unconsciously recall
+how much of it is left before shifting to the next line is
+required, which allows him to speed up his reading
+accordingly.  Admittedly, text is not so beautiful justified
+in browsers as it is with a quality typesetting system, such
+as <a href="http://www.ctan.org">TeX and LaTeX</a>;
+ligatures and automatic word-spacing controls just haven't
+entered the collective Web consciousness yet.  But it's
+still much better than the often grotesquely inconsistent
+line length of ragged-right text, and CSS offers a very easy
+and reasonably effective way of doing it.  So I've selected
+that option.</p>
+
+<p>I selected HTML5 as my markup of choice.</p>
+
+<p>So despite this relatively progressive stance in my
+markup, I think that I can still hold my head up high and
+deliver the following diatribe on contemporary web design
+with a straight and dignified face.</p>
+
+<h4>Rants on the Downfall of the Web</h4>
+
+<p>In all cases I have attempted to produce a site which is
+simply designed and easily used and navigated.  A number of
+unfortunately common web accessories have come to interfere
+with that simple, pristine goal which once animated the
+entirety of the Internet.  Among these are JavaScript, Flash
+animations, frames, tabular formatting of non-tabular data,
+and doubtlessly other, even more offensive monstrosities.
+While high-speed Internet access is fast becoming the
+standard, these toys seem to be useful primarily for slowing
+down the loading of the site.  Furthermore, they
+unnecessarily obfuscate the code, making maintenance far
+more time-consuming and expensive than it needs to be, and
+it creates insuperable difficulties for those who still
+prefer to surf the Web using text-only browsers like Lynx,
+and for those who are forced to do so using aural browsers
+(the blind).  Dane Weber, a good friend of mine, has
+produced a wonderful <a
+href="http://dane.weber.org/frames/">example</a> of the
+JavaScript/frames problem; I encourage everyone who doubts
+this admittedly harsh condemnation to view it before making
+a judgement (though note that it is nearly impossible to
+back out of this example, providing yet another reason not
+to use the various tricks it employs, so unless you're using
+some outdated and badly designed browser it's probably best
+to enter it in a different tab).</p>
+
+<p>While I do not, of course, have any problem with Flash,
+JavaScript, or tables for certain purposes, I simply refuse
+to use them for purposes for which they were not designed.
+I do not like pop-ups or any of the other eye-candy which
+JavaScript offers, and consequently I have limited the
+visual techno-shows on the site to what is available with
+basic <a href="http://www.w3.org">HTML5 and CSS</a>, the
+tools which could, if they become standard, make the Web
+what it was supposed to be:  an open forum for easy and
+straightforward information exchange.  Flash is a wonderful
+tool, where it belongs; I very much enjoy <a
+href="http://www.homestarrunner.com">certain Flash
+creations</a> and would not want to eliminate the animation
+language entirely.  However, using Flash to animate menus
+and other design toys is a.) cheating in order to compensate
+for a probably lousy design, and b.) incredibly difficult
+for those mentioned above (text-only and blind surfers), and
+c.) unnecessary complication for generally very simple
+tasks.  They slow down the loading of the site on top of all
+that.  As for tables, I use them myself---for tabular data.
+They're great if you want to provide a table of prices, or
+rates of cancer increase, or other types of usually
+numerical data.  They're also wonderful for grammatical
+charts (<i>pass&eacute; compos&eacute;</i>, anyone?), and
+doubtlessly many other uses.  But they're <em>not meant for
+formatting a web page</em>.  <a
+href="http://www.w3.org">CSS</a> provides an easy,
+unambiguous, and standards-compliant way to do anything that
+tabular formatting can possibly do, and to do it without
+causing problems for certain viewers.  Before CSS I could
+tolerate such things; afterward there is no excuse.  And
+frames?  They were never useful; tabular formatting was much
+better even before CSS, and now they're simply a bane of
+every surfer's existence.  What little good they could ever
+do is now gone.</p>
+
+<p>I have therefore avoided complicated JavaScript, Flash
+animations, frames, and even tabular formatting except for
+tabular data.  The XHTML is written simply and as portably
+as possible, and as much formatting as possible is done via
+cascading style sheets, all of which conforms to industry
+standards.  This site was written in accord with industry
+standards, and has passed the <a
+href="http://validator.w3.org">w3 validation tests</a>.
+Therefore, it should be as easily viewed in one browser as
+in any other, and its appearance across all browsers and
+systems should be more or less uniform.  Alas, however, the
+world is not a perfect place.</p>
+
+<h3>Browser Issues</h3>
+
+<p>That said, the reality is not as pristine as it should
+be, partly because <a
+href="http://www.microsoft.com">certain companies</a>
+persistently refuse to write software that reliably conforms
+to industry standards.  This makes certain styling measures
+somewhat, shall we say, inconsistent.  Some browsers, on the
+other hand, are exemplary in their conformity to those
+standards, and one such was therefore used in the
+development of this site.  The browser used for testing the
+site was <a href="http://www.mozilla.com/firefox">Mozilla
+Firefox</a>, an open-source browser whose development is
+directed by <a href="http://www.netscape.com">Netscape</a>.
+This browser is, therefore, doubtlessly the best with which
+to view this site.</p>
+
+<p>Otherwise, however, there should be no problems viewing
+the site.  Lynx shouldn't be (too) upset by the formatting,
+done as it is by CSS, which Lynx (as far as I know) does not
+support.  Old browsers which don't support CSS should not
+have a problem; I've viewed the pages without the stylesheet
+and, while the appearance is not so beautiful and
+well-designed (!), it's still acceptable and legible.  If
+anyone does have trouble with any particular browser or
+tool, please let me know and I will do whatever I can to
+correct it, even if (as may well be the case) the fault is
+the browser's and not mine.</p>
+
+<p>The site is also what is euphemistically called
+<i>mobile-friendly</i>; that is, it's designed to degrade
+gracefully when subjected to the limited viewing
+environment offered by mobile browsers.  Primarily, this is
+done with a meta viewport; but also elements are sized
+relative to other elements, or in pixels, so that the page
+being squashed to cell-phone sizes will still at least be
+legible and usable, even if not  particularly pretty.
+Google's test assures me that the site is mobile-friendly;
+but if you notice any problems with the site on small-form
+devices, please let me know.</p>
+
+<h3>Any Remaining Bugs</h3>
+
+<p>Despite my best efforts, however, certain bugs
+undoubtedly appear in certain circumstances, and
+consequently I, the Webmaster, wish to make myself available
+for reports of those bugs.  Even that, however, must be more
+complicated than it has to be.  I have been forced by the
+spamming industry to provide a spamproof method of
+contacting me by e-mail.  Simply type in the address that
+you see garbled and mangled in the image below and I should
+get your report.  Please let me know if there are any
+problems regarding downloading, broken links, or anything
+else on the site.  If, in particular, you happen to
+authenticate the site on a whim and find that a page is not
+standards compliant, let me know; I will be appropriately
+shocked and immediately remedy the problem.</p>
+
+<p><img src="webmas.png" alt="webmaster's email" /><br
+/></p>
+
+<p>If you have trouble reading the garbled and mangled image
+to the left, or you just can't view it (you have turned
+images off on your browser, or are heroically using a
+text-only browser like Lynx), you can enter in the address
+which I will (dgoodmaniii) be working (at) in ever so stealthily
+(gmail) throughout (dot) this paragraph (com).  It is sad
+that spammers' ingenuity has outstripped all less
+distasteful methods of providing an email address.  Thank
+you for your time in reporting errors in the site design and
+function, and I hope <span class="prog">dozenal</span> and
+this site are useful to you.</p>
+
+<hr />
+<footer class="bottomstuff">
+<div class="homelink"><a href="index.html">Home</a></div>
+<a href="webmas.html">E-Mail the Webmaster</a><br />
+<a href="http://www.github.com/dgoodmaniii/dozenal/">To the Source!</a><br />
+</footer>
+</div>
+</body>
+</html>
