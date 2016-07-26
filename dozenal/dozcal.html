@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.22.2 -->
-<!-- CreationDate: Fri Jul 22 12:19:07 2016 -->
+<!-- CreationDate: Tue Jul 26 14:36:14 2016 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -625,6 +625,28 @@ perbiqua (1-100).</p></td></tr>
 
 
 <p>The location of the todo.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%C</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The todo&rsquo;s list of categories.</p></td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="3%">
+
+
+<p><b>%t</b></p></td>
+<td width="7%"></td>
+<td width="68%">
+
+
+<p>The todo&rsquo;s class.</p></td></tr>
 </table>
 
 <p style="margin-left:22%; margin-top: 1em">Event formats
@@ -647,10 +669,10 @@ inclusion.</p>
 <p style="margin-left:22%;">Names a config file for
 <b>dozcal</b> to use. (See the section below about how to
 format such config files.) If not specified, <b>dozcal</b>
-will look for <i>$HOME/.dozcalrc</i>; if it cannot find
-that, it will proceed without any config files. If this is
-specified multiple times, any options in later config files
-will override those in earlier ones.</p>
+will look for <i>$HOME/.dozcal/dozcalrc</i>; if it cannot
+find that, it will proceed without any config files. If this
+is specified multiple times, any options in later config
+files will override those in earlier ones.</p>
 
 <p style="margin-left:22%; margin-top: 1em">Command line
 options listed <i>after</i> the config file option will take
@@ -958,9 +980,9 @@ value. Anything that can be specified on the command line
 can also be specified in the config file. By default, if you
 don&rsquo;t give <b>dozcal</b> a config file with
 <i>&minus;c</i>, it will look for one at
-<i>$HOME/.dozcalrc</i>; if it can&rsquo;t find that, it will
-print a message to stderr and then continue with no config
-file.</p>
+<i>$HOME/.dozcal/dozcalrc</i>; if it can&rsquo;t find that,
+it will print a message to stderr and then continue with no
+config file.</p>
 
 <p style="margin-left:11%; margin-top: 1em">Possible
 options in the config file are:</p>

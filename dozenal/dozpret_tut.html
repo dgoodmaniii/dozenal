@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- +AMDG -->
+
+<head>
+<title>dozenal | dozpret:  A Tutorial</title>
+<meta charset="UTF-8" />
+<meta name="description" content="dozenal, a complete suite
+of dozenal programs, including number converts, an RPN
+calculator, a graphical calculator, a metric system
+converter, a pretty printer, a date and time program, and a
+calendar program." />
+<link rel="stylesheet" type="text/css" href="dozsty.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="license" 
+	href="https://creativecommons.org/licenses/by-sa/2.0/" />
+</head>
+<body>
+
+<div class="dedic">
+<a href="amdg.html">+<br />
+AMDG</a><br />
+</div>
+
+<header class="topbar">
+<h1><a class="imglink" href="index.html"><img src="dozclock.png" alt="dozenal Logo" /></a>dozenal</h1>
+
+<nav class="toolbar">
+<ul>
+<li><a title="dozenal:  Download and Install" href="download.html">Download</a>&nbsp;|</li>
+<li><a title="dozenal:  Documentation" href="doz_docs.html">Documentation</a>&nbsp;|</li>
+<li><a title="dozenal:  Our Copyright" href="gpl-3.0-standalone.html">Copyright</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="mainpart">
+
+<h1>dozpret:  A Tutorial</h1>
+
+<p><span class="fl">W</span>e often want our numbers to be
+more than just a string of digits.  After all,
+"8932&nbsp;3894&nbsp;2983;3834&nbsp;3892" is eminently more
+readable than "893238942983;38343892".  <span
+class="prog">dozpret</span> answers this need:  it is a
+"pretty-printer" for dozenal numbers, with a variety of
+preset settings and more or less arbitrary
+customizability.</p>
+
+<p>For formatting dozenal numbers, we're basically looking
+at five different settings:</p>
+
+<ol>
+<li>What character should we use for "ten"?</li>
+<li>What character should we use for "eleven"?</li>
+<li>What should be the digit grouping (that is, numbers
+should be grouped into units of how many digits)?</li>
+<li>What character should separate the groupings?</li>
+<li>What character should we use as a radix point (what we
+incorrectly often call a "decimal" point)?</li>
+</ol>
+
+<p>1 and 2 we call "transdecimal characters"; 3 and 4 we
+call simply "grouping".</p>
+
+<a name="transdec"></a>
+<h2>Transdecimal Characters</h2>
+
+<p>We can use any arbitrary character for transdecimals by
+using the <span class="prog">dozpret</span> options <span
+class="sdemo">-t</span> for the number ten and <span
+class="sdemo">-e</span> for the number eleven:</p>
+
+<pre class="demo">
+$&gt; dozpret -t Y -e F "XE84EX1"
+YF8 4FY1
+</pre>
+
+<p>(Ignore the space for now; we'll see how to change, or
+get rid of, that <a href="#grouping">later</a>.)  Notice
+that this substitues "Y" for digit-ten ("X" in the input)
+and "F" for digit-eleven ("E" in the input).</p>
+
+<p>Any arbitrary character or characters can be used
+here:</p>
+
+<pre class="demo">
+$&gt; dozpret -t"YY" -e "FF" "XE84EX1"
+YYFF8 4FFYY1
+</pre>
+
+<p>Essentially, this just means that you can fill in
+multiple bytes rather than a single byte; so even Unicode
+characters will work:</p>
+
+<pre class="demo">
+$&gt; dozpret -t `echo -e '\u2620'` -e `echo -e '\u2619'` XEXEXE
+<span style="font-size: 150%">☠☙ ☠☙☠☙</span>
+</pre>
+
+<p>(We're using a <span class="prog">echo</span> subshell to
+display the Unicode, because it's more platform-neutral; you
+can ignore this and enter Unicode characters however you
+prefer when you try it yourself.)</p>
+
+<p>These particular characters are ridiculous, of course (if
+your browser can't display them, we used a
+skull-and-crossbones for ten and a left-pointing fleuron for
+eleven), but they do show the possibilities.  And notice
+that the spacing is the same; this will become important in
+a few minutes.</p>
+
+<p>By default, <span class="sdemo">-t</span> is "X" and
+<span class="sdemo">-e</span> is "E".</p>
+
+<a name="grouping"></a>
+<h2>Grouping and Spacing</h2>
+
+<p>Numbers are often grouped into units of a given number of
+digits, and this grouping is by no means consistent across
+cultures.  In India, for example, numbers are often grouped
+by twos ("12&nbsp;34&nbsp;56.78&nbsp;90&nbsp;12"), while in
+America they are typically grouped by threes
+("123&nbsp;456.789&nbsp;012").  These are only two examples
+of many different practices.</p>
+
+<p><span class="prog">dozpret</span> allows you to group
+your numbers by any arbitrary integer, though the default is
+four (the most common dozenal grouping).  This default is
+why the spaces in our examples above is where you see it.
+Grouping is set by the <span class="sdemo">-n</span>
+flag:</p>
+
+<pre class="demo">
+$&gt; dozpret -n2 "XEXEXEXE"
+XE XE XE XE
+$&gt; dozpret -n4 "XEXEXEXE"
+XEXE XEXE
+$&gt; dozpret -n3 "XEXEXEXE"
+XE XEX EXE
+</pre>
+
+<p>As you can see, if there aren't enough digits for an even
+grouping, the first full grouping is placed closest to the
+radix point.  This means that the less-than-full groups will
+be on the left side for whole numbers, and the right side
+for fractional parts:
+
+<pre class="demo">
+$&gt; dozpret -n3 "XEXEXEXE;XEXEXEXE"
+XE XEX EXE;XEX EXE XE
+</pre>
+
+<p>You can turn off grouping entirely with <span
+class="sdemo">-x</span>:</p>
+
+<pre class="demo">
+$&gt; dozpret -x -n3 "XEXEXEXE;XEXEXEXE"
+XEXEXEXE;XEXEXEXE
+</pre>
+
+<p>Of course, the <span class="sdemo">-n3</span> option has
+become useless here.</p>
+
+<p>You do <em>not</em> need to use a simple space as the
+grouping character, either; you can use any character or
+characters, just as you can for the <a
+href="#transdec">transdecimal digits</a>, by using the <span
+class="sdemo">-s</span> option:</p>
+
+<pre class="demo">
+$&gt; dozpret -n3 -s",," "XEXEXEXE;XEXEXEXE"
+XE,,XEX,,EXE;XEX,,EXE,,XE
+</pre>
+
+<a name="radixpoint"></a>
+<h2>Radix Points</h2>
+
+<p>Finally, radix points can be changed at will with the
+<span class="sdemo">-p</span> option:</p>
+
+<pre class="demo">
+$&gt; dozpret -p`echo -e '\u2620'` -n3 -s",," "XEXEXEXE;XEXEXEXE"
+<span style="font-size:150%">XE,,XEX,,EXE☠XEX,,EXE,,XE</span>
+</pre>
+
+<p>Notice that we're again using Unicode characters here,
+and that the spacing still turns out correctly.  (This is
+another ridiculous choice, the skull-and-crossbones for a
+radix point, but one again it demonstrates the
+possibilities.)</p>
+
+<a name="presets"></a>
+<h2>Preset Shortcuts</h2>
+
+<p><span class="prog">dozpret</span> has a number of preset
+options for some common use cases, which we'll examine
+here:</p>
+
+<p>Frequently dozenal numbers will be transferred into a
+<a href="http://www.ctan.org">LaTeX</a> document (probably
+in conjunction with the <a
+href="http://www.ctan.org/pkg/dozenal">dozenal
+package</a>).  <span class="prog">dozpret</span> offers the
+<span class="sdemo">-l</span> option, which outputs
+appropriately for the dozenal package:</p>
+
+<pre class="demo">
+$&gt; dozpret -l "XEXEXE;XEXEXEXE"
+\x\e\,\x\e\x\e;\x\e\x\e\,\x\e\x\e
+</pre>
+
+<p>LaTeX will turn this into a beautiful dozenal number,
+grouped by four, separated by a small space.  If you don't
+like a particular choice in this preset, you can change it
+easily:</p>
+
+<pre class="demo">
+$&gt; dozpret -l -p. "XEXEXE;XEXEXEXE"
+\x\e\,\x\e\x\e.\x\e\x\e\,\x\e\x\e
+</pre>
+
+<p>Just put whatever you'd like changed <em>after</em> the
+<span class="sdemo">-l</span>.  This technique will work for
+any of the preset options presented here.</p>
+
+<p>To present dozenal numbers textually in a typically
+American way, use the <span class="sdemo">-a</span>
+option:</p>
+
+<pre class="demo">
+$&gt; dozpret -a  "XEXEXE;XEXEXEXE"
+XEX,EXE;XEX,EXE,XE
+</pre>
+
+<p>As can be seen, this option groups by threes, separates
+with a comma, and with a semicolon as a radix point.  It
+uses "X" and "E" as transdecimals.</p>
+
+<p>The <span class="sdemo">-b</span> option causes <span
+class="prog">dozpret</span>'s output to conform to common
+British dozenal practice:</p>
+
+<pre class="demo">
+$&gt; dozpret -b  "XEXEXE;XEXEXEXE"
+TE TETE'TETE TETE
+</pre>
+
+<p>This consists of "T" and "E" for transdecimals, groupings
+by four, spaces as a separator, and an apostrophe for a
+radix point.</p>
+
+<p>The <span class="sdemo">-h</span> option makes output
+conform to the Hammond standard, of Donald Hammond (DSGB)
+fame; this is normal British usage, but with an "X" for
+"ten".  Translated directly to <span
+class="sdemo">-p";"</span>.</p>
+
+<p>And that's all there is to <span
+class="prog">dozpret</span>.  Happy dozening!</p>
+
+
+
+<hr />
+<footer class="bottomstuff">
+<div class="homelink"><a href="index.html">Home</a></div>
+<a href="webmas.html">E-Mail the Webmaster</a><br />
+<a href="changes.html">Change Log</a><br />
+</footer>
+</div>
+</body>
+</html>

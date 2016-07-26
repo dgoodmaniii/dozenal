@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.22.2 -->
-<!-- CreationDate: Fri Jul 22 12:19:04 2016 -->
+<!-- CreationDate: Tue Jul 26 14:36:11 2016 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,6 +23,7 @@
 <a href="#NAME">NAME</a><br>
 <a href="#SYNOPSIS">SYNOPSIS</a><br>
 <a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
 <a href="#BUGS">BUGS</a><br>
 <a href="#AUTHOR">AUTHOR</a><br>
 <a href="#SEE ALSO">SEE ALSO</a><br>
@@ -43,8 +44,8 @@ convert dozenal integers into words</p>
 </h2>
 
 
-<p style="margin-left:11%; margin-top: 1em"><b>dozword
-[</b> <i>decimal number</i> <b>]</b></p>
+<p style="margin-left:11%; margin-top: 1em"><b>dozword [ -p
+-s -n</b> <i>decimal number</i> <b>]</b></p>
 
 <h2>DESCRIPTION
 <a name="DESCRIPTION"></a>
@@ -53,14 +54,60 @@ convert dozenal integers into words</p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>dozword</b>
 converts a dozenal integer, such as &quot;X44&quot;, into
-words, such as &quot;Tenduna fourzen four&quot;, according
-to the Pendlebury system. Fractional parts are ignored,
-because they are totally uninteresting (they can be
-pronounced simply, for example, &quot;dit four seven nine
-elv&quot;). Very, very large integers won&rsquo;t crash the
-program, but the answer will not be correct. The program is
-thus not robust; however, the answers will be obviously
-wrong, so this circumstance is easy to spot.</p>
+words, such as &quot;Ten biqua four four&quot;, according to
+either System Dozenal Nomenclature (SDN) or the Pendlebury
+system. Fractional parts are ignored, because they are
+totally uninteresting (they can be pronounced simply, for
+example, &quot;dit four seven nine elv&quot;).</p>
+
+<p style="margin-left:11%; margin-top: 1em">If the number
+of digits in the number exceeds EE EEEE, <b>dozword</b> will
+silently truncate that number, and thus incorrectly print
+its output. Thus, the answer will be incorrect. Otherwise,
+however, very large integers won&rsquo;t ruin the program,
+and beneath this limit, any integer will be correctly
+output.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em"><b>&minus;s</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Use the System Dozenal
+Nomenclature (SDN) system for the power words. This is the
+default; you don&rsquo;t need to specify this option if you
+don&rsquo;t want.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p><b>&minus;p</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Use the Pendlebury system for the power words.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>&minus;n</b>
+<i>number</i></p>
+
+<p style="margin-left:22%;">Takes as an argument the number
+you wish to convert. Useful if you don&rsquo;t want to take
+your data from standard input.</p>
 
 <h2>BUGS
 <a name="BUGS"></a>
