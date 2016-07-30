@@ -631,7 +631,62 @@ class="prog">dozcal</span> expects to get from your Lua
 script.</p>
 
 <p>Your lua script should include at least two functions:
-<span class="sdemo">
+<span class="sdemo">dozcal_return_ev_num()</span> and <span
+class="sdemo">dozcal_return_ev()</span>.  The first of these
+functions needs to return a single integer value:  the
+number of events that your script will be adding.  This
+could be variable depending on the year or other factors, so
+it's best to tell Lua to compute this result for you.</p>
+
+<p>The second, <span
+class="sdemo">dozcal_return_ev()</span>, returns the actual
+events.  The best way to do this is to return each event as
+a table, with the event field names as the keys to that
+table and the values for those fields as the values.  If
+you're returning multiple events, keep these tables in an
+table of tables and return it with <span
+class="sdemo">unpack</span>.  For example:</p>
+
+<pre class="demo">
+...
+returntab[index] = {
+	START_DATE="22 April 1200",
+		TITLE="My Special Holiday",CLASS="",
+		START_TIME="",END_TIME="", LOCATION="",
+		CATEGORY=""
+}
+...
+function dozcal_return_ev()
+	returntab = {{}}
+	index = 1
+	index = fill_year(2016,returntab,index)
+	return unpack(returntab)
+end
+
+function dozcal_return_ev_num()
+	local returntab = {{}}
+	local index = 1
+	return fill_year(2016,returntab,index)
+end
+</pre>
+
+<p>Of course, the values of your returned tables,
+particularly the date, will likely be determined by Lua
+programmatically, so you'll likely have a variable for <span
+class="sdemo">START_DATE</span> rather than an explicit
+string.  However, that's the principle of the thing.</p>
+
+<p>As an example, included with <span
+class="prog">dozcal</span> is an implementation of the
+entire Catholic liturgical calendar of 1176, which contains
+many fixed and many variable dates.  Its file name is 
+<span class="sdemo">cath_lit_1176.lua</span>, and will give
+you some idea of the possibilities here.</p>
+
+<p>With the possibility of including and distributing such
+scripts, <span class="prog">dozcal</span> becomes a very
+powerful and configurable system.  I hope it's as useful to
+you as I've found it to be.</p>
 
 <hr />
 <footer class="bottomstuff">
