@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.22.2 -->
-<!-- CreationDate: Tue Jul 26 14:36:14 2016 -->
+<!-- CreationDate: Sat Jul 30 09:58:15 2016 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -48,14 +48,15 @@ a command-line dozenal calendar program</p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>dozcal</b>
 [<b>&minus;V</b>] [<b>&minus;E</b>] [<b>&minus;T</b>]
+[<b>&minus;w</b>] [<b>&minus;W</b> <i>firstdayofweek</i>]
 [<b>&minus;m</b> <i>full|major</i>] [<b>&minus;h</b>
 <i>religious</i>] [<b>&minus;n</b> <i>national</i>]
 [<b>&minus;s</b> <i>startdate</i>] [<b>&minus;e</b>
 <i>enddate</i>] [<b>&minus;d</b> <i>dateformat</i>]
 [<b>&minus;t</b> <i>timeformat</i>] [<b>&minus;r</b>
 <i>eventformat</i>] [<b>&minus;R</b> <i>todoformat</i>]
-[<b>&minus;c</b> <i>configfile</i>] [<b>&minus;f</b>
-<i>inputfile</i>]</p>
+[<b>&minus;c</b> <i>configfile</i>] [<b>&minus;l</b>
+<i>luascript</i>] [<b>&minus;f</b> <i>inputfile</i>]</p>
 
 <h2>DESCRIPTION
 <a name="DESCRIPTION"></a>
@@ -116,7 +117,33 @@ default, so this flag turns event printing <i>off</i>.</p></td></tr>
 <p>Print todos. Unlike the <b>&minus;E</b> flag, this turns
 printing of todos <i>on</i>, because printing of todos is
 off by default.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p><b>&minus;w</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Print results for the week including the starting date.
+This is any seven-day period; you can set which day of the
+week you want to be the first with the <b>&minus;W</b>
+option. Using this will cause any end date given to be
+ignored.</p> </td></tr>
 </table>
+
+<p style="margin-left:11%;"><b>&minus;W [first day of
+week]</b></p>
+
+<p style="margin-left:22%;">Set which day of the week you
+want to be first; has no effect unless you&rsquo;ve
+requested weekly output. Accepts an integer 0-6 (with 0
+being Sunday), or a string including at least the first
+three letters of the day of the week you&rsquo;d like to be
+first; e.g., &quot;mon&quot;. Capitalization is
+irrelevant.</p>
 
 <p style="margin-left:11%;"><b>&minus;m [all |
 major]</b></p>
@@ -363,10 +390,11 @@ Christmas Day.</p></td></tr>
 <p style="margin-left:22%; margin-top: 1em">Countries with
 their holidays not included: this is not meant as a slight,
 I&rsquo;m just most familiar with these Anglophone countries
-and built them in for no other reason. We hope to add
-facilities for easily including new programmable holidays
-that will hopefully resolve this issue. Otherwise, such
-holidays must be included in an input data file.</p>
+and built them in for no other reason. If you wish to add
+your country&rsquo;s holidays, have at it; consider the
+<b>&minus;l</b> option, and write a Lua script which will
+set those holidays on their proper days and tell
+<b>dozcal</b> to include them.</p>
 
 <p style="margin-left:11%;"><b>&minus;s [startdate]</b></p>
 
@@ -653,6 +681,18 @@ perbiqua (1-100).</p></td></tr>
 can also include newlines, specified in the usual way as
 <i>\n</i>, and tabs, specified in the usual way as
 <i>\t</i>.</p>
+
+<p style="margin-left:11%;"><b>&minus;l [luascript]</b></p>
+
+<p style="margin-left:22%;">Tells <b>dozcal</b> to read a
+Lua script with its built-in Lua 5.2 interpreter. Can be
+repeated as desired. This script can add events to the
+calendar which are too variable for a static input file. As
+an example, the script <i>cath_lit_1176.lua</i> is packaged
+with <b>dozcal</b>, which implements the entire Roman
+Catholic calendar of the liturgy of 1176 (d1962), complete
+with movable feasts properly placed. Please see the section
+below on Lua scripting for details.</p>
 
 <p style="margin-left:11%;"><b>&minus;f [inputfile]</b></p>
 
@@ -1050,6 +1090,44 @@ more than once; <b>dozcal</b> assumes that you tell it what
 you really want and does not check for duplicate files.</p></td></tr>
 </table>
 
+<p style="margin-left:22%;"><b>SCRIPT:</b></p>
+
+<p style="margin-left:32%;">Specifies a Lua script for
+<b>dozcal</b> to run and take input from. You can include as
+many of these as you like, and even mix them with
+<i>&minus;l</i> on the command line, but be aware that if
+you name the same file more than once, the events that the
+script adds will be added twice. <b>dozcal</b> assumes that
+you tell it what you really want and does not check for
+duplicate files.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>WEEKLY</b></p></td>
+<td width="1%"></td>
+<td width="68%">
+
+
+<p>Tells <b>dozcal</b> that you want it to give you weekly
+output. This will only work if you&rsquo;ve given it an
+explicit start date; otherwise it can&rsquo;t know what week
+to give you. It will also ignore whatever end date, if any,
+you&rsquo;ve given it.</p></td></tr>
+</table>
+
+<p style="margin-left:22%;"><b>FIRST_DOW:</b></p>
+
+<p style="margin-left:32%;">First day of the week; only has
+effect when you&rsquo;ve asked for weekly output. Can be an
+integer 0-6 (with 0 being Sunday), or a string containing at
+least the first three letters of the weekday. Capitalization
+is irrelevant.</p>
+
 <h2>ERRORS
 <a name="ERRORS"></a>
 </h2>
@@ -1064,26 +1142,25 @@ Successful completion is returned to the environment as
        cellspacing="0" cellpadding="0">
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
-<p style="margin-top: 1em"><b>1</b></p></td>
-<td width="10%"></td>
+<p><b>1</b></p></td>
+<td width="8%"></td>
 <td width="78%">
 
 
-<p style="margin-top: 1em">You supplied <b>dozcal</b> an
-option which requires an argument, but didn&rsquo;t send it
-an argument. E.g., you said <b>&minus;s</b>, but
-didn&rsquo;t say what you wanted the starting date of your
-results to be.</p></td></tr>
+<p>You supplied <b>dozcal</b> an option which requires an
+argument, but didn&rsquo;t send it an argument. E.g., you
+said <b>&minus;s</b>, but didn&rsquo;t say what you wanted
+the starting date of your results to be.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
 <p><b>2</b></p></td>
-<td width="10%"></td>
+<td width="8%"></td>
 <td width="78%">
 
 
@@ -1091,11 +1168,11 @@ results to be.</p></td></tr>
 recognize.</p> </td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
 <p><b>3</b></p></td>
-<td width="10%"></td>
+<td width="8%"></td>
 <td width="78%">
 
 
@@ -1104,11 +1181,11 @@ recognize.</p> </td></tr>
 see what exactly it was.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
 <p><b>4</b></p></td>
-<td width="10%"></td>
+<td width="8%"></td>
 <td width="78%">
 
 
@@ -1118,11 +1195,11 @@ running into problems. <b>dozcal</b> will print an error
 message detailing the specific error.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
 <p><b>5</b></p></td>
-<td width="10%"></td>
+<td width="8%"></td>
 <td width="78%">
 
 
@@ -1131,11 +1208,11 @@ format (perhaps with the <b>&minus;t</b> option) that
 <b>dozcal</b> doesn&rsquo;t recognize.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
 <p><b>6</b></p></td>
-<td width="10%"></td>
+<td width="8%"></td>
 <td width="78%">
 
 
@@ -1144,11 +1221,11 @@ format (perhaps with the <b>&minus;r</b> option) that
 <b>dozcal</b> doesn&rsquo;t recognize.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
 <p><b>7</b></p></td>
-<td width="10%"></td>
+<td width="8%"></td>
 <td width="78%">
 
 
@@ -1157,11 +1234,11 @@ option doesn&rsquo;t make sense to <b>dozcal</b>; please use
 either <i>full</i> or <i>major</i>.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
 <p><b>8</b></p></td>
-<td width="10%"></td>
+<td width="8%"></td>
 <td width="78%">
 
 
@@ -1170,17 +1247,55 @@ isn&rsquo;t working correctly; see the specific error
 message for reasons.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
-<td width="1%">
+<td width="3%">
 
 
 <p><b>9</b></p></td>
-<td width="10%"></td>
+<td width="8%"></td>
 <td width="78%">
 
 
 <p>You&rsquo;ve given a conversion character in your todo
 format (perhaps with the <b>&minus;R</b> option) that
 <b>dozcal</b> doesn&rsquo;t recognize.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p><b>10</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Your FREQ specification isn&rsquo;t in a format the
+<b>dozcal</b> can interpret.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p><b>11</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p><b>dozcal</b> found an error in a Lua script that
+you&rsquo;ve included, either from the config file or by
+using the option <b>&minus;l</b>. Repair your Lua script and
+try again.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p><b>12</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p><b>dozcal</b> can&rsquo;t understand what you gave it
+for a first day of the week.</p></td></tr>
 </table>
 
 <h2>BUGS
@@ -1188,8 +1303,9 @@ format (perhaps with the <b>&minus;R</b> option) that
 </h2>
 
 
-<p style="margin-left:11%; margin-top: 1em">None known at
-this time.</p>
+<p style="margin-left:11%; margin-top: 1em">The last event
+included via Lua script is included twice. I can&rsquo;t
+figure out why this is so or how to fix it.</p>
 
 <h2>AUTHOR
 <a name="AUTHOR"></a>

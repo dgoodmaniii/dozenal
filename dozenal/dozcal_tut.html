@@ -581,11 +581,57 @@ option and its argument.</p>
 	included twice.</td></tr>
 <tr><td>-c</td><td>N/A</td><td>A config file for <span
 	class="prog">dozcal</span> to process.</td></tr>
+<tr><td>-w</td><td>WEEKLY</td><td>Get weekly output; that
+	is, get the output for the week which contains your start
+	date.  Will ignore any end date you've given it; only has
+	effect if you've given a start date, as otherwise it
+	won't know what week to give you.</td></tr>
+<tr><td>-W</td><td>FIRST_DOW:</td><td>The first day of the
+	week; can be any day whatsoever, though typically it's
+	either Sunday or Monday.  Can be either an integer 0-6,
+	with 0 being Sunday, or the first three letters of the
+	weekday itself (e.g., "thu").  You can capitalize or not
+	at your pleasure; <span class="prog">dozcal</span> will
+	not see the difference.</td></tr>
+<tr><td>-l</td><td>SCRIPT:</td><td>Tells <span
+	class="prog">dozcal</span> to run the Lua script which is
+	its argument and use its returns as events.  This enables
+	you to directly program in moveable holidays and the
+	like, rather than having to enter them manually in your
+	data file.</td></tr>
 </table>
 
 <p>With these options, you can make dozcal output in almost
 any way you like; and by filtering its output, you can get
 formatted output, such as HTML or LaTeX.</p>
+
+<a name="script"></a>
+<h2>Scripting</h2>
+
+<p><span class="prog">dozcal</span> allows you to script it
+directly with Lua, a very small and simple computer
+language.  We've noted that <span class="prog">dozcal</span>
+only includes a small number of religious and national
+holidays, making it difficult to include new ones; the data
+file itself is static, so you'd have to figure out what days
+other holidays fall on each year and include them in your
+data file manually.  Scripting means you don't have to do
+that.</p>
+
+<p>By writing a script, you can instruct <span
+class="prog">dozcal</span> that, say, the 24th of October is
+a holidays, unless it falls on a Sunday, in which it's the
+25th of October.  Such things are impossible to program in
+the data file.</p>
+
+<p>Lua is a powerful language, and we can't explain how to
+script in it here; there are plenty of resources available
+for that.  However, we can tell you what <span
+class="prog">dozcal</span> expects to get from your Lua
+script.</p>
+
+<p>Your lua script should include at least two functions:
+<span class="sdemo">
 
 <hr />
 <footer class="bottomstuff">
