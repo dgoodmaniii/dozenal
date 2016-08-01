@@ -656,19 +656,30 @@ returntab[index] = {
 		CATEGORY=""
 }
 ...
+returntab = {{}}
+index = 1
+
 function dozcal_return_ev()
-	returntab = {{}}
-	index = 1
-	index = fill_year(2016,returntab,index)
 	return unpack(returntab)
 end
 
 function dozcal_return_ev_num()
-	local returntab = {{}}
-	local index = 1
 	return fill_year(2016,returntab,index)
 end
 </pre>
+
+<p>Here, we've defined <span class="sdemo">returntab</span>
+as a global table of tables, along with an index to keep
+track of the number of tables it contains.  We then defined
+the function <span class="sdemo">fill_year()</span> (that
+definition is not shown here), which fills the values into
+the table of tables and returns the total number of results.
+This way, function <span
+class="sdemo">dozcal_return_ev_num()</span> returns the
+total number of results while simultaneously filling the
+table with events, while <span
+class="sdemo">dozcal_return_ev()</span> returns the table
+itself.</p>
 
 <p>Of course, the values of your returned tables,
 particularly the date, will likely be determined by Lua
