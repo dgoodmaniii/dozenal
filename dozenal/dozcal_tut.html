@@ -503,7 +503,7 @@ not, it will proceed with no config file.</p>
 <span class="sdemo">-c</span>; options loaded in later files
 will take precedence over those loaded in earlier files.
 Config file options will also take precedence over
-command-linue options loaded prior to the config file.
+command-line options loaded prior to the config file.
 Essentially, the last-specified option is the one that <span
 class="prog">dozcal</span> will respect.</p>
 
@@ -598,7 +598,10 @@ option and its argument.</p>
 	its argument and use its returns as events.  This enables
 	you to directly program in moveable holidays and the
 	like, rather than having to enter them manually in your
-	data file.</td></tr>
+	data file.  <span class="prog">dozcal</span> looks for
+	the scripts first in its current directory, then in <span
+	class="sdemo">$HOME/.dozcal/</span>, which allows you to
+	keep all your scripts in an easy place.</td></tr>
 </table>
 
 <p>With these options, you can make dozcal output in almost
