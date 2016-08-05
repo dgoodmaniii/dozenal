@@ -4,7 +4,7 @@
 <!-- +AMDG -->
 
 <head>
-<title>dozcal | dozdate:  A Tutorial</title>
+<title>dozcal | dozcal:  A Tutorial</title>
 <meta charset="UTF-8" />
 <meta name="description" content="dozenal, a complete suite
 of dozenal programs, including number converts, an RPN
@@ -52,20 +52,53 @@ you want it; and finally, how to automate <span
 class="prog">dozcal</span>'s behavior so that it will work
 that way without you having to tell it to every time.</p>
 
+<a name="toc"></a>
+<ul>
+<li><a href="#data">Keeping a Calendar:  Your Date File(s)</a></li>
+<ul>
+<li><a href="#events">Events</a></li>
+<ul>
+<li><a href="#dateentry">Date Entry Formats</a></li>
+<li><a href="#timeentry">Time Entry Formats</a></li>
+<li><a href="#freq">Frequency Entry</a></li>
+</ul>
+<li><a href="#todos">Todos</a></li>
+</ul>
+<li><a href="#display">Displaying Your Data</a></li>
+<ul>
+<li><a href="#datetimeform">Date and Time Formatting</a></li>
+<li><a href="#eventform">Event Formatting</a></li>
+<li><a href="#todoform">Todo Formatting</a></li>
+</ul>
+<li><a href="#config">Customization</a></li>
+<ul>
+<li><a href="#conffile">Config Files</a></li>
+</ul>
+<li><a href="#script">Scripting Dozcal with Lua</a></li>
+<li><a href="#output">Formatting your Output</a></li>
+<li><a href="#conc">Conclusion</a></li>
+</ul>
+
+
 <a name="data"></a>
 <h2>Keeping a Calendar:  Your Data File(s)</h2>
 
 <p>Dozcal knows about two types of file:  config files and
-data files.  Your data file is what <span class="prog">dozcal</span> uses to determine
-what information you want in your calendar:  it consists of
-two types of entry, events and todos (that's "to do", as in
+data files.  Your data file is what <span
+class="prog">dozcal</span> uses to determine what
+information you want in your calendar:  it consists of two
+types of entry, events and todos (that's "to do", as in
 "things to do"), each of which is accompanied by a variety
 of data.</p>
 
 <p>Blank lines are ignored in these files; so put them in or
-leave them out,<span class="prog">dozcal</span> won't care.  Lines cannot be broken,
-however, and there's presently no way to add comments.</p>
+leave them out, <span class="prog">dozcal</span> won't care.
+Lines cannot be broken, however, and there's presently no
+way to add comments.</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
+<a name="events"></a>
 <h3>Events</h3>
 
 <p>Events are the typical calendar entry:  "Our
@@ -138,6 +171,8 @@ is, the "Vacation" event would have been on 14 August 1200;
 <p>Intervals are often useful with <a href="#freq">FREQ</a>,
 which we'll see in due time.</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="dateentry"></a>
 <h4>Date Entry Formats</h4>
 
@@ -160,6 +195,8 @@ listed with at least the first three letters (capital or
 lowercase is irrelevant), but can be listed with more.  The
 year must always be given as all four digits.</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="timeentry"></a>
 <h4>Time Entry Formats</h4>
 
@@ -180,6 +217,8 @@ colon,<span class="prog">dozcal</span> assumes that we're dealing with our stand
 mongrel dozenal-sexagesimal time of hours and minutes, and
 interprets it accordingly.  Otherwise, it assumes that we're
 dealing with hours and Tims.</p>
+
+<center><a href="#toc">Table of Contents</a></center>
 
 <a name="freq"></a>
 <h4>Frequency for Repetitive Events</h4>
@@ -275,6 +314,8 @@ task of deciding what you're actually doing.</p>
 <p>Next, we'll look at todos, which allow you to set and
 prioritize tasks for yourself.</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="todos"></a>
 <h3>Todos</h3>
 
@@ -333,6 +374,8 @@ to put our calendar into text, what good is <span class="prog">dozcal</span> to 
 How can we access and display our calendar in a convenient
 way?</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="display"></a>
 <h2>Displaying your Calendar</h2>
 
@@ -342,6 +385,8 @@ Events are sorted by start date, then by start time, then by
 title.  Todos are sorted by priority; then by due date; then
 by due time; and then by title.  Events and todos are sorted
 separately.</p>
+
+<center><a href="#toc">Table of Contents</a></center>
 
 <a name="datetimeform"></a>
 <h3>Date and Time Formatting</h3>
@@ -392,6 +437,8 @@ respectively.  (The four-digit Tim number is referred to as
 biqua of Tims, because it's often listed in two digits,
 which shows us the number of biquaTim and triquaTim.)</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="eventform"></a>
 <h3>Event Formatting</h3>
 
@@ -432,6 +479,8 @@ delineated by a consistent character.  This format enables
 easy parsing by other programs, if <span
 class="prog">dozcal</span>'s output should be sent to one of
 them.</p>
+
+<center><a href="#toc">Table of Contents</a></center>
 
 <a name="todoform"></a>
 <h3>Todo Formatting</h3>
@@ -476,6 +525,8 @@ them.</p>
 clearly delineated by a consistent character, allowing easy
 post-processing by other programs.</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="config"></a>
 <h2>Configuring your Calendar</h2>
 
@@ -484,6 +535,8 @@ configure your calendar to work precisely the way you'd like
 it to.  You can do this in two ways:  by command line
 switches, or by a config file.  (Or both; the last loaded
 option will take precedence.)</p>
+
+<center><a href="#toc">Table of Contents</a></center>
 
 <a name="conffile"></a>
 <h3>Config Files</h3>
@@ -608,6 +661,8 @@ option and its argument.</p>
 any way you like; and by filtering its output, you can get
 formatted output, such as HTML or LaTeX.</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="script"></a>
 <h2>Scripting</h2>
 
@@ -697,6 +752,8 @@ many fixed and many variable dates.  Its file name is
 <span class="sdemo">cath_lit_1176.lua</span>, and will give
 you some idea of the possibilities here.</p>
 
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="output"></a>
 <h2>Output Filtering</h2>
 
@@ -722,13 +779,81 @@ formatted as a single week.  This latter expects its input
 from <span class="prog">dozcal</span> using the <span
 class="sdemo">-w</span> option.</p>
 
+<p>These scripts are  pretty self-explanatory, so we'll
+briefly look at <span class="sdemo">fancy.awk</span> as an
+example:</p>
+
+<pre class="demo">
+#!/usr/bin/awk -f
+
+BEGIN {
+	FS = " \\| "
+	lastdate = ""
+}
+
+// {
+	currdate = $1
+	if (currdate != lastdate) {
+		printf "-------------------------------------------------"
+		printf "------------\n"
+		printf "%-13.13s%-30.30s%-18.18s\n","DATE","EVENT","LOCATION"
+		printf "-------------------------------------------------"
+		printf "------------\n"
+		printf "%-13.13s",$1
+		lastdate = $1
+	} else {
+		printf "%-13.13s"," "
+	}
+	printf "%-30.28s%-18.18s\n",$4,$7
+	if ($2 != "") {
+		printf "%13.13s\t%7.7s"," ",$2
+	} if ($3 != "") {
+		printf "--%7.7s",$3
+	} if (($2 != "") || ($3 != "")) {
+		printf("\n")
+	}
+	if ($5 != "") {
+		printf("%13.13s\t%-16.16s\n"," ",$5)
+	} if ($6 != "") {
+		printf("%13.13s\t%-60.60s\n"," ",$6)
+	}
+}
+</pre>
+
+<p>With this script, each date's output will wind up looking
+something like this:</p>
+
+<pre class="demo">
+-------------------------------------------------------------
+DATE         EVENT                         LOCATION          
+-------------------------------------------------------------
+27 Oct 1200  Enddate:  Last Monday         Working?          
+             Feria                                           
+             	Catholic:  1176 
+             	IV Class,traditional,catholic,feast                         
+             Moon Phase:  1                                  
+             	astronomical                                                
+             My Test Event #1                                
+             	0X;0000--1E;3000
+             	confidential    
+             	anniversary,business                                        
+</pre>
+
+<p>Of course, these scripts are just demonstrative; by no
+means is anyone limited to them.  The sky's the limit as far
+as formatting your output goes.</p>
+
+<center><a href="#toc">Table of Contents</a></center>
+
 <a name="conc"></a>
 <h2>Conclusion</h2>
 
-<p>With the possibility of including and distributing such
-scripts, <span class="prog">dozcal</span> becomes a very
-powerful and configurable system.  I hope it's as useful to
-you as I've found it to be.</p>
+<p>With its built-in power to manage events and todos,
+combined with the ability to include and distribute input
+Lua scripts and output filters in any language, <span
+class="prog">dozcal</span> becomes a very powerful and
+configurable system.  I hope it's as useful to you as I've
+found it to be.</p>
 
 <hr />
 <footer class="bottomstuff">
