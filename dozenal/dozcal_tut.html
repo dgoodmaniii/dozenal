@@ -697,6 +697,34 @@ many fixed and many variable dates.  Its file name is
 <span class="sdemo">cath_lit_1176.lua</span>, and will give
 you some idea of the possibilities here.</p>
 
+<a name="output"></a>
+<h2>Output Filtering</h2>
+
+<p>Since <span class="prog">dozcal</span> produces such
+simply formatted plain text output, and since you can
+arrange that output pretty much however you want, it's also
+very easy to filter its output into formats the way you'd
+like it.  Since it's also a well-behaved Unix program and
+sends its output to stdout, you can ship it through any
+program you want for formatting.</p>
+
+<p>Well it's not the new shiny of Perl or Python, <span
+class="prog">dozcal</span> comes packaged with two scripts
+written in <a
+href="http://www.grymoire.com/Unix/Awk.html">awk</a>, the
+original (and, in my opinion, still the best) Unix
+text-filtering language.  In any case, these two scripts
+take default <span class="prog">dozcal</span> output and
+format it:  <span class="sdemo">fancy.awk</span> into a
+fancier text format and <span
+class="sdemo">week_html.awk</span> into HTML output,
+formatted as a single week.  This latter expects its input
+from <span class="prog">dozcal</span> using the <span
+class="sdemo">-w</span> option.</p>
+
+<a name="conc"></a>
+<h2>Conclusion</h2>
+
 <p>With the possibility of including and distributing such
 scripts, <span class="prog">dozcal</span> becomes a very
 powerful and configurable system.  I hope it's as useful to
