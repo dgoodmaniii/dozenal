@@ -584,6 +584,47 @@ option and its argument.</p>
 	but also the phase for every day of the cycle.  This
 	takes the form of an integer between 1 and 25 (29 in
 	decimal), where "0" is new and "13" is full.</td></tr>
+<tr><td>-g</td><td>GEOG:</td>
+	<td>Geographical information; <span
+	class="prog">dozcal</span> uses this information to
+	determine certain astronomical information, particularly
+	sunrise and sunset times.  If you don't give this
+	information, <span class="prog">dozcal</span> will
+	(almost certainly incorrectly) assume a latitude of 0 and
+	a longitude of 0.  Give this information in the form
+	"latitude/longitude", in that order, separated by a
+	slash.  If you give these in degrees, suffix the degrees
+	with "o" (the lowercase letter); if you give them in
+	degrees, minutes, and seconds, use "o" for degrees, an
+	apostrophe for minutes, and a double-quote for seconds.
+	If you give them in unciaPi (the TGM unit of angle), no
+	suffix is needed.</td></tr>
+<tr><td>-a</td><td>ASTRON:</td>
+	<td>Tells <span class="prog">dozcal</span> to include
+	astronomical events in your calendar.  This takes a
+	string which can be concatenated however you like.
+	Possible strings are "seasons", which includes the
+	equinoxes and solstices; and "sun", which includes
+	sunrise and sunset times.  Unless a time zone option is
+	given, or UTC time is requested, <span
+	class="prog">dozcal</span> will give these in local time
+	according to your system's clock.</td></tr>
+<tr><td>-z</td><td>TIMEZONE:</td>
+	<td>If you don't want <span class="prog">dozcal</span> to
+	use your local timezone or UTC time, you can explicitly
+	tell it what time zone to use with this option.  Note
+	that this isn't really a time zone; it's a time
+	<em>offset</em>, telling <span class="prog">dozcal</span>
+	to use a given number of hours, fractional or whole,
+	positive or negative, to add to UTC times to produce
+	local time.  If this option is not given (or the UTC
+	option is not given), <span class="prog">dozcal</span>
+	will attempt to use the system's clock to produce local
+	time.  </td></tr>
+<tr><td>-u</td><td>UTC</td>
+	<td>Use UTC time where <span class="prog">dozcal</span>
+	would normally try to use local time.  Essentially
+	cancels out the time zone options.</td></tr>
 <tr><td>-n</td><td>NATIONAL:</td>
 	<td>Takes a string which includes any number of countries
 	for which you'd like national holidays displayed.

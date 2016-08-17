@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.22.2 -->
-<!-- CreationDate: Sat Jul 30 09:58:15 2016 -->
+<!-- CreationDate: Tue Aug 16 21:04:16 2016 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -48,15 +48,18 @@ a command-line dozenal calendar program</p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>dozcal</b>
 [<b>&minus;V</b>] [<b>&minus;E</b>] [<b>&minus;T</b>]
-[<b>&minus;w</b>] [<b>&minus;W</b> <i>firstdayofweek</i>]
-[<b>&minus;m</b> <i>full|major</i>] [<b>&minus;h</b>
-<i>religious</i>] [<b>&minus;n</b> <i>national</i>]
-[<b>&minus;s</b> <i>startdate</i>] [<b>&minus;e</b>
-<i>enddate</i>] [<b>&minus;d</b> <i>dateformat</i>]
-[<b>&minus;t</b> <i>timeformat</i>] [<b>&minus;r</b>
-<i>eventformat</i>] [<b>&minus;R</b> <i>todoformat</i>]
-[<b>&minus;c</b> <i>configfile</i>] [<b>&minus;l</b>
-<i>luascript</i>] [<b>&minus;f</b> <i>inputfile</i>]</p>
+[<b>&minus;u</b>] [<b>&minus;w</b>] [<b>&minus;W</b>
+<i>firstdayofweek</i>] [<b>&minus;m</b> <i>full|major</i>]
+[<b>&minus;a</b> <i>astronomical</i>] [<b>&minus;g</b>
+<i>latitude/longitude</i>] [<b>&minus;z</b> <i>offset</i>]
+[<b>&minus;h</b> <i>religious</i>] [<b>&minus;n</b>
+<i>national</i>] [<b>&minus;s</b> <i>startdate</i>]
+[<b>&minus;e</b> <i>enddate</i>] [<b>&minus;d</b>
+<i>dateformat</i>] [<b>&minus;t</b> <i>timeformat</i>]
+[<b>&minus;r</b> <i>eventformat</i>] [<b>&minus;R</b>
+<i>todoformat</i>] [<b>&minus;c</b> <i>configfile</i>]
+[<b>&minus;l</b> <i>luascript</i>] [<b>&minus;f</b>
+<i>inputfile</i>]</p>
 
 <h2>DESCRIPTION
 <a name="DESCRIPTION"></a>
@@ -122,6 +125,18 @@ off by default.</p></td></tr>
 <td width="3%">
 
 
+<p><b>&minus;u</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Use UTC time with the astronomical options. This means
+that time zone options will be ignored.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
 <p><b>&minus;w</b></p></td>
 <td width="8%"></td>
 <td width="78%">
@@ -157,6 +172,98 @@ will only print the major phases (i.e., &quot;new&quot;,
 quarter&quot;). In either case, the age of the moon in days
 is printed as its phase, with some text for the major
 phases.</p>
+
+<p style="margin-left:11%;"><b>&minus;g
+[latitude/longitude]</b></p>
+
+<p style="margin-left:22%;">Gives geographical information
+necessary for determining certain astronomical dates and
+times (particularly those of the sun). It can be given in
+dozenal degrees; in degrees, minutes, and seconds, or in
+unciaPi. Positive longitudes are east, negative are west.
+Similarly, positive latitudes are north, negative are
+south.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Note that
+latitude and longitude must be given in that order,
+separated by a forward slash (<b>/</b>).</p>
+
+<p style="margin-left:22%; margin-top: 1em">If the
+information is given in degrees, minutes, and seconds, if
+should be given with <b>o</b> as the degree marking, with
+<b>&rsquo;</b> as the minute marking, and with <b>&quot;</b>
+as the second marking; e.g.,
+<i>46o13&rsquo;26&quot;</i>.</p>
+
+<p style="margin-left:22%; margin-top: 1em">If the
+information is given as dozenal degrees, simply append
+<b>o</b> to the number; e.g., <i>46;3324o</i>.</p>
+
+<p style="margin-left:22%; margin-top: 1em">If the
+information is given as unciaPi, simply use the number with
+no suffix.</p>
+
+<p style="margin-left:22%; margin-top: 1em">These forms can
+be mixed freely; e.g., latitude can be given in dozenal
+degrees, but longitude in some other format.</p>
+
+<p style="margin-left:11%;"><b>&minus;a [astronomical
+string]</b></p>
+
+<p style="margin-left:22%;">If you want certain
+astronomical information included in your calendar, use this
+option. It takes a single string as an argument, and the
+contents of the string determine what astronomical
+information will be added. Some of these options require
+geographical information, as given by the <b>&minus;g</b>
+option; if that is not given, the astronomical options will
+(almost certainly incorrectly) assume a latitude of 0 and a
+longitude of 0. These strings may be concatenated however
+you wish and in whatever order.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>season</b></p></td>
+<td width="1%"></td>
+<td width="68%">
+
+
+<p>Includes the astronomical seasons; that is, the March
+and September equinoxes, and the June and December
+solstices. Lists them as accurately as possible, with
+times.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="22%"></td>
+<td width="9%">
+
+
+<p><b>sun</b></p></td>
+<td width="1%"></td>
+<td width="68%">
+
+
+<p>Includes sunrise and sunset for each date in the
+requested range. Requires geographical information. Note
+that these are the <i>local</i> times; <b>dozcal</b> will
+use whatever information is given to it about time zones, if
+any, and if it has none, it will guess the time zone based
+on your system&rsquo;s time. Only in the latter case will it
+know about daylight savings time.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>&minus;z [offset]</b></p>
+
+<p style="margin-left:22%;">Gives <b>dozcal</b> a time zone
+offset to work with. This is an <i>offset</i>, not a time
+zone name; &quot;EST&quot;, for example, will not get you
+the results you want. You want, rather, &quot;-4;0&quot;. If
+you don&rsquo;t specify this, <b>dozcal</b> will attempt to
+guess time zone information from your system time.</p>
 
 <p style="margin-left:11%;"><b>&minus;h [holiday
 string]</b></p>
