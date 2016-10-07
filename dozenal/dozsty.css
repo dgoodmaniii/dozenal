@@ -64,8 +64,19 @@ body {
 /* Format the demonstrative images        */
 /******************************************/
 
-.demonstimg {
-	float:  left;
+.demonstimg img {
+	margin-left:  auto;
+	margin-right:  auto;
+	display:  block;
+}
+.demonstimg p {
+	display:  block;
+	margin-left:  auto;
+	margin-right:  auto;
+	width:  75%;
+	font-size:  75%;
+	font-style:  italic;
+	text-align:  center;
 }
 
 /******************************************/

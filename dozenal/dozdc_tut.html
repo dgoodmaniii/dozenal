@@ -50,7 +50,8 @@ class="prog">dozdc</span>'s particular facilities.</p>
 <center>
 <a href="#postfix">Postfix Notation</a> |
 	<a href="#operators">Options and Operators</a> |
-	<a href="#program">Programming</a>
+	<a href="#program">Programming</a> |
+	<a href="#visual">Graphical Version</a>
 </center>
 
 
@@ -233,7 +234,8 @@ specifically has to offer.</p>
 <center>
 <a href="#postfix">Postfix Notation</a> |
 	<a href="#operators">Options and Operators</a> |
-	<a href="#program">Programming</a>
+	<a href="#program">Programming</a> |
+	<a href="#visual">Graphical Version</a>
 </center>
 
 <a name="operators"></a>
@@ -335,7 +337,8 @@ reference for them.</p>
 <center>
 <a href="#postfix">Postfix Notation</a> |
 	<a href="#operators">Options and Operators</a> |
-	<a href="#program">Programming</a>
+	<a href="#program">Programming</a> |
+	<a href="#visual">Graphical Version</a>
 </center>
 
 <a name="program"></a>
@@ -394,6 +397,119 @@ could easily be replaced by <span class="sdemo">0;4</span>.
 But it does give an idea of how to use <span
 class="prog">dozdc</span>'s capabilities, should you need
 them.</p>
+
+<a name="visual"></a>
+<h2>Graphical Version</h2>
+
+<p>By running <span class="prog">dozdc</span> with the
+option <span class="sdemo">-v</span>, you will get the
+<em>visual</em> or <em>graphical</em> version of the
+calculator.  This works like most other visual computer
+calculators you've probably used: it's infix, not postfix;
+it takes its functions with arguments immediately following
+them in parentheses; and it works by clicking buttons with a
+mouse (or using the keyboard shortcuts).</p>
+
+<p>The visual calculator is built using the <a
+href="http://xforms-toolkit.org">xforms toolkit</a> for the
+X windowing system, commonly installed on Unix-based systems
+(like GNU/Linux or BSD), and installable on Mac OS-X or
+whatever version is current.  It will <em>not</em> work on
+Windows.</p>
+
+<p>If you do not have the xforms libraries available, <span
+class="prog">dozdc</span> will not build.  Either install
+the libraries to build it, or tell <span
+class="prog">dozdc</span> that you're not interested in the
+graphical version of the program.  Go into the makefile and
+change <span class="sdemo">-DXFORMS</span> to <span
+class="sdemo">-UXFORMS</span>, and <span
+class="prog">dozdc</span> will happily build without the
+graphical calculator.</p>
+
+<div class="demonstimg">
+<img title="Screenshot of dozdc -v upon opening the program" 
+	alt="Screenshot of dozdc -v upon opening the program" 
+	src="blank_xdozdc.png" />
+<p>Screenshot of <span class="prog">dozdc -v</span> immediately
+upon starting the program.</p>
+</div>
+
+<p>Above, you see a screenshot of the window that pops up
+immediately upon running <span class="sdemo">dozdc
+-v</span>.  It has a lot of buttons, some of which are not
+self-explanatory; so all buttons involve a mouseover text,
+or "tooltip," explaining their functions.</p>
+
+<p>This calculator works in <em>infix notation</em>, not the
+postfix notation we described above.  As such, you can enter
+your equations the same way you learned to write them and
+solve them at school:</p>
+
+<div class="demonstimg">
+<img title="Screenshot of dozdc -v solving an infix equation"
+	alt="Screenshot of dozdc -v solving an infix equation"
+	src="infix_xdozdc.png" />
+<p>Screenshot of <span class="prog">dozdc -v</span> with an
+infix equation in the problem field, ready to be solved.</p>
+</div>
+
+<p><span class="prog">dozdc -v</span> then converts this
+equation to postfix notation, solves it, and replaces the
+problem field with the answer:</p>
+
+<div class="demonstimg">
+<img title="Screenshot of dozdc -v with the answer to an equation"
+	alt="Screenshot of dozdc -v with the answer to an equation"
+	src="answer_xdozdc.png" />
+<p>Screenshot of <span class="prog">dozdc -v</span> containing
+the answer to an infix equation.</p>
+</div>
+
+<p>The equivalent postfix equation is <span class="sdemo">8
+2;3 - 3 * 4 + =</span>, which, when run through <span
+class="prog">dozdc</span>, gives us the same answer.</p>
+
+<p>Notice that the equation we solved here uses
+<em>parentheses</em>.  Parentheses are part of how infix
+notation gets around the fact that it's inherently
+ambiguous; that is, that you're never exactly sure which
+operations should be done first.  (The other part is order
+of operations.)  Operations can be grouped by parentheses to
+any degree of nesting.</p>
+
+<p>Functions take their arguments in parentheses following
+the function itself; functions which take multiple arguments
+separate them with commas.  E.g., the arbitrary base log
+function, <span class="sdemo">logb</span>, take two
+arguments, the number and the base:</p>
+
+<div class="demonstimg">
+<img title="Screenshot of dozdc -v about to solve a multi-argument function"
+	alt="Screenshot of dozdc -v about to solve a multi-argument function"
+	src="function_xdozdc.png" />
+<p>Screenshot of <span class="prog">dozdc -v</span> about to
+solve a multi-argument function.
+</div>
+
+<p>This will give the logarithm of 3 to base 2, or
+1;7029; it is equivalent to <span class="sdemo">3 2 logb
+=</span>.</p>
+
+<p>The functions on the far right side, with all contain the
+letter "M", are memory functions.  "M+" adds the current
+contains of the memory to what's in the problem field; "M++"
+adds the current contents of the problem field to the
+memory; "M" replaces the problem field with whatever is in
+memory; and "CM" clears the memory entirely.</p>
+
+<p>The number to the left of the problem field is the level
+of precision; that is, the number of digits to the right of
+the dit.</p>
+
+<p>And that's all there is  the graphical version of <span
+class="prog">dozdc</span></p>
+
 
 <hr />
 <footer class="bottomstuff">

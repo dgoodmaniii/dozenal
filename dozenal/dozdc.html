@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.22.2 -->
-<!-- CreationDate: Sat Jul 30 09:58:11 2016 -->
+<!-- CreationDate: Fri Oct  7 09:04:15 2016 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,7 +30,7 @@
 <a href="#VARIABLES">VARIABLES</a><br>
 <a href="#COMMENTS">COMMENTS</a><br>
 <a href="#OTHER COMMANDS">OTHER COMMANDS</a><br>
-<a href="#GRAPHICAL VERSION, gdozdc">GRAPHICAL VERSION, gdozdc</a><br>
+<a href="#GRAPHICAL VERSIONS, dozdc -v and gdozdc">GRAPHICAL VERSIONS, dozdc -v and gdozdc</a><br>
 <a href="#BUGS">BUGS</a><br>
 <a href="#AUTHOR">AUTHOR</a><br>
 <a href="#SEE ALSO">SEE ALSO</a><br>
@@ -52,7 +52,7 @@ arbitrary precision dozenal calculator</p>
 
 
 <p style="margin-left:11%; margin-top: 1em"><b>dozdc
-[-ezdr] [-k</b> <i>precision</i> <b>] [</b> <i>equation</i>
+[-Vezdr] [-k</b> <i>precision</i> <b>] [</b> <i>equation</i>
 <b>]</b></p>
 
 <h2>DESCRIPTION
@@ -67,10 +67,17 @@ normal arithmetic functions, plus trigonometry, some basic
 constants (pi, euler, phi), logarithms, and other functions.
 Supports variables of arbitrary user-defined names.</p>
 
-<p style="margin-left:11%; margin-top: 1em">There is also a
-graphical version, gdozdc, written in Perl/Tk. Obviously,
-this requires a working version of Perl and the Tk
-libraries. gdozdc is pretty self-explanatory; its
+<p style="margin-left:11%; margin-top: 1em">There is a
+graphical version, opened by running <b>dozdc</b> with the
+<i>&minus;v</i> option. It&rsquo;s pretty self-explanatory
+for the most part, and each button has a tooltip explaining
+its function which appears on mouseover. This works in
+<i>infix</i> notation, not RPN.</p>
+
+<p style="margin-left:11%; margin-top: 1em">There is also
+another graphical version, gdozdc, written in Perl/Tk.
+Obviously, this requires a working version of Perl and the
+Tk libraries. gdozdc is pretty self-explanatory; its
 differences are described below.</p>
 
 <h2>OPTIONS
@@ -85,15 +92,42 @@ differences are described below.</p>
 <td width="3%">
 
 
-<p style="margin-top: 1em">-z</p></td>
+<p style="margin-top: 1em">&minus;V</p></td>
 <td width="8%"></td>
 <td width="78%">
 
 
-<p style="margin-top: 1em">Indicates that those functions
-which take angles as arguments (trigonometric functions in
-particular) will take them in zeniPis, the TGM unit. This is
-the default.</p></td></tr>
+<p style="margin-top: 1em">Print version and licensing
+information and quit successfully.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>&minus;v</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Run the visual version of the calculator. Works in infix
+notation and can be operated by keyboard, mouse, or a
+combination. If you don&rsquo;t have the <i>xforms</i>
+library, or don&rsquo;t want the graphical program, change
+the &quot;-DXFORMS&quot; to &quot;-UXFORMS&quot; in the
+makefile when compiling.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p>-z</p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Indicates that those functions which take angles as
+arguments (trigonometric functions in particular) will take
+them in zeniPis, the TGM unit. This is the default.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
 <td width="3%">
@@ -195,6 +229,19 @@ however, no answer will be printed unless you put in an
 be split between lines without having intermediate results,
 which may not be interesting, printed unless you want them
 to be.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="1%">
+
+
+<p>p</p></td>
+<td width="10%"></td>
+<td width="78%">
+
+
+<p>Pops and prints the top of the stack, then pushes that
+number back onto the stack. Helps for printing intermediate
+values without having to manually refill the stack.</p></td></tr>
 </table>
 
 <p style="margin-left:11%;">+, -, *, /</p>
@@ -258,7 +305,7 @@ can be changed. See the command &quot;rad&quot; and the
 command-line option &quot;r&quot;, as well as &quot;d&quot;
 and the command-line option &quot;d&quot;.</p>
 
-<p style="margin-left:11%;">asin, acos, atan</p>
+<p style="margin-left:11%;">asin, acos, atan, atan2</p>
 
 <p style="margin-left:22%;">Inverse trigonometric
 functions. Unary; used like the normal trigonometric
@@ -266,7 +313,9 @@ functions. Naturally, these must be in the range of -1 to 1
 (except for atan, which can take any real number); if they
 are fed a different value, they politely cough it back onto
 the stack and let the user know. They emit values in radians
-or degrees, depending on the current angle setting.</p>
+or degrees, depending on the current angle setting. The last
+is a binary operator; it uses its two arguments to determine
+the proper tangent of the result.</p>
 
 <p style="margin-left:11%;">sinh, cosh, tanh</p>
 
@@ -512,6 +561,22 @@ factor&quot; of its two arguments.</p></td></tr>
 multiple&quot; of its two arguments.</p></td></tr>
 </table>
 
+<p style="margin-left:11%;">ceil, floor</p>
+
+<p style="margin-left:22%;">Unary operators. Both take
+their single argument and return it without any fractional
+part; <i>ceil</i> returns the next highest integer, while
+<i>floor</i> returns the next lowest. Numbers without
+fractional parts and returned unchanged.</p>
+
+<p style="margin-left:11%;">max, min</p>
+
+<p style="margin-left:22%;">Binary operators. Both take
+their two arguments and compare them; <i>max</i> returns the
+higher value, <i>min</i> returns the lower. Of course, if
+they are equal, the same value will be returned in either
+case.</p>
+
 <h2>CONSTANTS
 <a name="CONSTANTS"></a>
 </h2>
@@ -533,13 +598,12 @@ will be printed.</p>
 <td width="4%">
 
 
-<p style="margin-top: 1em">pi</p></td>
+<p>pi</p></td>
 <td width="7%"></td>
 <td width="78%">
 
 
-<p style="margin-top: 1em">Takes no arguments; simply
-contains the value of pi.</p></td></tr>
+<p>Takes no arguments; simply contains the value of pi.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
 <td width="4%">
@@ -665,47 +729,53 @@ said.</p> </td>
 </td></tr>
 </table>
 
-<h2>GRAPHICAL VERSION, gdozdc
-<a name="GRAPHICAL VERSION, gdozdc"></a>
+<h2>GRAPHICAL VERSIONS, dozdc -v and gdozdc
+<a name="GRAPHICAL VERSIONS, dozdc -v and gdozdc"></a>
 </h2>
 
 
-<p style="margin-left:11%; margin-top: 1em">gdozdc is the
-graphical version of dozdc, and it differs in some
-significant points. Specifically, it&rsquo;s <i>infix,</i>
-not postfix; that means that you enter your equations in the
-same way you learned to write them down in school, with your
-binary operators (the ones that take two arguments, like the
-basic arithmetic functions) in between their two arguments.
-E.g., you write &quot;4 + 5&quot;, rather than dozdc&rsquo;s
-&quot;4 5 +&quot;.</p>
+<p style="margin-left:11%; margin-top: 1em">These are the
+graphical versions of dozdc, and they differ in some
+significant points. Specifically, they&rsquo;re
+<i>infix</i>, not postfix; that means that you enter your
+equations in the same way you learned to write them down in
+school, with your binary operators (the ones that take two
+arguments, like the basic arithmetic functions) in between
+their two arguments. E.g., you write &quot;4 + 5&quot;,
+rather than <b>dozdc</b>&rsquo;s &quot;4 5 +&quot;.</p>
 
 <p style="margin-left:11%; margin-top: 1em">This system is
 not particularly extensible; that is, it only works with
-binary operators, and it&rsquo;s inherently ambiguous.
-gdozdc therefore offers the usual infix disambiguation
-operators, parentheses, which can be used to group
-operations however might be necessary. This applies to *all*
-binary operators, even ones where this behavior might be
-surprising; e.g., for arbitrary base logarithms, one inputs
-the base, &quot;logb&quot;, then the number; so for the
-logarithm of three to base two, one writes &quot;2 logb
-3&quot;.</p>
+binary operators, and it&rsquo;s inherently ambiguous. These
+graphiccal calculators therefore offer the usual infix
+disambiguation operators, parentheses, which can be used to
+group operations however might be necessary.</p>
 
-<p style="margin-left:11%; margin-top: 1em">Non-binary
-operations work as they do in dozdc; that is, they are
+<p style="margin-left:11%; margin-top: 1em">In <b>dozdc
+&minus;v</b>, functions simply have their arguments in
+parentheses, separated by commas if there are more than one.
+For example, <i>sin(0;3)</i> or <i>logb(2,3)</i>. This
+shouldn&rsquo;t surprise anyone.</p>
+
+<p style="margin-left:11%; margin-top: 1em">In
+<b>gdozdc</b>, binary operators take their arguments the
+same way as arithmetic operators; e.g., for arbitrary base
+logarithms, one inputs the base, &quot;logb&quot;, then the
+number; so for the logarithm of three to base two, one
+writes <i>2 logb 3</i>. Non-binary operations work as they
+do in <b>dozdc</b>&rsquo;s RPN forms; that is, they are
 postfix. This is typical even for modern infix calculators.
-For example, one writes &quot;5 !&quot; for factorial five,
-and &quot;0;6 sin&quot; for the sine of 0;6.</p>
+For example, one writes <i>5 !</i> for factorial five, and
+<i>0;6 sin</i> for the sine of 0;6.</p>
 
-<p style="margin-left:11%; margin-top: 1em">gdozdc also
-implements some memory functions. &quot;CM&quot; means to
-clear memory; &quot;M&quot; means to save the current field
-to memory (this is the whole field, not the result of the
-operations contained in it); &quot;M+&quot; means to replace
-the current field with the contents of the memory; and
-&quot;M++&quot; means to append the contents of the memory
-to the current field.</p>
+<p style="margin-left:11%; margin-top: 1em">Both programs
+also implements some memory functions. &quot;CM&quot; means
+to clear memory; &quot;M&quot; means to save the current
+field to memory (this is the whole field, not the result of
+the operations contained in it); &quot;M+&quot; means to
+replace the current field with the contents of the memory;
+and &quot;M++&quot; means to append the contents of the
+memory to the current field.</p>
 
 <p style="margin-left:11%; margin-top: 1em">Hovering over a
 button will give the keyboard shortcut in a small popup

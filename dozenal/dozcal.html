@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.22.2 -->
-<!-- CreationDate: Tue Aug 16 21:04:16 2016 -->
+<!-- CreationDate: Fri Oct  7 09:04:20 2016 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,6 +25,7 @@
 <a href="#DESCRIPTION">DESCRIPTION</a><br>
 <a href="#OPTIONS">OPTIONS</a><br>
 <a href="#FILES">FILES</a><br>
+<a href="#VISUAL INTERFACE">VISUAL INTERFACE</a><br>
 <a href="#ERRORS">ERRORS</a><br>
 <a href="#BUGS">BUGS</a><br>
 <a href="#AUTHOR">AUTHOR</a><br>
@@ -48,18 +49,18 @@ a command-line dozenal calendar program</p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>dozcal</b>
 [<b>&minus;V</b>] [<b>&minus;E</b>] [<b>&minus;T</b>]
-[<b>&minus;u</b>] [<b>&minus;w</b>] [<b>&minus;W</b>
-<i>firstdayofweek</i>] [<b>&minus;m</b> <i>full|major</i>]
-[<b>&minus;a</b> <i>astronomical</i>] [<b>&minus;g</b>
-<i>latitude/longitude</i>] [<b>&minus;z</b> <i>offset</i>]
-[<b>&minus;h</b> <i>religious</i>] [<b>&minus;n</b>
-<i>national</i>] [<b>&minus;s</b> <i>startdate</i>]
-[<b>&minus;e</b> <i>enddate</i>] [<b>&minus;d</b>
-<i>dateformat</i>] [<b>&minus;t</b> <i>timeformat</i>]
-[<b>&minus;r</b> <i>eventformat</i>] [<b>&minus;R</b>
-<i>todoformat</i>] [<b>&minus;c</b> <i>configfile</i>]
-[<b>&minus;l</b> <i>luascript</i>] [<b>&minus;f</b>
-<i>inputfile</i>]</p>
+[<b>&minus;v</b>] [<b>&minus;u</b>] [<b>&minus;w</b>]
+[<b>&minus;W</b> <i>firstdayofweek</i>] [<b>&minus;m</b>
+<i>full|major</i>] [<b>&minus;a</b> <i>astronomical</i>]
+[<b>&minus;g</b> <i>latitude/longitude</i>] [<b>&minus;z</b>
+<i>offset</i>] [<b>&minus;h</b> <i>religious</i>]
+[<b>&minus;n</b> <i>national</i>] [<b>&minus;s</b>
+<i>startdate</i>] [<b>&minus;e</b> <i>enddate</i>]
+[<b>&minus;d</b> <i>dateformat</i>] [<b>&minus;t</b>
+<i>timeformat</i>] [<b>&minus;r</b> <i>eventformat</i>]
+[<b>&minus;R</b> <i>todoformat</i>] [<b>&minus;c</b>
+<i>configfile</i>] [<b>&minus;l</b> <i>luascript</i>]
+[<b>&minus;f</b> <i>inputfile</i>]</p>
 
 <h2>DESCRIPTION
 <a name="DESCRIPTION"></a>
@@ -95,6 +96,20 @@ understandable.</p>
 
 <p style="margin-top: 1em">Print version and licensing
 information, then exit successfully.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p><b>&minus;v</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p>Open the visual <b>dozcal</b> program; that is, the text
+user interface that will occupy your terminal screen and
+allow you to interact with your calendar visually, rather
+than at the command line.</p></td></tr>
 <tr valign="top" align="left">
 <td width="11%"></td>
 <td width="3%">
@@ -826,6 +841,14 @@ options listed <i>after</i> the config file option will take
 precedence; those listed <i>before</i> will be overridden if
 the config file contradicts them.</p>
 
+<p style="margin-left:22%; margin-top: 1em">Because
+<b>dozcal</b> assumes you want a config file, it does
+everything it can to find one; if you specifically want
+<b>dozcal</b> <i>not</i> to use a config file, use this
+option with the argument &quot;&minus;&quot; (a hyphen);
+this will cause <b>dozcal</b> to use only its defaults in
+all cases.</p>
+
 <h2>FILES
 <a name="FILES"></a>
 </h2>
@@ -1234,6 +1257,322 @@ effect when you&rsquo;ve asked for weekly output. Can be an
 integer 0-6 (with 0 being Sunday), or a string containing at
 least the first three letters of the weekday. Capitalization
 is irrelevant.</p>
+
+<h2>VISUAL INTERFACE
+<a name="VISUAL INTERFACE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozcal</b>
+comes with an <b>ncurses</b> interface that allows you to
+visually track your calendar and todos. Note that the visual
+interface <i>does not alter your data in any way</i>; by
+design, one does not add or remove things from your data
+through the visual interface. It merely allows you to browse
+your data in an easier way.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The visual
+interface respects your formatting directives, so it&rsquo;s
+often best to have special formatting applied when
+you&rsquo;re using it, so that it will fit more easily in
+the appropriate windows. One that I&rsquo;ve found pretty
+useful for events is the following:</p>
+
+<p style="margin-left:22%; margin-top: 1em">%d %e \n\t %s
+-- %c</p>
+
+<p style="margin-left:11%; margin-top: 1em">Control of the
+visual interface is pretty simple, and enunciated clearly in
+the lower bar of the window. Tab and shift-tab rotate
+through the windows; each window can be navigated with the
+arrow keys or with h/j/k/l.</p>
+
+<p style="margin-left:11%; margin-top: 1em">All the colors
+of the interface are configurable, to a probably completely
+unnecessary degree. Each individual element of the interface
+can be colored independently of all others, and the colors
+themselves can be either named or specified by RGB contents
+(expressed, of course, dozenally).</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>Elements to
+be Colored</b> <br>
+All elements to be colored are specified in all-caps,
+followed by a colon and zero or more spaces or tabs; the
+color specification then comes after. They are put, of
+course, into your config file.</p>
+
+<p style="margin-left:22%;"><b>NOCOLOR</b></p>
+
+<p style="margin-left:32%;">Tells <b>dozcal</b> that you
+don&rsquo;t want it to use color at all; it will then simply
+use the terminal&rsquo;s default colors.</p>
+
+<p style="margin-left:22%;"><b>CALENDAR_BG</b></p>
+
+<p style="margin-left:32%;">Your calendar window (the one
+with the monthly calendar in it, with the date you&rsquo;re
+currently viewing highlighted) have a background color where
+it has no other elements; this sets it.</p>
+
+<p style="margin-left:22%;"><b>EVENT_BG</b></p>
+
+<p style="margin-left:32%;">Like CALENDAR_BG, but for your
+event window.</p>
+
+<p style="margin-left:22%;"><b>TODO_BG</b></p>
+
+<p style="margin-left:32%;">Like CALENDAR_BG and EVENT_BG,
+but for your event window.</p>
+
+<p style="margin-left:22%;"><b>CAL_TITLE_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of your calendar window&rsquo;s title.</p>
+
+<p style="margin-left:22%;"><b>CAL_TITLE_BACK</b></p>
+
+<p style="margin-left:32%;">The background of your calendar
+window&rsquo;s title.</p>
+
+<p style="margin-left:22%;"><b>CAL_WEEK_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of the actual week text (listing the days of the
+week) in your calendar window.</p>
+
+<p style="margin-left:22%;"><b>CAL_WEEK_BACK</b></p>
+
+<p style="margin-left:32%;">The background of the actual
+week text (listing the days of the week) in your calendar
+window.</p>
+
+<p style="margin-left:22%;"><b>CAL_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of the actual day numbers in your calendar
+window.</p>
+
+<p style="margin-left:22%;"><b>CAL_BACK</b></p>
+
+<p style="margin-left:32%;">The background of the actual
+day numbers in your calendar window.</p>
+
+<p style="margin-left:22%;"><b>TODO_TITLE_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of your todo window&rsquo;s title.</p>
+
+<p style="margin-left:22%;"><b>TODO_TITLE_BACK</b></p>
+
+<p style="margin-left:32%;">The background of your todo
+window&rsquo;s title.</p>
+
+<p style="margin-left:22%;"><b>TODO_LINE_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground of the line
+separating your todo title from your actual todos. This
+amounts to the line&rsquo;s actual color.</p>
+
+<p style="margin-left:22%;"><b>TODO_LINE_BACK</b></p>
+
+<p style="margin-left:32%;">The background of the line
+separating your todo title from your actual todos. Chiefly
+useful for matching to TODO_BACK or TODO_TITLE_BACK, or for
+making it the same as TODO_LINE_FORE to cause the line to
+disappear.</p>
+
+<p style="margin-left:22%;"><b>TODO_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of your todo window&rsquo;s text.</p>
+
+<p style="margin-left:22%;"><b>TODO_BACK</b></p>
+
+<p style="margin-left:32%;">The background of your todo
+window&rsquo;s text.</p>
+
+<p style="margin-left:22%;"><b>EV_TITLE_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of your event window&rsquo;s title.</p>
+
+<p style="margin-left:22%;"><b>EV_TITLE_BACK</b></p>
+
+<p style="margin-left:32%;">The background of your event
+window&rsquo;s title.</p>
+
+<p style="margin-left:22%;"><b>EV_LINE_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground of the line
+separating your event title from your actual events. This
+amounts to the line&rsquo;s actual color.</p>
+
+<p style="margin-left:22%;"><b>EV_LINE_BACK</b></p>
+
+<p style="margin-left:32%;">The background of the line
+separating your event title from your actual events. Chiefly
+useful for matching to EV_BACK or EV_TITLE_BACK, or for
+making it the same as EV_LINE_FORE to cause the line to
+disappear.</p>
+
+<p style="margin-left:22%;"><b>EV_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of your event window&rsquo;s text.</p>
+
+<p style="margin-left:22%;"><b>EV_BACK</b></p>
+
+<p style="margin-left:32%;">The background of your event
+window&rsquo;s text.</p>
+
+<p style="margin-left:22%;"><b>TITLE_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of the line at the top of the screen (the title
+line).</p>
+
+<p style="margin-left:22%;"><b>TITLE_BACK</b></p>
+
+<p style="margin-left:32%;">The background of the line at
+the top of the screen.</p>
+
+<p style="margin-left:22%;"><b>BOT_FORE</b></p>
+
+<p style="margin-left:32%;">The foreground (that is, the
+text color) of the line at the bottom of the screen. This is
+the line which contains the ordinary key commands.</p>
+
+<p style="margin-left:22%;"><b>BOT_BACK</b></p>
+
+<p style="margin-left:32%;">The background of the line at
+the bottom of the screen. This is the line which contains
+the ordinary key commands.</p>
+
+<p style="margin-left:22%;"><b>WARNING_FORE</b></p>
+
+<p style="margin-left:32%;">The warning line is the very
+bottom line of the screen; it prints the few warnings that
+<b>dozcal</b> occasionally needs to print (e.g., about not
+supporting certain colors). This is the foreground (the text
+color) for this line.</p>
+
+<p style="margin-left:22%;"><b>WARNING_BACK</b></p>
+
+<p style="margin-left:32%;">The warning line is the very
+bottom line of the screen; it prints the few warnings that
+<b>dozcal</b> occasionally needs to print (e.g., about not
+supporting certain colors). This is the background for this
+line.</p>
+
+
+<p style="margin-left:22%;"><b>INACTIVE_BORDER_FORE</b></p>
+
+<p style="margin-left:32%;">Each window has a border, and
+that border can be either active (that is, it&rsquo;s the
+window you&rsquo;re currently navigating) or inactive. This
+sets the foreground (the line color) of the inactive
+windows.</p>
+
+
+<p style="margin-left:22%;"><b>INACTIVE_BORDER_BACK</b></p>
+
+<p style="margin-left:32%;">Each window has a border, and
+that border can be either active (that is, it&rsquo;s the
+window you&rsquo;re currently navigating) or inactive. This
+sets the background of the inactive windows.</p>
+
+<p style="margin-left:22%;"><b>ACTIVE_BORDER_FORE</b></p>
+
+<p style="margin-left:32%;">Each window has a border, and
+that border can be either active (that is, it&rsquo;s the
+window you&rsquo;re currently navigating) or inactive. This
+sets the foreground (the line color) of the active
+window.</p>
+
+<p style="margin-left:22%;"><b>ACTIVE_BORDER_BACK</b></p>
+
+<p style="margin-left:32%;">Each window has a border, and
+that border can be either active (that is, it&rsquo;s the
+window you&rsquo;re currently navigating) or inactive. This
+sets the background of the active window.</p>
+
+<p style="margin-left:22%;"><b>WHOLE_EV_BG</b></p>
+
+<p style="margin-left:32%;">The background color of
+whatever part of the event window that is not occupied by
+some other color. Probably should be matched to EV_BACK.</p>
+
+<p style="margin-left:22%;"><b>WHOLE_TODO_BG</b></p>
+
+<p style="margin-left:32%;">The background color of
+whatever part of the todo window that is not occupied by
+some other color. Probably should be matched to
+TODO_BACK.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Obviously, this
+ability to customize colors can be either used or abused.
+For example, a fairly nice, low-key theme used by
+<b>dozcal</b>&rsquo;s author is the following:</p>
+
+
+<p style="margin-left:22%; margin-top: 1em">ACTIVE_BORDER_FORE:
+red <br>
+INACTIVE_BORDER_FORE: green <br>
+TITLE_FORE: blue <br>
+TITLE_BACK: yellow <br>
+EV_LINE_FORE: green; <br>
+TODO_LINE_FORE: green; <br>
+BOT_FORE: blue <br>
+BOT_BACK: yellow <br>
+WARNING_FORE: red</p>
+
+<p style="margin-left:11%; margin-top: 1em">This matches
+the default <b>xterm</b> theme I use and color themes I have
+for other text-interface programs (like <b>mutt</b>,
+<b>newsbeuter</b>, and <b>minlib</b>). Of course, some truly
+garish concoctions can also be devised. Taste, as always, is
+vital.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>Color
+Specifications</b> <br>
+Many terminal emulators (notably <b>xterm</b>) support only
+a limited number of colors; if that&rsquo;s the case, and
+you try to specify a color that isn&rsquo;t support,
+<b>dozcal</b> will warn you when you start up the visual
+interface on the bottom line. It will then convert the color
+you asked for into its nearest acceptable equivalent and use
+that. If your terminal <i>does</i> support arbitrary colors,
+then have at it.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>dozcal</b>
+recognizes only a few colors by name; namely, <i>red</i>,
+<i>blue</i>, <i>green</i>, <i>yellow</i>, <i>magenta</i>,
+<i>cyan</i>, <i>black</i>, and <i>white</i>. You can use
+these freely in your color definitions, and these should
+work on any terminal or terminal emulator that supports
+color at all.</p>
+
+<p style="margin-left:11%; margin-top: 1em">For other
+colors, <b>dozcal</b> allows you to enter them in an RGB
+specification format, with each element represented by a
+0-1000 (dozenal) number. For example:</p>
+
+<p style="margin-left:22%; margin-top: 1em">(1000,0,0) is
+equivalent to &quot;red&quot; <br>
+(0,1000,0) is equivalent to &quot;green&quot; <br>
+(1000,900,0) is a reasonably value for something like
+orange.</p>
+
+<p style="margin-left:11%; margin-top: 1em">If you define
+colors this way in your config file and then use
+<b>dozcal</b> where color isn&rsquo;t supported, fear not;
+you&rsquo;ll still get a <b>dozcal</b> with colors.
+<b>dozcal</b> will simply mutate those colors; any value of
+600 or greater will be turned into 1000, and any value of
+less than 600 will be turned into 0. So the (1000,900,0)
+given above for orange will be turned into (1000,1000,0), or
+&quot;yellow&quot;, which is as close as such terminals can
+come to orange.</p>
 
 <h2>ERRORS
 <a name="ERRORS"></a>
