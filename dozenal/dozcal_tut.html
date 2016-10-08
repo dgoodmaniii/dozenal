@@ -76,6 +76,7 @@ that way without you having to tell it to every time.</p>
 </ul>
 <li><a href="#script">Scripting Dozcal with Lua</a></li>
 <li><a href="#output">Formatting your Output</a></li>
+<li><a href="#gui">Graphical User Interface</a></li>
 <li><a href="#conc">Conclusion</a></li>
 </ul>
 
@@ -883,6 +884,40 @@ DATE         EVENT                         LOCATION
 <p>Of course, these scripts are just demonstrative; by no
 means is anyone limited to them.  The sky's the limit as far
 as formatting your output goes.</p>
+
+<center><a href="#toc">Table of Contents</a></center>
+
+<a name="gui"></a>
+<h2>Graphical User Interface</h2>
+
+<p><span class="prog">dozcal</span> also offers, when run
+with the <span class="sdemo">-v</span> option, a graphical
+user interface; more specifically, a text user interface
+(TUI), which uses the terminal or terminal emulator screen
+to present a graphical interface to the user.</p>
+
+<p>The graphical interface <em>does not in any way alter
+your data</em>.  You don't add or delete events or todos
+from your calendar through this interface; your data files
+will always be intact.  This means that your data
+<em>cannot</em> be corruptedf by bugs in the interface.</p>
+
+<p>Running <span class="sdemo">dozcal -v</span> should
+produce something along these lines:</p>
+
+<div class="demonstimg">
+<img title="Screenshot of dozcal -v upon opening the program, assuming no color configuration" 
+	alt="Screenshot of dozcal -v upon opening the program, assuming no color configuration" 
+	src="dozcal_tui_nocolor.png" />
+<p>Screenshot of <span class="prog">dozcal -v</span> immediately
+upon starting the program, assuming no color configuration.</p>
+</div>
+
+<p>Of course, this doesn't have any data (that is, events or
+todos) contained in it.  Your default colors may be
+different; <span class="prog">dozcal</span> is running here
+without any configured colors, so it will use the default
+colors.  
 
 <center><a href="#toc">Table of Contents</a></center>
 
