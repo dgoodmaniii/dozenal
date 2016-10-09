@@ -917,7 +917,170 @@ upon starting the program, assuming no color configuration.</p>
 todos) contained in it.  Your default colors may be
 different; <span class="prog">dozcal</span> is running here
 without any configured colors, so it will use the default
-colors.  
+colors.  Your colors can range from the tasteful:</p>
+
+<div class="demonstimg">
+<img title="dozcal -v with a reasonably tasteful color scheme" 
+	alt="dozcal -v with a reasonably tasteful color scheme" 
+	src="dozcal_tasteful.png" />
+<p>Screenshot of <span class="prog">dozcal -v</span>
+sporting a reasonably tasteful color scheme</p>
+</div>
+
+<p>To the truly garish:</p>
+
+<div class="demonstimg">
+<img title="dozcal -v with a ghastly color scheme" 
+	alt="dozcal -v with a ghastly color scheme" 
+	src="dozcal_garish.png" />
+<p>Screenshot of <span class="prog">dozcal -v</span>
+sporting a ghastly color scheme</p>
+</div>
+
+<p>The available colors are truly arbitrary; however, not
+all terminal emulators can support all colors.  If you limit
+yourself to "red", "blue", "green", "yellow", "magenta",
+"cyan", "black", and "white", you are almost certainly safe;
+if you want more particular colors, you need to make sure
+that your terminal can handle them.  The first of the
+screenshots above, the "tasteful" one, shows the warning (in
+the bottom line) printed by <span class="prog">dozcal</span>
+when the terminal does not support non-standard colors; this
+was taken from <span class="prog">xterm</span>.  The garish
+screenshots supports arbitrary colors; it was taken in <span
+class="prog">rxvt-unicode</span>.</p>
+
+<p>Colors are listed as options in your option file, just
+like the other options we discussed earlier.  All-capitals,
+followed by a colon, followed by the color, as such:</p>
+
+<pre class="demo">
+CALENDAR_BG:	red
+</pre>
+
+<p>The standard colors listed above can be used by name;
+other colors can be specified with standard RGB (red green
+blue) notation, each color having a range of 0-1000
+(dozenal, of course).  For example, for "orange", try the
+following:</p>
+
+<pre class="demo">
+CALENDAR_BG:	(1000,900,0)
+</pre>
+
+<p>The different elements which can be colored are as
+follows:</p>
+
+<table class="realtable">
+<tr><td>NOCOLOR</td>
+	<td>Don't use color at all; stick to the terminal's
+	default colors</td></tr>
+<tr><td>CALENDAR_BG</td>
+	<td>The calendar window's background color (at least,
+	those parts of the calendar window which do not contain
+	any other elements</td></tr>
+<tr><td>EVENT_BG</td>
+	<td>Like CALENDAR_BG, but for your event window.</td></tr>
+<tr><td>TODO_BG</td>
+	<td>Like CALENDAR_BG, but for your todo window.</td></tr>
+<tr><td>CAL_TITLE_FORE</td>
+	<td>The foreground color (that is, the text color) of
+	your calendar window's title.</td></tr>
+<tr><td>CAL_TITLE_BACK</td>
+	<td>The background color of your calendar window's title.</td></tr>
+<tr><td>CAL_WEEK_FORE</td>
+	<td>The foreground color (that is, the text color) of
+	the week text (the text listing the days of the week) in
+	your calendar window.</td></tr>
+<tr><td>CAL_WEEK_BACK</td>
+	<td>The background color of the week text.</td></tr>
+<tr><td>CAL_FORE</td>
+	<td>The foreground color (that is, the text color) of the
+	actual day numbers in the calendar window.</td></tr>
+<tr><td>CAL_BACK</td>
+	<td>The background color of the day numbers in the
+	calendar window.</td></tr>
+<tr><td>TODO_TITLE_FORE</td>
+	<td>The foreground color (that is, the text color) of the
+	title line in the todo window.</td></tr>
+<tr><td>TODO_TITLE_BACK</td>
+	<td>The background color of the title line in the todo
+	window.</td></tr>
+<tr><td>TODO_LINE_FORE</td>
+	<td>The color of the line between the title and the
+	content of the todo window.</td></tr>
+<tr><td>TODO_LINE_BACK</td>
+	<td>The background of the line between the title and the
+	content of the todo window.</td></tr>
+<tr><td>TODO_FORE</td>
+	<td>The foreground color (that is, the text color) of the
+	todo window's text.</td></tr>
+<tr><td>TODO_BACK</td>
+	<td>The background color of the todo window's text.</td></tr>
+<tr><td>EV_TITLE_FORE</td>
+	<td>The foreground color (that is, the text color) of the
+	event window's title.</td></tr>
+<tr><td>EV_TITLE_BACK</td>
+	<td>The background color of the event window's title.</td></tr>
+<tr><td>EV_LINE_FORE</td>
+	<td>The color of the line separating the event window's
+	title and the event window's content.</td></tr>
+<tr><td>EV_LINE_BACK</td>
+	<td>The background color of the line separating the event
+	window's title and event window's content.</td></tr>
+<tr><td>EV_FORE</td>
+	<td>The foreground color (that is, the text color) of the
+	content of the event window.</td></tr>
+<tr><td>EV_BACK</td>
+	<td>The background color of the content of the event
+	window.</td></tr>
+<tr><td>TITLE_FORE</td>
+	<td>The foreground color (that is, the text color) of the 
+	title bar on the top of the screen.</td></tr>
+<tr><td>TITLE_BACK</td>
+	<td>The background color of the title bar on the top of
+	the screen.</td></tr>
+<tr><td>BOT_FORE</td>
+	<td>The foreground color (that is, the text color) of the 
+	line containing the key bindings on the bottom of
+	the screen.</td></tr>
+<tr><td>BOT_BACK</td>
+	<td>The background color of the line containing the key
+	bindings on the bottom of the screen.</td></tr>
+<tr><td>WARNING_FORE</td>
+	<td>Warnings are printed on the very last line of the
+	screen; this controls the foreground color (that is, the
+	text color) of that warning line.</td></tr>
+<tr><td>WARNING_BACK</td>
+	<td>The background color of the warning line.</td></tr>
+<tr><td>INACTIVE_BORDER_FORE</td>
+	<td>The border color of the two inactive windows.</td></tr>
+<tr><td>INACTIVE_BORDER_BACK</td>
+	<td>The background color of the border of the two
+	inactive windows.</td></tr>
+<tr><td>ACTIVE_BORDER_FORE</td>
+	<td>The border color of the active window.</td></tr>
+<tr><td>ACTIVE_BORDER_BACK</td>
+	<td>The background color of the border of the active
+	window.</td></tr>
+</table>
+
+<p>Many of these parameters, of course, should be colored to
+match or contrast with one another.  That is an exercise of
+taste left to the user.  The "tasteful" version above, used
+personally by the author, follows:</p>
+
+<pre class="demo">
+ACTIVE_BORDER_FORE: red
+INACTIVE_BORDER_FORE: green
+TITLE_FORE:  blue
+TITLE_BACK:  yellow
+EV_LINE_FORE:  green;
+TODO_LINE_FORE:  green;
+BOT_FORE:  blue
+BOT_BACK:  yellow
+WARNING_FORE:  red
+</pre>
 
 <center><a href="#toc">Table of Contents</a></center>
 
