@@ -17,11 +17,11 @@ my $mw = new MainWindow;
 $mw->title('gdozdc v1.0');
 #my $icon = $mw->Photo(-file=>'logo_shapes_dozenal.png');
 #$mw->Icon(-image=>$icon);
-$mw->Icon(
-	-image=>$mw->Bitmap(
-		-file=>'logo_shapes_mask.xbm'
-	),
-);
+#$mw->Icon(
+#	-image=>$mw->Bitmap(
+#		-file=>'logo_shapes_mask.xbm'
+#	),
+#);
 #my $icon = $mw->Bitmap(-file=>'logo_shapes_dozenal.xbm');
 #$mw->Icon(-image=>$icon);
 #$mw->iconmask('@logo_shapes_mask.xbm');
