@@ -56,7 +56,10 @@ to determine the dates of certain Jewish holidays, if they
 are requested by the user, and requires Lua for the
 scripting.  It also uses <a
 	href="http://stjarnhimlen.se/comp/sunriset.c">sunriset.c</a>,
-by Paul Schlyter, for the sunrise and sunset code.  That's
+by Paul Schlyter, for the sunrise and sunset code.  If you
+want the GUI programs, you'll need the <a
+ href="http://www.xforms-toolkit.org">xforms toolkit</a>;
+ but you can compile without it if you'd prefer.  That's
 all; no other external libraries are required.</p>
 
 <p>The programs included are:</p>
@@ -106,6 +109,13 @@ according to either the Systematic Dozenal Nomenclature
 (SDN) system or the Pendlebury system.  Pipe it through
 <span class="prog">espeak</span> for extra fun!  <a
 href="dozword.html">manual</a></li>
+<li><span class="artlink">doman</span>   Another very simple
+	program that simply converts a dozenal integer into a
+	non-place-value representation of its value.  Typically,
+	this will be used for Roman numerals; and, indeed, the
+	defaults are set up for dozenal Roman numerals.  However,
+	any symbols and ranks whatsoever may be used.  <a
+			 href="doman.html">manual</a></li>
 </ul>
 
 
