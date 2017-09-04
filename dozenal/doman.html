@@ -1,0 +1,194 @@
+<!-- Creator     : groff version 1.22.3 -->
+<!-- CreationDate: Mon Sep  4 16:41:23 2017 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>doman</title>
+
+</head>
+<body>
+
+<h1 align="center">doman</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#SUBTRACTIVE NOTATION">SUBTRACTIVE NOTATION</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">doman - convert
+dozenal integers to arbitrary non-place-value systems</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>doman [-V]
+[-l] [-R</b> <i>dozenal integer</i> <b>] [-r</b>
+<i>ranks</i> <b>] [-s</b> <i>symbols</i> <b>]</b></p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>doman</b>
+converts dozenal integers to arbitrary non-place-value
+systems. Only accept dozenal integers as input; fractional
+places will be silently truncated. Can accept arbitrary
+symbols; e.g., to duplicate (non-subtractive) Roman
+numerals, use <b>-s&quot;M,D,C,L,X,V,I&quot;
+-r&quot;6E4,358,84,42,X,5,1&quot;</b>. Any character or
+string of characters may be used as a symbol.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="3%">
+
+
+<p style="margin-top: 1em"><b>-V</b></p></td>
+<td width="8%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Print program and version
+information and exit successfully.</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>-R integer</b></p>
+
+<p style="margin-left:22%;">The number you wish
+<b>doman</b> to convert.</p>
+
+<p style="margin-left:11%;"><b>-r ranks</b></p>
+
+<p style="margin-left:22%;">Takes as a comma-separated list
+the ranks you wish to use for assembling the non-place-value
+number. E.g., for (non-subtractive) Roman numerals,
+you&rsquo;d use &quot;6E4,358,84,42,X,5,1&quot;, those being
+the numbers that have separate symbols in Roman numerals.
+You can have as many or as few of these as you wish.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Notice that
+this is a comma-separated list of <i>dozenal</i> values;
+decimal values will be interpreted as dozenal, which, if you
+meant to use decimal values, will not give you the result
+you want.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Note that there
+must be the same number of ranks as symbols; if there
+isn&rsquo;t, <b>doman</b> will emit an error and die.</p>
+
+<p style="margin-left:22%; margin-top: 1em">By default,
+<b>doman</b> sets this equal to:
+<b>1728,1584,1440,864,720,576,144,132,120,72,60,48,12,11,10,6,5,4,1</b>.
+This produces dozenal Roman numerals, of the sort discussed
+in several dozenal publications.</p>
+
+<p style="margin-left:11%;"><b>-s symbols</b></p>
+
+<p style="margin-left:22%;">Takes as a comma-separated list
+the symbols you wish to use for each rank. E.g., for
+(non-subtractive) Roman numerals, you&rsquo;d use
+&quot;M,D,C,L,X,V,I&quot;. However, any symbols can be used,
+of whatever length; multi-byte characters (or multiple
+characters) are fine.</p>
+
+<p style="margin-left:22%; margin-top: 1em">Note that there
+must be the same number of ranks as symbols; if there
+isn&rsquo;t, <b>doman</b> will emit an error and die.</p>
+
+<p style="margin-left:22%; margin-top: 1em">By default,
+<b>doman</b> defines this as follows:
+<b>M,CM,CCM,D,CD,CCD,C,XC,XXC,L,XL,XXL,X,IX,IIX,V,IV,IIV,I</b>.
+This produces dozenal Roman numerals, of the type discussed
+in several dozenal publications.</p>
+
+<h2>SUBTRACTIVE NOTATION
+<a name="SUBTRACTIVE NOTATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Roman numerals
+include something called <i>subtractive notation</i> (though
+Romans themselves didn&rsquo;t use it very often, and when
+they did they very rarely used it consistently). By this
+means, a lower-ranked symbol may be placed prior to a
+higher-ranked symbol to indicate subtraction. E.g.,
+<b>IV</b> would means <b>5 - 1</b>, or 4.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>doman</b>
+does have the ability to do this subtractive notation;
+however, it can&rsquo;t do so in a general way. To
+accomplish this, include the subtractive numbers as ranks,
+and their compound symbols. E.g., to make <b>IV</b> work as
+intended:</p>
+
+<p style="margin-left:22%;"><b>-s&quot;V,IV,I&quot;
+-r&quot;5,4,1&quot;</b></p>
+
+<p style="margin-left:11%;">That should do the trick. To
+completely duplicate the rules of conventional Roman
+numerals, try the following:</p>
+
+
+<p style="margin-left:22%;"><b>-r&quot;6E4,630,358,294,84,76,42,34,X,9,5,4,1&quot;
+-s&quot;M,CM,D,CD,C,XC,L,XL,X,IX,V,IV,I&quot;</b></p>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">None known at
+this time.</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Donald P.
+Goodman III &lt;dgoodmaniii at gmail dot com&gt;</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>doz</b>(1),
+<b>dozdc</b>(1), <b>tgmconv</b>(1), <b>dozdate</b>(1),
+<b>dozcal</b>(1), <b>dozword</b>(1), <b>doman</b>(1),
+<b>dozstring</b>(1), <b>dozpret</b>(1)</p>
+<hr>
+</body>
+</html>

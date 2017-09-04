@@ -1,0 +1,107 @@
+." +AMDG
+." Process with:
+." groff -man -Tascii doman.1
+.TH doman 1 "September 2017" Linux "User Manuals"
+.SH NAME
+doman \- convert dozenal integers to arbitrary non-place-value systems
+.SH SYNOPSIS
+.B doman [-V] [-l] [-R 
+.I dozenal integer
+.B ] [-r
+.I ranks
+.B ] [-s
+.I symbols
+.B ]
+.SH DESCRIPTION
+.B doman
+converts dozenal integers to arbitrary non-place-value
+systems.  Only accept dozenal integers as input; fractional
+places will be silently truncated.  Can accept arbitrary
+symbols; e.g., to duplicate (non-subtractive) Roman numerals, use 
+\fB-s"M,D,C,L,X,V,I" -r"6E4,358,84,42,X,5,1"\fR.  Any character
+or string of characters may be used as a symbol.
+.SH OPTIONS
+.TP
+.BR -V
+Print program and version information and exit successfully.
+.TP
+.BR "-R integer"
+The number you wish \fBdoman\fR to convert.
+.TP
+.BR "-r ranks"
+Takes as a comma-separated list the ranks you wish to use
+for assembling the non-place-value number.  E.g., for
+(non-subtractive) Roman numerals, you'd use
+"6E4,358,84,42,X,5,1", those being the numbers that have
+separate symbols in Roman numerals.  You can have as many or
+as few of these as you wish.
+.PP
+.RS
+Notice that this is a comma-separated list of \fIdozenal\fR
+values; decimal values will be interpreted as dozenal,
+which, if you meant to use decimal values, will not give you
+the result you want.
+.PP
+Note that there must be the same number of ranks as symbols;
+if there isn't, \fBdoman\fR will emit an error and die.
+.PP
+By default, \fBdoman\fR sets this equal to:
+\fB1728,1584,1440,864,720,576,144,132,120,72,60,48,12,11,10,6,5,4,1\fR.
+This produces dozenal Roman numerals, of the sort discussed
+in several dozenal publications.
+.RE
+.TP
+.BR "-s symbols"
+Takes as a comma-separated list the symbols you wish to use
+for each rank.  E.g., for (non-subtractive) Roman numerals,
+you'd use "M,D,C,L,X,V,I".  However, any symbols can be
+used, of whatever length; multi-byte characters (or multiple
+characters) are fine.
+.PP
+.RS
+Note that there must be the same number of ranks as symbols;
+if there isn't, \fBdoman\fR will emit an error and die.
+.PP
+By default, \fBdoman\fR defines this as follows:
+\fBM,CM,CCM,D,CD,CCD,C,XC,XXC,L,XL,XXL,X,IX,IIX,V,IV,IIV,I\fR.
+This produces dozenal Roman numerals, of the type discussed
+in several dozenal publications.
+.RE
+.SH SUBTRACTIVE NOTATION
+.PP
+Roman numerals include something called \fIsubtractive
+notation\fR (though Romans themselves didn't use it very
+often, and when they did they very rarely used it
+consistently).  By this means, a lower-ranked symbol may be
+placed prior to a higher-ranked symbol to indicate
+subtraction.  E.g., \fBIV\fR would means \fB5 - 1\fR, or 4.
+.PP
+\fBdoman\fR does have the ability to do this subtractive
+notation; however, it can't do so in a general way.  To
+accomplish this, include the subtractive numbers as ranks,
+and their compound symbols.  E.g., to make \fBIV\fR work as
+intended:
+.RS
+.B -s"V,IV,I" -r"5,4,1"
+.RE
+That should do the trick.  To completely duplicate the rules
+of conventional Roman numerals, try the following:
+.RS
+.nf
+.B -r"6E4,630,358,294,84,76,42,34,X,9,5,4,1" -s"M,CM,D,CD,C,XC,L,XL,X,IX,V,IV,I"
+.fi
+.RE
+.SH BUGS
+None known at this time.
+.SH AUTHOR
+Donald P. Goodman III <dgoodmaniii at gmail dot com>
+.SH "SEE ALSO"
+.BR doz (1),
+.BR dozdc (1),
+.BR tgmconv (1),
+.BR dozdate (1),
+.BR dozcal (1),
+.BR dozword (1),
+.BR doman (1),
+.BR dozstring (1),
+.BR dozpret (1)
